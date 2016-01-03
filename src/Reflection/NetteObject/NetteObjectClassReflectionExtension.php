@@ -4,11 +4,12 @@ namespace PHPStan\Reflection\NetteObject;
 
 use Nette\Object;
 use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\ClassReflectionExtension;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\MethodsClassReflectionExtension;
+use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
 
-class NetteObjectClassReflectionExtension implements ClassReflectionExtension
+class NetteObjectClassReflectionExtension implements MethodsClassReflectionExtension, PropertiesClassReflectionExtension
 {
 
 	public function hasProperty(ClassReflection $classReflection, string $propertyName): bool
@@ -23,14 +24,33 @@ class NetteObjectClassReflectionExtension implements ClassReflectionExtension
 
 		// todo setter taky?
 
-		$getterMethodName = sprintf('get%s', ucfirst($propertyName));
+		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
+		if ($getterMethod === null) {
+			return false;
+		}
 
-		return $classReflection->hasMethod($getterMethodName) && $classReflection->getMethod($getterMethodName)->isPublic();
+		return $getterMethod->isPublic();
+	}
+
+	/**
+	 * @param \PHPStan\Reflection\ClassReflection $classReflection
+	 * @param string $propertyName
+	 * @return \PHPStan\Reflection\MethodReflection|null
+	 */
+	private function getMethodByProperty(ClassReflection $classReflection, string $propertyName)
+	{
+		$getterMethodName = sprintf('get%s', ucfirst($propertyName));
+		if (!$classReflection->hasMethod($getterMethodName)) {
+			return null;
+		}
+
+		return $classReflection->getMethod($getterMethodName);
 	}
 
 	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection
 	{
-		return new NetteObjectPropertyReflection($classReflection);
+		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
+		return new NetteObjectPropertyReflection($classReflection, $getterMethod->getReturnType());
 	}
 
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
@@ -48,6 +68,6 @@ class NetteObjectClassReflectionExtension implements ClassReflectionExtension
 
 	public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
 	{
-		return new NetteObjectEventListenerMethodReflection($classReflection);
+		return new NetteObjectEventListenerMethodReflection($methodName, $classReflection);
 	}
 }

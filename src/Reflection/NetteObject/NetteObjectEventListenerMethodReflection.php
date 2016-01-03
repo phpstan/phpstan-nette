@@ -4,16 +4,27 @@ namespace PHPStan\Reflection\NetteObject;
 
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Type\NullType;
+use PHPStan\Type\Type;
 
 class NetteObjectEventListenerMethodReflection implements MethodReflection
 {
 
+	/** @var string */
+	private $name;
+
 	/** @var \PHPStan\Reflection\ClassReflection */
 	private $declaringClass;
 
-	public function __construct(ClassReflection $declaringClass)
+	public function __construct(string $name, ClassReflection $declaringClass)
 	{
+		$this->name = $name;
 		$this->declaringClass = $declaringClass;
+	}
+
+	public function getName(): string
+	{
+		return $this->name;
 	}
 
 	public function getDeclaringClass(): ClassReflection
@@ -48,4 +59,10 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 	{
 		return true;
 	}
+
+	public function getReturnType(): Type
+	{
+		return new NullType();
+	}
+
 }
