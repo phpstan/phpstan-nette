@@ -55,7 +55,8 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
 	{
-		if (!$classReflection->isSubclassOf(Object::class)) {
+		$traitNames = $this->getTraitNames($classReflection->getNativeReflection());
+		if (!$classReflection->isSubclassOf(Object::class) && !in_array(\Nette\SmartObject::class, $traitNames, true)) {
 			return false;
 		}
 
@@ -69,5 +70,16 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
 	{
 		return new NetteObjectEventListenerMethodReflection($methodName, $classReflection);
+	}
+
+	private function getTraitNames(\ReflectionClass $class): array
+	{
+		$traitNames = $class->getTraitNames();
+		while ($class->getParentClass() !== false) {
+			$traitNames = array_values(array_unique(array_merge($traitNames, $class->getParentClass()->getTraitNames())));
+			$class = $class->getParentClass();
+		}
+
+		return $traitNames;
 	}
 }
