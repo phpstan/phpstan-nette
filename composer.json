@@ -6,8 +6,8 @@
 	"prefer-stable": true,
 	"require": {
 		"php": "~7.0",
-		"phpstan/phpstan": "dev-dev#3ba62cbb49",
-		"nette/utils": "~2.3.0"
+		"phpstan/phpstan": "dev-dev#f85ba19e37",
+		"nette/utils": "^2.3.0"
 	},
 	"autoload": {
 		"psr-4": {
