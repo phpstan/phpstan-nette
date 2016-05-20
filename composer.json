@@ -6,9 +6,15 @@
 	"prefer-stable": true,
 	"require": {
 		"php": "~7.0",
-		"phpstan/phpstan": "dev-dev#f85ba19e37",
+		"phpstan/phpstan": "dev-dev#8bb7f234a2",
 		"nette/utils": "^2.3.0"
 	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "git@bitbucket.org:ondrejmirtes/phpstan.git"
+		}
+	],
 	"autoload": {
 		"psr-4": {
   			"PHPStan\\": "src/"

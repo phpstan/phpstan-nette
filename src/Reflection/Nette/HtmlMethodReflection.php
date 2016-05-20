@@ -1,18 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace PHPStan\Reflection\NetteObject;
+namespace PHPStan\Reflection\Nette;
 
+use Nette\Utils\Html;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Type\NullType;
+use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 
-class NetteObjectEventListenerMethodReflection implements MethodReflection
+class HtmlMethodReflection implements MethodReflection
 {
 
 	/** @var string */
 	private $name;
-
+	
 	/** @var \PHPStan\Reflection\ClassReflection */
 	private $declaringClass;
 
@@ -20,11 +21,6 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 	{
 		$this->name = $name;
 		$this->declaringClass = $declaringClass;
-	}
-
-	public function getName(): string
-	{
-		return $this->name;
 	}
 
 	public function getDeclaringClass(): ClassReflection
@@ -37,9 +33,6 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 		return false;
 	}
 
-	/**
-	 * @return \PHPStan\Reflection\ParameterReflection[]
-	 */
 	public function getParameters(): array
 	{
 		return [];
@@ -60,9 +53,14 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 		return true;
 	}
 
+	public function getName(): string
+	{
+		return $this->name;
+	}
+
 	public function getReturnType(): Type
 	{
-		return new NullType();
+		return new ObjectType(Html::class, false);
 	}
 
 }

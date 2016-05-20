@@ -3,7 +3,6 @@
 namespace PHPStan\Reflection\Nette;
 
 use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\NetteObject\NetteObjectPropertyReflection;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
 
