@@ -1,0 +1,22 @@
+services:
+	-
+		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
+			- phpstan.broker.methodsClassReflectionExtension
+
+	-
+		class: PHPStan\Reflection\Nette\NetteObjectClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
+			- phpstan.broker.methodsClassReflectionExtension
+
+	-
+		class: PHPStan\Reflection\Nette\NettePropertyCratesClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
+
+	-
+		class: PHPStan\Reflection\Nette\SmartObjectPropertiesClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
