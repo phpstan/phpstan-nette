@@ -9,12 +9,6 @@
 		"phpstan/phpstan": "dev-dev#19c97e3f31",
 		"nette/utils": "^2.3.0"
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "git@bitbucket.org:ondrejmirtes/phpstan.git"
-		}
-	],
 	"autoload": {
 		"psr-4": {
   			"PHPStan\\": "src/"
