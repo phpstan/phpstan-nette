@@ -6,7 +6,7 @@
 	"prefer-stable": true,
 	"require": {
 		"php": "~7.0",
-		"phpstan/phpstan": "dev-dev#a5db1f45ed",
+		"phpstan/phpstan": "^0.1",
 		"nette/utils": "^2.3.0"
 	},
 	"require-dev": {
