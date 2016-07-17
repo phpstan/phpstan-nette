@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace PHPStan\Reflection\Nette;
 
@@ -31,6 +31,5 @@ class HtmlClassReflectionExtension implements MethodsClassReflectionExtension, P
 	{
 		return new HtmlPropertyReflection($classReflection);
 	}
-
 
 }
