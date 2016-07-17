@@ -1,5 +1,9 @@
 # Nette Framework class reflection extension for PHPStan
 
+[![Build Status](https://travis-ci.org/phpstan/phpstan-nette.svg)](https://travis-ci.org/phpstan/phpstan-nette)
+[![Latest Stable Version](https://poser.pugx.org/phpstan/phpstan-nette/v/stable)](https://packagist.org/packages/phpstan/phpstan-nette)
+[![License](https://poser.pugx.org/phpstan/phpstan-nette/license)](https://packagist.org/packages/phpstan/phpstan-nette)
+
 * [PHPStan](https://github.com/phpstan/phpstan)
 * [Nette Framework](https://nette.org/)
 
