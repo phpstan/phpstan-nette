@@ -13,6 +13,7 @@
 		"consistence/coding-standard": "~0.11.0",
 		"phing/phing": "^2.13.0",
 		"phpunit/phpunit": "^5.3",
+		"satooshi/php-coveralls": "^1.0",
 		"slevomat/coding-standard": "dev-php7#961090ac32"
 	},
 	"autoload": {
