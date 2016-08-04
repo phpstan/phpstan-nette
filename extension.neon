@@ -1,3 +1,8 @@
+parameters:
+	universalObjectCratesClasses:
+		- Nette\Bridges\ApplicationLatte\Template
+		- Nette\Http\SessionSection
+
 services:
 	-
 		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
