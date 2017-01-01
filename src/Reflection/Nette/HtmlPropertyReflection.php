@@ -40,7 +40,7 @@ class HtmlPropertyReflection implements PropertyReflection
 
 	public function getType(): Type
 	{
-		return new MixedType(true);
+		return new MixedType();
 	}
 
 }
