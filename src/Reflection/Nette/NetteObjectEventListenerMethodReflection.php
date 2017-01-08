@@ -4,8 +4,8 @@ namespace PHPStan\Reflection\Nette;
 
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Type\NullType;
 use PHPStan\Type\Type;
+use PHPStan\Type\VoidType;
 
 class NetteObjectEventListenerMethodReflection implements MethodReflection
 {
@@ -67,7 +67,7 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 
 	public function getReturnType(): Type
 	{
-		return new NullType();
+		return new VoidType();
 	}
 
 }
