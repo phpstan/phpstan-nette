@@ -1,7 +1,10 @@
 parameters:
 	universalObjectCratesClasses:
+		- Nette\Application\UI\ITemplate
 		- Nette\Bridges\ApplicationLatte\Template
+		- Nette\Database\IRow
 		- Nette\Http\SessionSection
+		- Nette\Security\Identity
 
 services:
 	-
