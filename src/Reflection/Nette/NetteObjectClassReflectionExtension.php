@@ -28,6 +28,9 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 		if ($getterMethod === null) {
 			return false;
 		}
+		if ($getterMethod->isStatic()) {
+			return false;
+		}
 
 		return $getterMethod->isPublic();
 	}
