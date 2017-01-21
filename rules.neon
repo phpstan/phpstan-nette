@@ -1,0 +1,5 @@
+services:
+	-
+		class: PHPStan\Rule\Nette\DoNotExtendNetteObjectRule
+		tags:
+			- phpstan.rules.rule
