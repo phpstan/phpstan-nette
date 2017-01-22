@@ -22,7 +22,7 @@ It also contains this framework-specific rule (can be enabled separately):
 To use this extension, require it in [Composer](https://getcomposer.org/):
 
 ```
-composer require phpstan/phpstan-nette
+composer require --dev phpstan/phpstan-nette
 ```
 
 And include extension.neon in your project's PHPStan config:
