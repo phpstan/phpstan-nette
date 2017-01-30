@@ -28,3 +28,8 @@ services:
 		class: PHPStan\Type\Nette\ComponentModelDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\FormsBaseControlDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
