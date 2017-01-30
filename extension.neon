@@ -23,3 +23,8 @@ services:
 		class: PHPStan\Reflection\Nette\SmartObjectPropertiesClassReflectionExtension
 		tags:
 			- phpstan.broker.propertiesClassReflectionExtension
+
+	-
+		class: PHPStan\Type\Nette\ComponentModelDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension

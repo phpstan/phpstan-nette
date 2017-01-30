@@ -7,6 +7,7 @@
 	"require": {
 		"php": "~7.0",
 		"phpstan/phpstan": "^0.6",
+		"nette/component-model": "^2.3.0",
 		"nette/utils": "^2.3.0"
 	},
 	"require-dev": {
