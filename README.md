@@ -23,19 +23,19 @@ It also contains this framework-specific rule (can be enabled separately):
 
 To use this extension, require it in [Composer](https://getcomposer.org/):
 
-```
+```bash
 composer require --dev phpstan/phpstan-nette
 ```
 
 And include extension.neon in your project's PHPStan config:
 
-```
+```yaml
 includes:
 	- vendor/phpstan/phpstan-nette/extension.neon
 ```
 
 To perform framework-specific checks, include also this file:
 
-```
+```yaml
 	- vendor/phpstan/phpstan-nette/rules.neon
 ```
