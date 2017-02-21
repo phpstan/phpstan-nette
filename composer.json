@@ -7,10 +7,10 @@
 	"require": {
 		"php": "~7.0",
 		"phpstan/phpstan": "^0.6",
-		"nette/component-model": "^2.3.0",
-		"nette/di": "^2.3.0",
-		"nette/forms": "^2.3.0",
-		"nette/utils": "^2.3.0"
+		"nette/component-model": "^2.3.0 || ^3.0.0",
+		"nette/di": "^2.3.0 || ^3.0.0",
+		"nette/forms": "^2.3.0 || ^3.0.0",
+		"nette/utils": "^2.3.0 || ^3.0.0"
 	},
 	"require-dev": {
 		"consistence/coding-standard": "~0.12.0",

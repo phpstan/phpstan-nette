@@ -16,9 +16,16 @@ class SmartObjectPropertiesClassReflectionExtension implements PropertiesClassRe
 			return false;
 		}
 
-		$property = \Nette\Utils\ObjectMixin::getMagicProperty($classReflection->getName(), $propertyName);
-		if ($property === null) {
-			return false;
+		if (class_exists(\Nette\Utils\ObjectHelpers::class) && method_exists(\Nette\Utils\ObjectHelpers::class, 'getMagicProperties')) {
+			$magicProperties = \Nette\Utils\ObjectHelpers::getMagicProperties($classReflection->getName());
+			if (!isset($magicProperties[$propertyName])) {
+				return false;
+			}
+		} elseif (method_exists(\Nette\Utils\ObjectMixin::class, 'getMagicProperty')) {
+			$property = \Nette\Utils\ObjectMixin::getMagicProperty($classReflection->getName(), $propertyName);
+			if ($property === null) {
+				return false;
+			}
 		}
 
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);

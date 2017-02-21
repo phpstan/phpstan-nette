@@ -1,3 +1,5 @@
 parameters:
 	ignoreErrors:
 		- '#Call to an undefined method PHPUnit_Framework_MockObject_MockObject::[a-zA-Z0-9_]+\(\)#'
+		- '#Class Nette\\Utils\\ObjectHelpers not found#'
+		- '#Call to static method getMagicProperties\(\) on an unknown class Nette\\Utils\\ObjectHelpers#'
