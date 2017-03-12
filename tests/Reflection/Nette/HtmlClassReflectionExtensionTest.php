@@ -17,6 +17,9 @@ class HtmlClassReflectionExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->extension = new HtmlClassReflectionExtension();
 	}
 
+	/**
+	 * @return mixed[]
+	 */
 	public function dataHasMethod(): array
 	{
 		return [
@@ -60,6 +63,9 @@ class HtmlClassReflectionExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertFalse($methodReflection->getReturnType()->isNullable());
 	}
 
+	/**
+	 * @return mixed[]
+	 */
 	public function dataHasProperty(): array
 	{
 		return [

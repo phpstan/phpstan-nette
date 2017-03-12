@@ -39,6 +39,10 @@ class SmartObjectPropertiesClassReflectionExtension implements PropertiesClassRe
 		return $getterMethod->isPublic();
 	}
 
+	/**
+	 * @param \ReflectionClass $class
+	 * @return string[]
+	 */
 	private function getTraitNames(\ReflectionClass $class): array
 	{
 		$traitNames = $class->getTraitNames();

@@ -22,8 +22,6 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 			return false; // prevent infinite loop from hasMethod
 		}
 
-		// todo setter taky?
-
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
 		if ($getterMethod === null) {
 			return false;
@@ -75,6 +73,10 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 		return new NetteObjectEventListenerMethodReflection($methodName, $classReflection);
 	}
 
+	/**
+	 * @param \ReflectionClass $class
+	 * @return string[]
+	 */
 	private function getTraitNames(\ReflectionClass $class): array
 	{
 		$traitNames = $class->getTraitNames();

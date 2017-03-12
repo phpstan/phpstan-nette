@@ -38,6 +38,9 @@ class HtmlMethodReflection implements MethodReflection
 		return false;
 	}
 
+	/**
+	 * @return \PHPStan\Reflection\ParameterReflection[]
+	 */
 	public function getParameters(): array
 	{
 		return [];
