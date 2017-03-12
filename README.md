@@ -14,6 +14,7 @@ This extension provides following features:
 * Dynamic methods of [Nette\Utils\Html](https://doc.nette.org/en/2.4/html-elements)
 * Magic [Nette\Object and Nette\SmartObject](https://doc.nette.org/en/2.4/php-language-enhancements) properties
 * Event listeners through the `on*` properties
+* Defines early terminating method calls for Presenter methods to prevent `Undefined variable` errors
 
 It also contains this framework-specific rule (can be enabled separately):
 
