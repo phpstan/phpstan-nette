@@ -13,6 +13,7 @@ parameters:
 			- sendResponse
 			- error
 			- terminate
+			- forward
 
 services:
 	-
