@@ -71,6 +71,7 @@ class SmartObjectPropertiesClassReflectionExtension implements PropertiesClassRe
 
 	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection
 	{
+		/** @var \PHPStan\Reflection\MethodReflection $getterMethod */
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
 		return new NetteObjectPropertyReflection($classReflection, $getterMethod->getReturnType());
 	}

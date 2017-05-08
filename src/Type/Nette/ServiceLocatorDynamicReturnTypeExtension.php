@@ -8,6 +8,7 @@ use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TrueBooleanType;
 use PHPStan\Type\Type;
+use PHPStan\Type\TypeCombinator;
 
 class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTypeExtension
 {
@@ -47,19 +48,19 @@ class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicM
 		}
 
 		if ($class === 'self') {
-			$class = $scope->getClass();
+			$class = $scope->getClassReflection()->getName();
 		}
 
-		$isNullable = false;
+		$type = new ObjectType($class);
 		if (
 			$methodReflection->getName() === 'getByType'
 			&& count($methodCall->args) >= 2
 			&& $scope->getType($methodCall->args[1]->value) instanceof TrueBooleanType
 		) {
-			$isNullable = true;
+			$type = TypeCombinator::addNull($type);
 		}
 
-		return new ObjectType($class, $isNullable);
+		return $type;
 	}
 
 }

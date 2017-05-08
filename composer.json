@@ -4,9 +4,14 @@
 	"license": ["MIT"],
 	"minimum-stability": "dev",
 	"prefer-stable": true,
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.7-dev"
+		}
+	},
 	"require": {
 		"php": "~7.0",
-		"phpstan/phpstan": "^0.6",
+		"phpstan/phpstan": "^0.7",
 		"nette/component-model": "^2.3.0 || ^3.0.0",
 		"nette/di": "^2.3.0 || ^3.0.0",
 		"nette/forms": "^2.3.0 || ^3.0.0",

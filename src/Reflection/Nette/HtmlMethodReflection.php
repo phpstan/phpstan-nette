@@ -68,7 +68,7 @@ class HtmlMethodReflection implements MethodReflection
 
 	public function getReturnType(): Type
 	{
-		return new ObjectType(Html::class, false);
+		return new ObjectType(Html::class);
 	}
 
 }

@@ -3,8 +3,6 @@
 namespace PHPStan\Reflection\Nette;
 
 use PHPStan\Reflection\ClassReflection;
-use PHPStan\Type\MixedType;
-use PHPStan\Type\ObjectType;
 
 class HtmlClassReflectionExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -58,9 +56,7 @@ class HtmlClassReflectionExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertTrue($methodReflection->isVariadic());
 		$this->assertFalse($methodReflection->isPrivate());
 		$this->assertTrue($methodReflection->isPublic());
-		$this->assertInstanceOf(ObjectType::class, $methodReflection->getReturnType());
-		$this->assertSame(\Nette\Utils\Html::class, $methodReflection->getReturnType()->getClass());
-		$this->assertFalse($methodReflection->getReturnType()->isNullable());
+		$this->assertSame(\Nette\Utils\Html::class, $methodReflection->getReturnType()->describe());
 	}
 
 	/**
@@ -101,8 +97,7 @@ class HtmlClassReflectionExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertFalse($propertyReflection->isStatic());
 		$this->assertFalse($propertyReflection->isPrivate());
 		$this->assertTrue($propertyReflection->isPublic());
-		$this->assertInstanceOf(MixedType::class, $propertyReflection->getType());
-		$this->assertTrue($propertyReflection->getType()->isNullable());
+		$this->assertSame('mixed', $propertyReflection->getType()->describe());
 	}
 
 }
