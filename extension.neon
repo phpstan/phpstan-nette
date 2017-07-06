@@ -5,6 +5,7 @@ parameters:
 		- Nette\Database\IRow
 		- Nette\Http\SessionSection
 		- Nette\Security\Identity
+		- Nette\Security\IIdentity
 	earlyTerminatingMethodCalls:
 		Nette\Application\UI\Presenter:
 			- redirect
