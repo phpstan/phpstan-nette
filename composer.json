@@ -6,12 +6,12 @@
 	"prefer-stable": true,
 	"extra": {
 		"branch-alias": {
-			"dev-master": "0.7-dev"
+			"dev-master": "0.8-dev"
 		}
 	},
 	"require": {
 		"php": "~7.0",
-		"phpstan/phpstan": "^0.7",
+		"phpstan/phpstan": "^0.8",
 		"nette/component-model": "^2.3.0 || ^3.0.0",
 		"nette/di": "^2.3.0 || ^3.0.0",
 		"nette/forms": "^2.3.0 || ^3.0.0",
