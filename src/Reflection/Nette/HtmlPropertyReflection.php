@@ -43,4 +43,14 @@ class HtmlPropertyReflection implements PropertyReflection
 		return new MixedType();
 	}
 
+	public function isReadable(): bool
+	{
+		return true;
+	}
+
+	public function isWritable(): bool
+	{
+		return true;
+	}
+
 }
