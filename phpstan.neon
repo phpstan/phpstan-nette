@@ -1,5 +1,3 @@
 parameters:
 	ignoreErrors:
 		- '#PHPUnit_Framework_MockObject_MockObject given#'
-		- '#Class Nette\\Utils\\ObjectHelpers not found#'
-		- '#Call to static method getMagicProperties\(\) on an unknown class Nette\\Utils\\ObjectHelpers#'
