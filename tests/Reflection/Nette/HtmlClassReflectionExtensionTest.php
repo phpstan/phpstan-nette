@@ -4,7 +4,7 @@ namespace PHPStan\Reflection\Nette;
 
 use PHPStan\Reflection\ClassReflection;
 
-class HtmlClassReflectionExtensionTest extends \PHPUnit_Framework_TestCase
+class HtmlClassReflectionExtensionTest extends \PHPUnit\Framework\TestCase
 {
 
 	/** @var \PHPStan\Reflection\Nette\HtmlClassReflectionExtension */

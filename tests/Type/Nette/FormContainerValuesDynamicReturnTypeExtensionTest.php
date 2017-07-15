@@ -15,7 +15,7 @@ use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TrueBooleanType;
 
-final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit_Framework_TestCase
+final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\Framework\TestCase
 {
 
 	/** @var \PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension */
