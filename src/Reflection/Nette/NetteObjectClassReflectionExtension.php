@@ -2,7 +2,6 @@
 
 namespace PHPStan\Reflection\Nette;
 
-use Nette\Object;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
@@ -14,7 +13,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 
 	public function hasProperty(ClassReflection $classReflection, string $propertyName): bool
 	{
-		if (!$classReflection->isSubclassOf(Object::class)) {
+		if (!$classReflection->isSubclassOf('Nette\Object')) {
 			return false;
 		}
 
@@ -58,7 +57,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
 	{
 		$traitNames = $this->getTraitNames($classReflection->getNativeReflection());
-		if (!$classReflection->isSubclassOf(Object::class) && !in_array(\Nette\SmartObject::class, $traitNames, true)) {
+		if (!$classReflection->isSubclassOf('Nette\Object') && !in_array(\Nette\SmartObject::class, $traitNames, true)) {
 			return false;
 		}
 
