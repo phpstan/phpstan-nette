@@ -4,4 +4,5 @@ parameters:
 
 	ignoreErrors:
 		- '#PHPUnit_Framework_MockObject_MockObject given#'
+		- '# but returns PHPUnit_Framework_MockObject_MockObject.#'
 		- '#Access to an undefined property PHPUnit_Framework_MockObject_MockObject::\$[a-zA-Z0-9_]+#'

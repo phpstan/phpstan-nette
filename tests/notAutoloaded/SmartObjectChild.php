@@ -6,4 +6,10 @@ class SmartObjectChild
 
 	use \Nette\SmartObject;
 
+	/** @var callable[] */
+	public $onPublicEvent = [];
+
+	/** @var callable[] */
+	protected $onProtectedEvent = [];
+
 }
