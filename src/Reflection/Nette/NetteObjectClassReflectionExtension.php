@@ -90,8 +90,8 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 
 	private function inheritsFromNetteObject(\ReflectionClass $class): bool
 	{
-		while (($parentClass = $class->getParentClass()) !== false) {
-			if ($parentClass->getName() === 'Nette\Object') {
+		while (($class = $class->getParentClass()) !== false) {
+			if ($class->getName() === 'Nette\Object') {
 				return true;
 			}
 		}
