@@ -4,6 +4,7 @@ parameters:
 		- Nette\Bridges\ApplicationLatte\Template
 		- Nette\Database\IRow
 		- Nette\Http\SessionSection
+		- Nette\Security\IIdentity
 		- Nette\Security\Identity
 	earlyTerminatingMethodCalls:
 		Nette\Application\UI\Presenter:
