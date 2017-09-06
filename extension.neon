@@ -17,33 +17,33 @@ parameters:
 
 services:
 	-
-		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
+		factory: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
 		tags:
 			- phpstan.broker.propertiesClassReflectionExtension
 			- phpstan.broker.methodsClassReflectionExtension
 
 	-
-		class: PHPStan\Reflection\Nette\NetteObjectClassReflectionExtension
+		factory: PHPStan\Reflection\Nette\NetteObjectClassReflectionExtension
 		tags:
 			- phpstan.broker.propertiesClassReflectionExtension
 			- phpstan.broker.methodsClassReflectionExtension
 
 	-
-		class: PHPStan\Type\Nette\ComponentModelDynamicReturnTypeExtension
+		factory: PHPStan\Type\Nette\ComponentModelDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
 	-
-		class: PHPStan\Type\Nette\FormsBaseControlDynamicReturnTypeExtension
+		factory: PHPStan\Type\Nette\FormsBaseControlDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
 	-
-		class: PHPStan\Type\Nette\ServiceLocatorDynamicReturnTypeExtension
+		factory: PHPStan\Type\Nette\ServiceLocatorDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
 	-
-		class: PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension
+		factory: PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
