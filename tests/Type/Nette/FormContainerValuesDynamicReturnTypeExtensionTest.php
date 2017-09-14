@@ -8,12 +8,12 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ArrayType;
-use PHPStan\Type\CommonUnionType;
 use PHPStan\Type\FalseBooleanType;
 use PHPStan\Type\IterableIterableType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TrueBooleanType;
+use PHPStan\Type\UnionType;
 
 final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\Framework\TestCase
 {
@@ -31,7 +31,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getReturnType')
-			->willReturn(new CommonUnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->willReturn(new UnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new TrueBooleanType());
@@ -57,7 +57,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getReturnType')
-			->willReturn(new CommonUnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->willReturn(new UnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new FalseBooleanType());
@@ -76,7 +76,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 
 		$this->assertInstanceOf(ObjectType::class, $resultType);
-		$this->assertSame(\Nette\Utils\ArrayHash::class, $resultType->getClass());
+		$this->assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe());
 	}
 
 	public function testDefaultParameterIsArrayHash()
@@ -84,7 +84,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getReturnType')
-			->willReturn(new CommonUnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->willReturn(new UnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new FalseBooleanType());
@@ -96,7 +96,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 
 		$this->assertInstanceOf(ObjectType::class, $resultType);
-		$this->assertSame(\Nette\Utils\ArrayHash::class, $resultType->getClass());
+		$this->assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe());
 	}
 
 }

@@ -28,7 +28,12 @@ class FormsBaseControlDynamicReturnTypeExtension implements \PHPStan\Type\Dynami
 		Scope $scope
 	): Type
 	{
-		if ($methodReflection->getReturnType()->getClass() !== null && $methodReflection->getReturnType()->getClass() === \Nette\Forms\Controls\BaseControl::class) {
+		$returnType = $methodReflection->getReturnType();
+		$referencedClasses = $returnType->getReferencedClasses();
+		if (
+			count($referencedClasses) === 1
+			&& $referencedClasses[0] === \Nette\Forms\Controls\BaseControl::class
+		) {
 			return $scope->getType($methodCall->var);
 		}
 
