@@ -5,6 +5,7 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TrueBooleanType;
 use PHPStan\Type\Type;
@@ -23,11 +24,15 @@ class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicM
 		return in_array($methodReflection->getName(), [
 			'getByType',
 			'createInstance',
+			'getService',
 		], true);
 	}
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
+		if ($methodReflection->getName() === 'getService') {
+			return new MixedType();
+		}
 		if (count($methodCall->args) === 0) {
 			return $methodReflection->getReturnType();
 		}
