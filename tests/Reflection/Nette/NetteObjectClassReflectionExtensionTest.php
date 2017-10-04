@@ -3,8 +3,8 @@
 namespace PHPStan\Reflection\Nette;
 
 use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\MethodReflection;
-use PHPStan\Reflection\PropertyReflection;
+use PHPStan\Reflection\Php\PhpMethodReflection;
+use PHPStan\Reflection\Php\PhpPropertyReflection;
 
 class NetteObjectClassReflectionExtensionTest extends \PHPUnit\Framework\TestCase
 {
@@ -107,30 +107,30 @@ class NetteObjectClassReflectionExtensionTest extends \PHPUnit\Framework\TestCas
 	{
 		$classReflection = $this->createMock(ClassReflection::class);
 		$classReflection->method('getNativeReflection')->will($this->returnValue($class));
-		$classReflection->method('hasProperty')->will(
+		$classReflection->method('hasNativeProperty')->will(
 			$this->returnCallback(
 				function (string $property) use ($class): bool {
 					return $class->hasProperty($property);
 				}
 			)
 		);
-		$classReflection->method('getProperty')->will(
+		$classReflection->method('getNativeProperty')->will(
 			$this->returnCallback(
-				function (string $property) use ($class): PropertyReflection {
+				function (string $property) use ($class): PhpPropertyReflection {
 					return $this->mockPropertyReflection($class->getProperty($property));
 				}
 			)
 		);
-		$classReflection->method('hasMethod')->will(
+		$classReflection->method('hasNativeMethod')->will(
 			$this->returnCallback(
 				function (string $method) use ($class): bool {
 					return $class->hasMethod($method);
 				}
 			)
 		);
-		$classReflection->method('getMethod')->will(
+		$classReflection->method('getNativeMethod')->will(
 			$this->returnCallback(
-				function (string $method) use ($class): MethodReflection {
+				function (string $method) use ($class): PhpMethodReflection {
 					return $this->mockMethodReflection($class->getMethod($method));
 				}
 			)
@@ -139,17 +139,17 @@ class NetteObjectClassReflectionExtensionTest extends \PHPUnit\Framework\TestCas
 		return $classReflection;
 	}
 
-	private function mockMethodReflection(\ReflectionMethod $method): MethodReflection
+	private function mockMethodReflection(\ReflectionMethod $method): PhpMethodReflection
 	{
-		$methodReflection = $this->createMock(MethodReflection::class);
+		$methodReflection = $this->createMock(PhpMethodReflection::class);
 		$methodReflection->method('isPublic')->will($this->returnValue($method->isPublic()));
 		$methodReflection->method('isStatic')->will($this->returnValue($method->isStatic()));
 		return $methodReflection;
 	}
 
-	private function mockPropertyReflection(\ReflectionProperty $property): PropertyReflection
+	private function mockPropertyReflection(\ReflectionProperty $property): PhpPropertyReflection
 	{
-		$propertyReflection = $this->createMock(PropertyReflection::class);
+		$propertyReflection = $this->createMock(PhpPropertyReflection::class);
 		$propertyReflection->method('isPublic')->will($this->returnValue($property->isPublic()));
 		return $propertyReflection;
 	}

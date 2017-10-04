@@ -17,10 +17,6 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 			return false;
 		}
 
-		if (substr($propertyName, 0, 2) === 'on' && strlen($propertyName) > 2) {
-			return false; // prevent infinite loop from hasMethod
-		}
-
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
 		if ($getterMethod === null) {
 			return false;
@@ -40,11 +36,11 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	private function getMethodByProperty(ClassReflection $classReflection, string $propertyName)
 	{
 		$getterMethodName = sprintf('get%s', ucfirst($propertyName));
-		if (!$classReflection->hasMethod($getterMethodName)) {
+		if (!$classReflection->hasNativeMethod($getterMethodName)) {
 			return null;
 		}
 
-		return $classReflection->getMethod($getterMethodName);
+		return $classReflection->getNativeMethod($getterMethodName);
 	}
 
 	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection
@@ -65,7 +61,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 			return false;
 		}
 
-		return $classReflection->hasProperty($methodName) && $classReflection->getProperty($methodName)->isPublic();
+		return $classReflection->hasNativeProperty($methodName) && $classReflection->getNativeProperty($methodName)->isPublic();
 	}
 
 	public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
