@@ -25,13 +25,17 @@ class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicM
 			'getByType',
 			'createInstance',
 			'getService',
+			'createService',
 		], true);
 	}
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
 		$mixedType = new MixedType();
-		if ($methodReflection->getName() === 'getService') {
+		if (in_array($methodReflection->getName(), [
+			'getService',
+			'createService',
+		], true)) {
 			return $mixedType;
 		}
 		if (count($methodCall->args) === 0) {
