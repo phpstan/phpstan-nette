@@ -30,26 +30,27 @@ class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicM
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
+		$mixedType = new MixedType();
 		if ($methodReflection->getName() === 'getService') {
-			return new MixedType();
+			return $mixedType;
 		}
 		if (count($methodCall->args) === 0) {
-			return $methodReflection->getReturnType();
+			return $mixedType;
 		}
 		$arg = $methodCall->args[0]->value;
 		if (!($arg instanceof \PhpParser\Node\Expr\ClassConstFetch)) {
-			return $methodReflection->getReturnType();
+			return $mixedType;
 		}
 
 		$class = $arg->class;
 		if (!($class instanceof \PhpParser\Node\Name)) {
-			return $methodReflection->getReturnType();
+			return $mixedType;
 		}
 
 		$class = (string) $class;
 
 		if ($class === 'static') {
-			return $methodReflection->getReturnType();
+			return $mixedType;
 		}
 
 		if ($class === 'self') {
