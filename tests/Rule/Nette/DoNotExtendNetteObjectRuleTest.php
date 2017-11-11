@@ -30,8 +30,8 @@ class DoNotExtendNetteObjectRuleTest extends \PHPUnit\Framework\TestCase
 	public function testSmartObjectChild()
 	{
 		$scope = $this->createMock(Scope::class);
-		$node = $this->createMock(Node::class);
-		$node->namespacedName = 'PHPStan\Tests\SmartObjectChild';
+		$node = $this->createMock(Node\Stmt\Class_::class);
+		$node->namespacedName = new Node\Name('PHPStan\Tests\SmartObjectChild');
 
 		$result = $this->rule->processNode($node, $scope);
 
@@ -44,8 +44,8 @@ class DoNotExtendNetteObjectRuleTest extends \PHPUnit\Framework\TestCase
 			$this->markTestSkipped('PHP 7.2 is incompatible with Nette\Object.');
 		}
 		$scope = $this->createMock(Scope::class);
-		$node = $this->createMock(Node::class);
-		$node->namespacedName = 'PHPStan\Tests\NetteObjectChild';
+		$node = $this->createMock(Node\Stmt\Class_::class);
+		$node->namespacedName = new Node\Name('PHPStan\Tests\NetteObjectChild');
 
 		$result = $this->rule->processNode($node, $scope);
 
