@@ -5,4 +5,4 @@ includes:
 
 parameters:
 	excludes_analyse:
-		- %rootDir%/../../../tests/notAutoloaded/*
+		- %rootDir%/../../../tests/data/*

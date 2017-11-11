@@ -2,16 +2,18 @@
 
 namespace PHPStan\Reflection\Nette;
 
-use PHPStan\Reflection\ClassReflection;
-
-class HtmlClassReflectionExtensionTest extends \PHPUnit\Framework\TestCase
+class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 {
+
+	/** @var \PHPStan\Broker\Broker */
+	private $broker;
 
 	/** @var \PHPStan\Reflection\Nette\HtmlClassReflectionExtension */
 	private $extension;
 
 	protected function setUp()
 	{
+		$this->broker = $this->createBroker();
 		$this->extension = new HtmlClassReflectionExtension();
 	}
 
@@ -39,15 +41,13 @@ class HtmlClassReflectionExtensionTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testHasMethod(string $className, bool $result)
 	{
-		$classReflection = $this->createMock(ClassReflection::class);
-		$classReflection->method('getName')->will($this->returnValue($className));
+		$classReflection = $this->broker->getClass($className);
 		$this->assertSame($result, $this->extension->hasMethod($classReflection, 'href'));
 	}
 
 	public function testGetMethod()
 	{
-		$classReflection = $this->createMock(ClassReflection::class);
-		$classReflection->method('getName')->will($this->returnValue(\Nette\Utils\Html::class));
+		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
 		$methodReflection = $this->extension->getMethod($classReflection, 'href');
 		$this->assertSame('href', $methodReflection->getName());
 		$this->assertSame($classReflection, $methodReflection->getDeclaringClass());
@@ -83,15 +83,13 @@ class HtmlClassReflectionExtensionTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testHasProperty(string $className, bool $result)
 	{
-		$classReflection = $this->createMock(ClassReflection::class);
-		$classReflection->method('getName')->will($this->returnValue($className));
+		$classReflection = $this->broker->getClass($className);
 		$this->assertSame($result, $this->extension->hasProperty($classReflection, 'href'));
 	}
 
 	public function testGetProperty()
 	{
-		$classReflection = $this->createMock(ClassReflection::class);
-		$classReflection->method('getName')->will($this->returnValue(\Nette\Utils\Html::class));
+		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
 		$propertyReflection = $this->extension->getProperty($classReflection, 'href');
 		$this->assertSame($classReflection, $propertyReflection->getDeclaringClass());
 		$this->assertFalse($propertyReflection->isStatic());
