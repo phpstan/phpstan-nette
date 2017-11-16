@@ -10,7 +10,7 @@ use PHPStan\Type\Type;
 class FormsBaseControlDynamicReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTypeExtension
 {
 
-	public static function getClass(): string
+	public function getClass(): string
 	{
 		return \Nette\Forms\Controls\BaseControl::class;
 	}

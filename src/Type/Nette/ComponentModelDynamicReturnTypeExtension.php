@@ -12,7 +12,7 @@ use PHPStan\Type\Type;
 class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
-	public static function getClass(): string
+	public function getClass(): string
 	{
 		return \Nette\ComponentModel\Container::class;
 	}

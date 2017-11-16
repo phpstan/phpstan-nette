@@ -16,7 +16,7 @@ use PHPStan\Type\Type;
 final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
-	public static function getClass(): string
+	public function getClass(): string
 	{
 		return \Nette\Forms\Container::class;
 	}
