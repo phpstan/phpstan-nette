@@ -31,7 +31,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getReturnType')
-			->willReturn(new UnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->willReturn(new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableIterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]));
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new TrueBooleanType());
@@ -57,7 +57,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getReturnType')
-			->willReturn(new UnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->willReturn(new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableIterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]));
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new FalseBooleanType());
@@ -84,7 +84,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getReturnType')
-			->willReturn(new UnionType([new ArrayType(new MixedType()), new IterableIterableType(new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->willReturn(new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableIterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]));
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new FalseBooleanType());

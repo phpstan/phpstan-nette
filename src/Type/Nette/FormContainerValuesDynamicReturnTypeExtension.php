@@ -10,6 +10,7 @@ use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\FalseBooleanType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\StringType;
 use PHPStan\Type\TrueBooleanType;
 use PHPStan\Type\Type;
 
@@ -40,7 +41,7 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 		}
 
 		if ($scopedType instanceof TrueBooleanType) {
-			return new ArrayType(new MixedType());
+			return new ArrayType(new StringType(), new MixedType());
 		}
 
 		return $methodReflection->getReturnType();
