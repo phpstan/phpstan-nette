@@ -1,5 +1,5 @@
 services:
 	-
-		class: PHPStan\Rule\Nette\DoNotExtendNetteObjectRule
+		factory: PHPStan\Rule\Nette\DoNotExtendNetteObjectRule
 		tags:
 			- phpstan.rules.rule
