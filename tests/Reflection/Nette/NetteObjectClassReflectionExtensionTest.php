@@ -57,7 +57,7 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	public function testHasMethod(string $className, string $method, bool $result)
 	{
 		$classReflection = $this->broker->getClass($className);
-		$this->assertSame($result, $this->extension->hasMethod($classReflection, $method));
+		self::assertSame($result, $this->extension->hasMethod($classReflection, $method));
 	}
 
 	/**
@@ -100,7 +100,7 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	public function testHasProperty(string $className, string $property, bool $result)
 	{
 		$classReflection = $this->broker->getClass($className);
-		$this->assertSame($result, $this->extension->hasProperty($classReflection, $property));
+		self::assertSame($result, $this->extension->hasProperty($classReflection, $property));
 	}
 
 }

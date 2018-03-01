@@ -5,6 +5,7 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\Type;
@@ -37,12 +38,12 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 			return $mixedType;
 		}
 
-		$arg = $args[0]->value;
-		if (!$arg instanceof \PhpParser\Node\Scalar\String_) {
+		$argType = $scope->getType($args[0]->value);
+		if (!$argType instanceof ConstantStringType) {
 			return $mixedType;
 		}
 
-		$componentName = $arg->value;
+		$componentName = $argType->getValue();
 
 		$methodName = sprintf('createComponent%s', ucfirst($componentName));
 		if (!$calledOnType->hasMethod($methodName)) {

@@ -42,21 +42,21 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	public function testHasMethod(string $className, bool $result)
 	{
 		$classReflection = $this->broker->getClass($className);
-		$this->assertSame($result, $this->extension->hasMethod($classReflection, 'href'));
+		self::assertSame($result, $this->extension->hasMethod($classReflection, 'href'));
 	}
 
 	public function testGetMethod()
 	{
 		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
 		$methodReflection = $this->extension->getMethod($classReflection, 'href');
-		$this->assertSame('href', $methodReflection->getName());
-		$this->assertSame($classReflection, $methodReflection->getDeclaringClass());
-		$this->assertFalse($methodReflection->isStatic());
-		$this->assertEmpty($methodReflection->getParameters());
-		$this->assertTrue($methodReflection->isVariadic());
-		$this->assertFalse($methodReflection->isPrivate());
-		$this->assertTrue($methodReflection->isPublic());
-		$this->assertSame(\Nette\Utils\Html::class, $methodReflection->getReturnType()->describe());
+		self::assertSame('href', $methodReflection->getName());
+		self::assertSame($classReflection, $methodReflection->getDeclaringClass());
+		self::assertFalse($methodReflection->isStatic());
+		self::assertEmpty($methodReflection->getParameters());
+		self::assertTrue($methodReflection->isVariadic());
+		self::assertFalse($methodReflection->isPrivate());
+		self::assertTrue($methodReflection->isPublic());
+		self::assertSame(\Nette\Utils\Html::class, $methodReflection->getReturnType()->describe());
 	}
 
 	/**
@@ -84,18 +84,18 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	public function testHasProperty(string $className, bool $result)
 	{
 		$classReflection = $this->broker->getClass($className);
-		$this->assertSame($result, $this->extension->hasProperty($classReflection, 'href'));
+		self::assertSame($result, $this->extension->hasProperty($classReflection, 'href'));
 	}
 
 	public function testGetProperty()
 	{
 		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
 		$propertyReflection = $this->extension->getProperty($classReflection, 'href');
-		$this->assertSame($classReflection, $propertyReflection->getDeclaringClass());
-		$this->assertFalse($propertyReflection->isStatic());
-		$this->assertFalse($propertyReflection->isPrivate());
-		$this->assertTrue($propertyReflection->isPublic());
-		$this->assertSame('mixed', $propertyReflection->getType()->describe());
+		self::assertSame($classReflection, $propertyReflection->getDeclaringClass());
+		self::assertFalse($propertyReflection->isStatic());
+		self::assertFalse($propertyReflection->isPrivate());
+		self::assertTrue($propertyReflection->isPublic());
+		self::assertSame('mixed', $propertyReflection->getType()->describe());
 	}
 
 }

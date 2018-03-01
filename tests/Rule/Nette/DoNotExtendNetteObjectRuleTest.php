@@ -20,7 +20,7 @@ class DoNotExtendNetteObjectRuleTest extends \PHPStan\Testing\RuleTestCase
 	public function testNetteObjectChild()
 	{
 		if (PHP_VERSION_ID >= 70200) {
-			$this->markTestSkipped('PHP 7.2 is incompatible with Nette\Object.');
+			self::markTestSkipped('PHP 7.2 is incompatible with Nette\Object.');
 		}
 
 		$this->analyse([__DIR__ . '/../../data/NetteObjectChild.php'], [

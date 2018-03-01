@@ -6,12 +6,11 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ArrayType;
+use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
-use PHPStan\Type\FalseBooleanType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
-use PHPStan\Type\TrueBooleanType;
 use PHPStan\Type\Type;
 
 final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
@@ -35,16 +34,15 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 
 		$arg = $methodCall->args[0]->value;
 		$scopedType = $scope->getType($arg);
+		if (!$scopedType instanceof ConstantBooleanType) {
+			return $methodReflection->getReturnType();
+		}
 
-		if ($scopedType instanceof FalseBooleanType) {
+		if (!$scopedType->getValue()) {
 			return new ObjectType(\Nette\Utils\ArrayHash::class);
 		}
 
-		if ($scopedType instanceof TrueBooleanType) {
-			return new ArrayType(new StringType(), new MixedType());
-		}
-
-		return $methodReflection->getReturnType();
+		return new ArrayType(new StringType(), new MixedType());
 	}
 
 }

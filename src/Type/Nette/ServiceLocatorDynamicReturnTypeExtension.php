@@ -5,9 +5,10 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Type\Constant\ConstantBooleanType;
+use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\TrueBooleanType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 
@@ -41,33 +42,23 @@ class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicM
 		if (count($methodCall->args) === 0) {
 			return $mixedType;
 		}
-		$arg = $methodCall->args[0]->value;
-		if (!($arg instanceof \PhpParser\Node\Expr\ClassConstFetch)) {
+		$argType = $scope->getType($methodCall->args[0]->value);
+		if (!$argType instanceof ConstantStringType) {
 			return $mixedType;
 		}
 
-		$class = $arg->class;
-		if (!($class instanceof \PhpParser\Node\Name)) {
-			return $mixedType;
-		}
-
-		$class = (string) $class;
-
-		if ($class === 'static') {
-			return $mixedType;
-		}
-
-		if ($class === 'self') {
-			$class = $scope->getClassReflection()->getName();
-		}
-
-		$type = new ObjectType($class);
+		$type = new ObjectType($argType->getValue());
 		if (
 			$methodReflection->getName() === 'getByType'
 			&& count($methodCall->args) >= 2
-			&& $scope->getType($methodCall->args[1]->value) instanceof TrueBooleanType
 		) {
-			$type = TypeCombinator::addNull($type);
+			$throwType = $scope->getType($methodCall->args[1]->value);
+			if (
+				!$throwType instanceof ConstantBooleanType
+				|| !$throwType->getValue()
+			) {
+				$type = TypeCombinator::addNull($type);
+			}
 		}
 
 		return $type;
