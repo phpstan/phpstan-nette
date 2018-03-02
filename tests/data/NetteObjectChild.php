@@ -25,4 +25,9 @@ class NetteObjectChild extends \Nette\Object
 		return 'protected';
 	}
 
+	public function methodAsClosureGetter(): string
+	{
+		return 'methodAsClosureGetter';
+	}
+
 }

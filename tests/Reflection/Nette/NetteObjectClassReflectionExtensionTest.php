@@ -87,6 +87,11 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 				'protectedProperty',
 				false,
 			];
+			$data[] = [
+				'PHPStan\Tests\NetteObjectChild',
+				'methodAsClosureGetter',
+				true,
+			];
 		}
 		return $data;
 	}

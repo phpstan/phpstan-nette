@@ -7,6 +7,7 @@ use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
+use PHPStan\Type\CallableType;
 
 class NetteObjectClassReflectionExtension implements MethodsClassReflectionExtension, PropertiesClassReflectionExtension
 {
@@ -15,6 +16,10 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	{
 		if (!$this->inheritsFromNetteObject($classReflection->getNativeReflection())) {
 			return false;
+		}
+
+		if ($classReflection->hasNativeMethod($propertyName)) {
+			return true;
 		}
 
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
@@ -45,6 +50,10 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 
 	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection
 	{
+		if ($classReflection->hasNativeMethod($propertyName)) {
+			return new NetteObjectPropertyReflection($classReflection, new CallableType());
+		}
+
 		/** @var \PHPStan\Reflection\MethodReflection $getterMethod */
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
 		return new NetteObjectPropertyReflection($classReflection, $getterMethod->getReturnType());
