@@ -44,7 +44,10 @@ class DoNotExtendNetteObjectRule implements \PHPStan\Rules\Rule
 
 		$classReflection = $this->broker->getClass($className);
 		$parentClass = $classReflection->getNativeReflection()->getParentClass();
-		if ($parentClass !== false && $parentClass->getName() === 'Nette\Object') {
+		if ($parentClass !== false && in_array($parentClass->getName(), [
+			'Nette\Object',
+			'Nette\LegacyObject',
+		], true)) {
 			return [
 				sprintf(
 					"Class %s extends %s - it's better to use %s trait.",

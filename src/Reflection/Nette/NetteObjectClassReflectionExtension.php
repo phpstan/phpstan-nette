@@ -83,7 +83,10 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	{
 		$class = $class->getParentClass();
 		while ($class !== false) {
-			if ($class->getName() === 'Nette\Object') {
+			if (in_array($class->getName(), [
+				'Nette\Object',
+				'Nette\LegacyObject',
+			], true)) {
 				return true;
 			}
 			$class = $class->getParentClass();
