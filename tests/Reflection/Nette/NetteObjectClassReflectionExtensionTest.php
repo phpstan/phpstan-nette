@@ -33,18 +33,16 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 			'onProtectedEvent',
 			false,
 		];
-		if (PHP_VERSION_ID < 70200) { // PHP 7.2 is incompatible with Nette\Object.
-			$data[] = [
-				'PHPStan\NetteObjectChild',
-				'onPublicEvent',
-				true,
-			];
-			$data[] = [
-				'PHPStan\NetteObjectChild',
-				'onProtectedEvent',
-				false,
-			];
-		}
+		$data[] = [
+			'PHPStan\NetteObjectChild',
+			'onPublicEvent',
+			true,
+		];
+		$data[] = [
+			'PHPStan\NetteObjectChild',
+			'onProtectedEvent',
+			false,
+		];
 		return $data;
 	}
 
@@ -71,23 +69,22 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 			'foo',
 			false,
 		];
-		if (PHP_VERSION_ID < 70200) { // PHP 7.2 is incompatible with Nette\Object.
-			$data[] = [
-				'PHPStan\NetteObjectChild',
-				'staticProperty',
-				false,
-			];
-			$data[] = [
-				'PHPStan\NetteObjectChild',
-				'publicProperty',
-				true,
-			];
-			$data[] = [
-				'PHPStan\NetteObjectChild',
-				'protectedProperty',
-				false,
-			];
-		}
+		$data[] = [
+			'PHPStan\NetteObjectChild',
+			'staticProperty',
+			false,
+		];
+		$data[] = [
+			'PHPStan\NetteObjectChild',
+			'publicProperty',
+			true,
+		];
+		$data[] = [
+			'PHPStan\NetteObjectChild',
+			'protectedProperty',
+			false,
+		];
+
 		return $data;
 	}
 
