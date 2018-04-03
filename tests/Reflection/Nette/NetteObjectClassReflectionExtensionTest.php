@@ -11,7 +11,7 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	/** @var \PHPStan\Reflection\Nette\NetteObjectClassReflectionExtension */
 	private $extension;
 
-	protected function setUp()
+	protected function setUp(): void
 	{
 		$this->broker = $this->createBroker();
 		$this->extension = new NetteObjectClassReflectionExtension();
@@ -24,12 +24,12 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	{
 		$data = [];
 		$data[] = [
-			\PHPStan\Tests\SmartObjectChild::class,
+			\PHPStan\SmartObjectChild::class,
 			'onPublicEvent',
 			true,
 		];
 		$data[] = [
-			\PHPStan\Tests\SmartObjectChild::class,
+			\PHPStan\SmartObjectChild::class,
 			'onProtectedEvent',
 			false,
 		];
@@ -54,7 +54,7 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	 * @param string $method
 	 * @param bool $result
 	 */
-	public function testHasMethod(string $className, string $method, bool $result)
+	public function testHasMethod(string $className, string $method, bool $result): void
 	{
 		$classReflection = $this->broker->getClass($className);
 		self::assertSame($result, $this->extension->hasMethod($classReflection, $method));
@@ -67,7 +67,7 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	{
 		$data = [];
 		$data[] = [
-			\PHPStan\Tests\SmartObjectChild::class,
+			\PHPStan\SmartObjectChild::class,
 			'foo',
 			false,
 		];
@@ -97,7 +97,7 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	 * @param string $property
 	 * @param bool $result
 	 */
-	public function testHasProperty(string $className, string $property, bool $result)
+	public function testHasProperty(string $className, string $property, bool $result): void
 	{
 		$classReflection = $this->broker->getClass($className);
 		self::assertSame($result, $this->extension->hasProperty($classReflection, $property));

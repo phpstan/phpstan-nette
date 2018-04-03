@@ -11,7 +11,7 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	/** @var \PHPStan\Reflection\Nette\HtmlClassReflectionExtension */
 	private $extension;
 
-	protected function setUp()
+	protected function setUp(): void
 	{
 		$this->broker = $this->createBroker();
 		$this->extension = new HtmlClassReflectionExtension();
@@ -39,13 +39,13 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	 * @param string $className
 	 * @param bool $result
 	 */
-	public function testHasMethod(string $className, bool $result)
+	public function testHasMethod(string $className, bool $result): void
 	{
 		$classReflection = $this->broker->getClass($className);
 		self::assertSame($result, $this->extension->hasMethod($classReflection, 'href'));
 	}
 
-	public function testGetMethod()
+	public function testGetMethod(): void
 	{
 		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
 		$methodReflection = $this->extension->getMethod($classReflection, 'href');
@@ -81,13 +81,13 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	 * @param string $className
 	 * @param bool $result
 	 */
-	public function testHasProperty(string $className, bool $result)
+	public function testHasProperty(string $className, bool $result): void
 	{
 		$classReflection = $this->broker->getClass($className);
 		self::assertSame($result, $this->extension->hasProperty($classReflection, 'href'));
 	}
 
-	public function testGetProperty()
+	public function testGetProperty(): void
 	{
 		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
 		$propertyReflection = $this->extension->getProperty($classReflection, 'href');

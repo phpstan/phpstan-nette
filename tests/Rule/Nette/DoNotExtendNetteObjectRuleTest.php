@@ -12,12 +12,12 @@ class DoNotExtendNetteObjectRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new DoNotExtendNetteObjectRule($this->createBroker());
 	}
 
-	public function testSmartObjectChild()
+	public function testSmartObjectChild(): void
 	{
-		$this->analyse([__DIR__ . '/../../data/SmartObjectChild.php'], []);
+		$this->analyse([__DIR__ . '/../../SmartObjectChild.php'], []);
 	}
 
-	public function testNetteObjectChild()
+	public function testNetteObjectChild(): void
 	{
 		if (PHP_VERSION_ID >= 70200) {
 			self::markTestSkipped('PHP 7.2 is incompatible with Nette\Object.');

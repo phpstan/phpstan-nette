@@ -28,12 +28,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 		return $getterMethod->isPublic();
 	}
 
-	/**
-	 * @param \PHPStan\Reflection\ClassReflection $classReflection
-	 * @param string $propertyName
-	 * @return \PHPStan\Reflection\MethodReflection|null
-	 */
-	private function getMethodByProperty(ClassReflection $classReflection, string $propertyName)
+	private function getMethodByProperty(ClassReflection $classReflection, string $propertyName): ?\PHPStan\Reflection\MethodReflection
 	{
 		$getterMethodName = sprintf('get%s', ucfirst($propertyName));
 		if (!$classReflection->hasNativeMethod($getterMethodName)) {

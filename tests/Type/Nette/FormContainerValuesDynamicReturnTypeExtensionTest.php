@@ -20,12 +20,12 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 	/** @var \PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension */
 	private $extension;
 
-	protected function setUp()
+	protected function setUp(): void
 	{
 		$this->extension = new FormContainerValuesDynamicReturnTypeExtension();
 	}
 
-	public function testParameterAsArray()
+	public function testParameterAsArray(): void
 	{
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
@@ -51,7 +51,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		self::assertInstanceOf(ArrayType::class, $resultType);
 	}
 
-	public function testParameterAsArrayHash()
+	public function testParameterAsArrayHash(): void
 	{
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
@@ -78,7 +78,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		self::assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe());
 	}
 
-	public function testDefaultParameterIsArrayHash()
+	public function testDefaultParameterIsArrayHash(): void
 	{
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
