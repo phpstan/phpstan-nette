@@ -2,7 +2,7 @@
 
 namespace PHPStan;
 
-class NetteObjectChild extends \Nette\Object
+class NetteObjectChild extends \Nette\LegacyObject
 {
 
 	/** @var callable[] */
