@@ -3,6 +3,7 @@
 namespace PHPStan\Reflection\Nette;
 
 use Nette\Utils\Html;
+use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ObjectType;
@@ -28,7 +29,7 @@ class HtmlMethodReflection implements MethodReflection
 		return $this->declaringClass;
 	}
 
-	public function getPrototype(): MethodReflection
+	public function getPrototype(): ClassMemberReflection
 	{
 		return $this;
 	}
