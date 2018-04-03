@@ -25,7 +25,7 @@ class DoNotExtendNetteObjectRuleTest extends \PHPStan\Testing\RuleTestCase
 
 		$this->analyse([__DIR__ . '/../../data/NetteObjectChild.php'], [
 			[
-				'Class PHPStan\Tests\NetteObjectChild extends Nette\Object - it\'s better to use Nette\SmartObject trait.',
+				'Class PHPStan\NetteObjectChild extends Nette\Object - it\'s better to use Nette\SmartObject trait.',
 				4,
 			],
 		]);
