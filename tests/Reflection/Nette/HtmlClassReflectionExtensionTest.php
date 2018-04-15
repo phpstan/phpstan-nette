@@ -2,6 +2,8 @@
 
 namespace PHPStan\Reflection\Nette;
 
+use PHPStan\Type\VerbosityLevel;
+
 class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 {
 
@@ -56,7 +58,7 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 		self::assertTrue($methodReflection->isVariadic());
 		self::assertFalse($methodReflection->isPrivate());
 		self::assertTrue($methodReflection->isPublic());
-		self::assertSame(\Nette\Utils\Html::class, $methodReflection->getReturnType()->describe());
+		self::assertSame(\Nette\Utils\Html::class, $methodReflection->getReturnType()->describe(VerbosityLevel::value()));
 	}
 
 	/**
@@ -95,7 +97,7 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 		self::assertFalse($propertyReflection->isStatic());
 		self::assertFalse($propertyReflection->isPrivate());
 		self::assertTrue($propertyReflection->isPublic());
-		self::assertSame('mixed', $propertyReflection->getType()->describe());
+		self::assertSame('mixed', $propertyReflection->getType()->describe(VerbosityLevel::value()));
 	}
 
 }

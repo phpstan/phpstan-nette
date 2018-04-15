@@ -13,6 +13,7 @@ use PHPStan\Type\IterableType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\UnionType;
+use PHPStan\Type\VerbosityLevel;
 
 final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\Framework\TestCase
 {
@@ -75,7 +76,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 
 		self::assertInstanceOf(ObjectType::class, $resultType);
-		self::assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe());
+		self::assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe(VerbosityLevel::value()));
 	}
 
 	public function testDefaultParameterIsArrayHash(): void
@@ -95,7 +96,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 
 		self::assertInstanceOf(ObjectType::class, $resultType);
-		self::assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe());
+		self::assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe(VerbosityLevel::value()));
 	}
 
 }
