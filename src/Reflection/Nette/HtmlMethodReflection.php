@@ -6,6 +6,7 @@ use Nette\Utils\Html;
 use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 
@@ -69,7 +70,7 @@ class HtmlMethodReflection implements MethodReflection
 
 	public function getReturnType(): Type
 	{
-		return new ObjectType(Html::class);
+		return substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType(Html::class);
 	}
 
 }
