@@ -12,6 +12,7 @@
 	"require": {
 		"php": "~7.1",
 		"phpstan/phpstan": "^0.10",
+		"nette/application": "^2.3.0 || ^3.0.0",
 		"nette/component-model": "^2.3.0 || ^3.0.0",
 		"nette/di": "^2.3.0 || ^3.0.0",
 		"nette/forms": "^2.3.0 || ^3.0.0",
