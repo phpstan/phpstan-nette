@@ -14,6 +14,7 @@ use PHPStan\Type\Type;
 
 final class PresenterGetSessionReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
+
 	public function getClass(): string
 	{
 		return \Nette\Application\UI\Presenter::class;
@@ -32,4 +33,5 @@ final class PresenterGetSessionReturnTypeExtension implements DynamicMethodRetur
 
 		return new ObjectType(SessionSection::class);
 	}
+
 }
