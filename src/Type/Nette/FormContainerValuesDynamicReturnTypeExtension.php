@@ -5,6 +5,7 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
@@ -35,7 +36,7 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 		$arg = $methodCall->args[0]->value;
 		$scopedType = $scope->getType($arg);
 		if (!$scopedType instanceof ConstantBooleanType) {
-			return $methodReflection->getReturnType();
+			return ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
 		}
 
 		if (!$scopedType->getValue()) {

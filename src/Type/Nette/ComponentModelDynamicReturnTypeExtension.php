@@ -5,6 +5,7 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
@@ -50,7 +51,9 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 			return $mixedType;
 		}
 
-		return $calledOnType->getMethod($methodName, $scope)->getReturnType();
+		$method = $calledOnType->getMethod($methodName, $scope);
+
+		return ParametersAcceptorSelector::selectSingle($method->getVariants())->getReturnType();
 	}
 
 }

@@ -4,8 +4,8 @@ namespace PHPStan\Reflection\Nette;
 
 use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Type\Type;
 use PHPStan\Type\VoidType;
 
 class NetteObjectEventListenerMethodReflection implements MethodReflection
@@ -44,16 +44,17 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 	}
 
 	/**
-	 * @return \PHPStan\Reflection\ParameterReflection[]
+	 * @return \PHPStan\Reflection\ParametersAcceptor[]
 	 */
-	public function getParameters(): array
+	public function getVariants(): array
 	{
-		return [];
-	}
-
-	public function isVariadic(): bool
-	{
-		return true;
+		return [
+			new FunctionVariant(
+				[],
+				true,
+				new VoidType()
+			),
+		];
 	}
 
 	public function isPrivate(): bool
@@ -64,11 +65,6 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 	public function isPublic(): bool
 	{
 		return true;
-	}
-
-	public function getReturnType(): Type
-	{
-		return new VoidType();
 	}
 
 }

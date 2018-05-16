@@ -6,6 +6,7 @@ use PhpParser\Node\Arg;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\Constant\ConstantBooleanType;
@@ -30,8 +31,12 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 	{
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
-			->method('getReturnType')
-			->willReturn(new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->method('getVariants')
+			->willReturn([new FunctionVariant(
+				[],
+				true,
+				new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))])
+			)]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(true));
@@ -56,8 +61,8 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 	{
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
-			->method('getReturnType')
-			->willReturn(new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->method('getVariants')
+			->willReturn([new FunctionVariant([], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
@@ -83,8 +88,8 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 	{
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
-			->method('getReturnType')
-			->willReturn(new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]));
+			->method('getVariants')
+			->willReturn([new FunctionVariant([], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));

@@ -5,10 +5,10 @@ namespace PHPStan\Reflection\Nette;
 use Nette\Utils\Html;
 use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\Type;
 
 class HtmlMethodReflection implements MethodReflection
 {
@@ -41,16 +41,17 @@ class HtmlMethodReflection implements MethodReflection
 	}
 
 	/**
-	 * @return \PHPStan\Reflection\ParameterReflection[]
+	 * @return \PHPStan\Reflection\ParametersAcceptor[]
 	 */
-	public function getParameters(): array
+	public function getVariants(): array
 	{
-		return [];
-	}
-
-	public function isVariadic(): bool
-	{
-		return true;
+		return [
+			new FunctionVariant(
+				[],
+				true,
+				substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType(Html::class)
+			),
+		];
 	}
 
 	public function isPrivate(): bool
@@ -66,11 +67,6 @@ class HtmlMethodReflection implements MethodReflection
 	public function getName(): string
 	{
 		return $this->name;
-	}
-
-	public function getReturnType(): Type
-	{
-		return substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType(Html::class);
 	}
 
 }

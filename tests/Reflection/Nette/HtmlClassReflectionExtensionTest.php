@@ -2,6 +2,7 @@
 
 namespace PHPStan\Reflection\Nette;
 
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\VerbosityLevel;
 
 class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
@@ -51,14 +52,15 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	{
 		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
 		$methodReflection = $this->extension->getMethod($classReflection, 'href');
+		$parametersAcceptor = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants());
 		self::assertSame('href', $methodReflection->getName());
 		self::assertSame($classReflection, $methodReflection->getDeclaringClass());
 		self::assertFalse($methodReflection->isStatic());
-		self::assertEmpty($methodReflection->getParameters());
-		self::assertTrue($methodReflection->isVariadic());
+		self::assertEmpty($parametersAcceptor->getParameters());
+		self::assertTrue($parametersAcceptor->isVariadic());
 		self::assertFalse($methodReflection->isPrivate());
 		self::assertTrue($methodReflection->isPublic());
-		self::assertSame(\Nette\Utils\Html::class, $methodReflection->getReturnType()->describe(VerbosityLevel::value()));
+		self::assertSame(\Nette\Utils\Html::class, $parametersAcceptor->getReturnType()->describe(VerbosityLevel::value()));
 	}
 
 	/**

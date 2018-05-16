@@ -5,6 +5,7 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\Type;
 
 class FormsBaseControlDynamicReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTypeExtension
@@ -28,7 +29,7 @@ class FormsBaseControlDynamicReturnTypeExtension implements \PHPStan\Type\Dynami
 		Scope $scope
 	): Type
 	{
-		$returnType = $methodReflection->getReturnType();
+		$returnType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
 		$referencedClasses = $returnType->getReferencedClasses();
 		if (
 			count($referencedClasses) === 1
@@ -37,7 +38,7 @@ class FormsBaseControlDynamicReturnTypeExtension implements \PHPStan\Type\Dynami
 			return $scope->getType($methodCall->var);
 		}
 
-		return $methodReflection->getReturnType();
+		return $returnType;
 	}
 
 }

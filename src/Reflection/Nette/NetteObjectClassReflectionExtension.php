@@ -5,6 +5,7 @@ namespace PHPStan\Reflection\Nette;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
 
@@ -42,7 +43,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	{
 		/** @var \PHPStan\Reflection\MethodReflection $getterMethod */
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
-		return new NetteObjectPropertyReflection($classReflection, $getterMethod->getReturnType());
+		return new NetteObjectPropertyReflection($classReflection, ParametersAcceptorSelector::selectSingle($getterMethod->getVariants())->getReturnType());
 	}
 
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
