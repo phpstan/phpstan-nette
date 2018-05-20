@@ -5,6 +5,7 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Type;
@@ -25,8 +26,11 @@ final class ComponentLookupDynamicReturnTypeExtension implements DynamicMethodRe
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
+		$defaultReturnType = ParametersAcceptorSelector::selectSingle(
+			$methodReflection->getVariants()
+		)->getReturnType();
 		if (count($methodCall->args) < 2) {
-			return $methodReflection->getReturnType();
+			return $defaultReturnType;
 		}
 
 		$paramNeedExpr = $methodCall->args[1]->value;
@@ -34,13 +38,13 @@ final class ComponentLookupDynamicReturnTypeExtension implements DynamicMethodRe
 
 		if ($paramNeedType instanceof ConstantBooleanType) {
 			if ($paramNeedType->getValue()) {
-				return TypeCombinator::removeNull($methodReflection->getReturnType());
+				return TypeCombinator::removeNull($defaultReturnType);
 			}
 
-			return TypeCombinator::addNull($methodReflection->getReturnType());
+			return TypeCombinator::addNull($defaultReturnType);
 		}
 
-		return $methodReflection->getReturnType();
+		return $defaultReturnType;
 	}
 
 }
