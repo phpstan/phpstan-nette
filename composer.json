@@ -17,6 +17,7 @@
 		"nette/di": "^2.3.0 || ^3.0.0",
 		"nette/forms": "^2.3.0 || ^3.0.0",
 		"nette/utils": "^2.3.0 || ^3.0.0",
+		"nette/http": "^2.3.0 || ^3.0.0",
 		"nikic/php-parser": "^4.0"
 	},
 	"require-dev": {
