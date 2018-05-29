@@ -2,8 +2,6 @@
 
 namespace PHPStan\Type\Nette;
 
-use Nette\Http\Session;
-use Nette\Http\SessionSection;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -17,7 +15,7 @@ final class PresenterGetSessionReturnTypeExtension implements DynamicMethodRetur
 
 	public function getClass(): string
 	{
-		return \Nette\Application\UI\Presenter::class;
+		return 'Nette\Application\UI\Presenter';
 	}
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool
@@ -28,10 +26,10 @@ final class PresenterGetSessionReturnTypeExtension implements DynamicMethodRetur
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
 		if (count($methodCall->args) === 0 || $scope->getType($methodCall->args[0]->value) instanceof NullType) {
-			return new ObjectType(Session::class);
+			return new ObjectType('Nette\Http\Session');
 		}
 
-		return new ObjectType(SessionSection::class);
+		return new ObjectType('Nette\Http\SessionSection');
 	}
 
 }

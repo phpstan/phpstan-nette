@@ -12,12 +12,6 @@
 	"require": {
 		"php": "~7.1",
 		"phpstan/phpstan": "^0.10",
-		"nette/application": "^2.3.0 || ^3.0.0",
-		"nette/component-model": "^2.3.0 || ^3.0.0",
-		"nette/di": "^2.3.0 || ^3.0.0",
-		"nette/forms": "^2.3.0 || ^3.0.0",
-		"nette/utils": "^2.3.0 || ^3.0.0",
-		"nette/http": "^2.3.0 || ^3.0.0",
 		"nikic/php-parser": "^4.0"
 	},
 	"require-dev": {
@@ -30,7 +24,21 @@
 		"phpstan/phpstan-strict-rules": "^0.10",
 		"phpunit/phpunit": "^7.0",
 		"satooshi/php-coveralls": "^1.0",
-		"slevomat/coding-standard": "^4.5.2"
+		"slevomat/coding-standard": "^4.5.2",
+		"nette/application": "^2.3.0 || ^3.0.0",
+		"nette/component-model": "^2.3.0 || ^3.0.0",
+		"nette/di": "^2.3.0 || ^3.0.0",
+		"nette/forms": "^2.3.0 || ^3.0.0",
+		"nette/utils": "^2.3.0 || ^3.0.0",
+		"nette/http": "^2.3.0 || ^3.0.0"
+	},
+	"conflict": {
+		"nette/application": "<2.3.0",
+		"nette/component-model": "<2.3.0",
+		"nette/di": "<2.3.0",
+		"nette/forms": "<2.3.0",
+		"nette/utils": "<2.3.0",
+		"nette/http": "<2.3.0"
 	},
 	"autoload": {
 		"psr-4": {

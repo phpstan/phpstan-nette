@@ -53,7 +53,7 @@ class DoNotExtendNetteObjectRule implements \PHPStan\Rules\Rule
 					"Class %s extends %s - it's better to use %s trait.",
 					$className,
 					'Nette\Object',
-					\Nette\SmartObject::class
+					'Nette\SmartObject'
 				),
 			];
 		}

@@ -13,14 +13,14 @@ class FormsBaseControlDynamicReturnTypeExtension implements \PHPStan\Type\Dynami
 
 	public function getClass(): string
 	{
-		return \Nette\Forms\Controls\BaseControl::class;
+		return 'Nette\Forms\Controls\BaseControl';
 	}
 
 	public function isMethodSupported(
 		MethodReflection $methodReflection
 	): bool
 	{
-		return $methodReflection->getDeclaringClass()->getName() === \Nette\Forms\Controls\BaseControl::class;
+		return $methodReflection->getDeclaringClass()->getName() === 'Nette\Forms\Controls\BaseControl';
 	}
 
 	public function getTypeFromMethodCall(
@@ -33,7 +33,7 @@ class FormsBaseControlDynamicReturnTypeExtension implements \PHPStan\Type\Dynami
 		$referencedClasses = $returnType->getReferencedClasses();
 		if (
 			count($referencedClasses) === 1
-			&& $referencedClasses[0] === \Nette\Forms\Controls\BaseControl::class
+			&& $referencedClasses[0] === 'Nette\Forms\Controls\BaseControl'
 		) {
 			return $scope->getType($methodCall->var);
 		}
