@@ -49,7 +49,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
 	{
 		$traitNames = $this->getTraitNames($classReflection->getNativeReflection());
-		if (!in_array(\Nette\SmartObject::class, $traitNames, true) && !$this->inheritsFromNetteObject($classReflection->getNativeReflection())) {
+		if (!in_array('Nette\SmartObject', $traitNames, true) && !$this->inheritsFromNetteObject($classReflection->getNativeReflection())) {
 			return false;
 		}
 

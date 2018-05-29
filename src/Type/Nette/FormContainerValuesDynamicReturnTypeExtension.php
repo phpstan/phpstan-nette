@@ -19,7 +19,7 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 
 	public function getClass(): string
 	{
-		return \Nette\Forms\Container::class;
+		return 'Nette\Forms\Container';
 	}
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool
@@ -30,7 +30,7 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
 		if (count($methodCall->args) === 0) {
-			return new ObjectType(\Nette\Utils\ArrayHash::class);
+			return new ObjectType('Nette\Utils\ArrayHash');
 		}
 
 		$arg = $methodCall->args[0]->value;
@@ -40,7 +40,7 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 		}
 
 		if (!$scopedType->getValue()) {
-			return new ObjectType(\Nette\Utils\ArrayHash::class);
+			return new ObjectType('Nette\Utils\ArrayHash');
 		}
 
 		return new ArrayType(new StringType(), new MixedType());

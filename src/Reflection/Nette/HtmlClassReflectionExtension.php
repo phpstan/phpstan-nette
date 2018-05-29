@@ -2,7 +2,6 @@
 
 namespace PHPStan\Reflection\Nette;
 
-use Nette\Utils\Html;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
@@ -14,7 +13,7 @@ class HtmlClassReflectionExtension implements MethodsClassReflectionExtension, P
 
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
 	{
-		return $classReflection->getName() === Html::class || $classReflection->isSubclassOf(Html::class);
+		return $classReflection->getName() === 'Nette\Utils\Html' || $classReflection->isSubclassOf('Nette\Utils\Html');
 	}
 
 	public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
@@ -24,7 +23,7 @@ class HtmlClassReflectionExtension implements MethodsClassReflectionExtension, P
 
 	public function hasProperty(ClassReflection $classReflection, string $propertyName): bool
 	{
-		return $classReflection->getName() === Html::class || $classReflection->isSubclassOf(Html::class);
+		return $classReflection->getName() === 'Nette\Utils\Html' || $classReflection->isSubclassOf('Nette\Utils\Html');
 	}
 
 	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection

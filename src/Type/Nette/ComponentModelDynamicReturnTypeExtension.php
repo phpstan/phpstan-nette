@@ -16,7 +16,7 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 
 	public function getClass(): string
 	{
-		return \Nette\ComponentModel\Container::class;
+		return 'Nette\ComponentModel\Container';
 	}
 
 	public function isMethodSupported(

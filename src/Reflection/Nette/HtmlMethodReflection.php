@@ -2,7 +2,6 @@
 
 namespace PHPStan\Reflection\Nette;
 
-use Nette\Utils\Html;
 use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\FunctionVariant;
@@ -49,7 +48,7 @@ class HtmlMethodReflection implements MethodReflection
 			new FunctionVariant(
 				[],
 				true,
-				substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType(Html::class)
+				substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType('Nette\Utils\Html')
 			),
 		];
 	}

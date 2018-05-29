@@ -16,7 +16,7 @@ final class ComponentLookupDynamicReturnTypeExtension implements DynamicMethodRe
 
 	public function getClass(): string
 	{
-		return \Nette\ComponentModel\Component::class;
+		return 'Nette\ComponentModel\Component';
 	}
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool
