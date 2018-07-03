@@ -29,6 +29,11 @@ services:
 			- phpstan.broker.methodsClassReflectionExtension
 
 	-
+		class: PHPStan\Type\Nette\ComponentModelArrayAccessDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
 		class: PHPStan\Type\Nette\ComponentModelDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
