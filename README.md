@@ -13,6 +13,7 @@ This extension provides following features:
 * `Nette\DI\Container::getByType` and `createInstance` return type based on first parameter (`Foo::class`).
 * `Nette\Forms\Container::getValues` return type based on `$asArray` parameter.
 * `Nette\ComponentModel\Component::lookup` return type based on `$throw` parameter.
+* `Nette\Application\UI\Component::getPresenter` return type based on `$throw` parameter.
 * Dynamic methods of [Nette\Utils\Html](https://doc.nette.org/en/2.4/html-elements)
 * Magic [Nette\Object and Nette\SmartObject](https://doc.nette.org/en/2.4/php-language-enhancements) properties
 * Event listeners through the `on*` properties
