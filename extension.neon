@@ -44,6 +44,11 @@ services:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
 	-
+		class: PHPStan\Type\Nette\ComponentGetPresenterDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
 		class: PHPStan\Type\Nette\FormsBaseControlDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
