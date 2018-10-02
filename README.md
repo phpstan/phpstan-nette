@@ -19,9 +19,10 @@ This extension provides following features:
 * Event listeners through the `on*` properties
 * Defines early terminating method calls for Presenter methods to prevent `Undefined variable` errors
 
-It also contains this framework-specific rule (can be enabled separately):
+It also contains these framework-specific rules (can be enabled separately):
 
 * Do not extend Nette\Object, use Nette\SmartObject trait instead
+* Rethrow exceptions that are always meant to be rethrown (like `AbortException`)
 
 ## Usage
 
