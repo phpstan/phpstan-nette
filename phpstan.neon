@@ -1,4 +1,6 @@
 includes:
+	- extension.neon
+	- rules.neon
 	- vendor/phpstan/phpstan-php-parser/extension.neon
 	- vendor/phpstan/phpstan-phpunit/extension.neon
 	- vendor/phpstan/phpstan-phpunit/rules.neon
@@ -7,3 +9,4 @@ includes:
 parameters:
 	excludes_analyse:
 		- %rootDir%/../../../tests/*/data/*
+		- %rootDir%/../../../tests/NetteObjectChild.php
