@@ -16,7 +16,7 @@ rules:
 
 services:
 	-
-		class: PHPStan\Rule\Nette\RethrowAbortExceptionRule
+		class: PHPStan\Rule\Nette\RethrowExceptionRule
 		arguments:
 			methods: %methodsThrowingExceptions%
 		tags:
