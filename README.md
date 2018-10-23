@@ -36,11 +36,11 @@ And include extension.neon in your project's PHPStan config:
 
 ```yaml
 includes:
-	- vendor/phpstan/phpstan-nette/extension.neon
+    - vendor/phpstan/phpstan-nette/extension.neon
 ```
 
 To perform framework-specific checks, include also this file:
 
 ```yaml
-	- vendor/phpstan/phpstan-nette/rules.neon
+    - vendor/phpstan/phpstan-nette/rules.neon
 ```
