@@ -47,7 +47,7 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 		$componentName = $argType->getValue();
 
 		$methodName = sprintf('createComponent%s', ucfirst($componentName));
-		if (!$calledOnType->hasMethod($methodName)) {
+		if ($calledOnType->hasMethod($methodName)->no()) {
 			return $mixedType;
 		}
 
