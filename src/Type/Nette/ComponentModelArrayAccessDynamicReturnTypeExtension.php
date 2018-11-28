@@ -47,7 +47,7 @@ class ComponentModelArrayAccessDynamicReturnTypeExtension implements DynamicMeth
 		$componentName = $argType->getValue();
 
 		$methodName = sprintf('createComponent%s', ucfirst($componentName));
-		if ($calledOnType->hasMethod($methodName)->no()) {
+		if (!$calledOnType->hasMethod($methodName)->yes()) {
 			return $mixedType;
 		}
 
