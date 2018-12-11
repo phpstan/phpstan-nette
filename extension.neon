@@ -10,6 +10,7 @@ parameters:
 			- redirect
 			- redirectUrl
 			- sendJson
+			- sendPayload
 			- sendResponse
 			- error
 			- terminate
