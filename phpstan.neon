@@ -13,3 +13,4 @@ parameters:
 
 	ignoreErrors:
 		- '~^Parameter \#1 \$node \(.*\) of method .*Rule::processNode\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method PHPStan\\Rules\\Rule::processNode\(\)$~'
+		- '~^Variable property access on PhpParser\\Node\.$~'
