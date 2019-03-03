@@ -84,7 +84,7 @@ class RethrowExceptionRule implements \PHPStan\Rules\Rule
 
 	/**
 	 * @param \PHPStan\Analyser\Scope $scope
-	 * @param \PhpParser\Node|\PhpParser\Node[] $node
+	 * @param \PhpParser\Node|\PhpParser\Node[]|scalar $node
 	 * @return string[]
 	 */
 	private function getExceptionTypes(Scope $scope, $node): array
