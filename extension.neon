@@ -18,6 +18,11 @@ parameters:
 
 services:
 	-
+		class: PHPStan\Reflection\Nette\FormEventsReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
+
+	-
 		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
 		tags:
 			- phpstan.broker.propertiesClassReflectionExtension
