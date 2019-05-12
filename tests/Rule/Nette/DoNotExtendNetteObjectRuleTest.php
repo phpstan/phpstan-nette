@@ -19,6 +19,9 @@ class DoNotExtendNetteObjectRuleTest extends \PHPStan\Testing\RuleTestCase
 
 	public function testNetteObjectChild(): void
 	{
+		if (!class_exists('Nette\LegacyObject')) {
+			self::markTestSkipped('LegacyObject does no longer exist.');
+		}
 		$this->analyse([__DIR__ . '/../../NetteObjectChild.php'], [
 			[
 				'Class PHPStan\NetteObjectChild extends Nette\Object - it\'s better to use Nette\SmartObject trait.',

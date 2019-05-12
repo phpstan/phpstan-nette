@@ -54,6 +54,9 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	 */
 	public function testHasMethod(string $className, string $method, bool $result): void
 	{
+		if (!class_exists('Nette\LegacyObject')) {
+			self::markTestSkipped(sprintf('%s does not exist.', $className));
+		}
 		$classReflection = $this->broker->getClass($className);
 		self::assertSame($result, $this->extension->hasMethod($classReflection, $method));
 	}
@@ -96,6 +99,9 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 	 */
 	public function testHasProperty(string $className, string $property, bool $result): void
 	{
+		if (!class_exists('Nette\LegacyObject')) {
+			self::markTestSkipped(sprintf('%s does not exist.', $className));
+		}
 		$classReflection = $this->broker->getClass($className);
 		self::assertSame($result, $this->extension->hasProperty($classReflection, $property));
 	}
