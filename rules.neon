@@ -11,6 +11,9 @@ parameters:
 			redirectPermanent: Nette\Application\AbortException
 			error: Nette\Application\BadRequestException
 
+parametersSchema:
+	methodsThrowingExceptions: arrayOf(arrayOf(string()))
+
 rules:
 	- PHPStan\Rule\Nette\DoNotExtendNetteObjectRule
 
