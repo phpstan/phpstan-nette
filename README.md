@@ -24,23 +24,31 @@ It also contains these framework-specific rules (can be enabled separately):
 * Do not extend Nette\Object, use Nette\SmartObject trait instead
 * Rethrow exceptions that are always meant to be rethrown (like `AbortException`)
 
-## Usage
+
+## Installation
 
 To use this extension, require it in [Composer](https://getcomposer.org/):
 
-```bash
+```
 composer require --dev phpstan/phpstan-nette
 ```
 
-And include extension.neon in your project's PHPStan config:
+If you also install [phpstan/extension-installer](https://github.com/phpstan/extension-installer) then you're all set!
 
-```yaml
+<details>
+  <summary>Manual installation</summary>
+
+If you don't want to use `phpstan/extension-installer`, include extension.neon in your project's PHPStan config:
+
+```
 includes:
-	- vendor/phpstan/phpstan-nette/extension.neon
+    - vendor/phpstan/phpstan-nette/extension.neon
 ```
 
 To perform framework-specific checks, include also this file:
 
-```yaml
-	- vendor/phpstan/phpstan-nette/rules.neon
 ```
+    - vendor/phpstan/phpstan-nette/rules.neon
+```
+
+</details>
