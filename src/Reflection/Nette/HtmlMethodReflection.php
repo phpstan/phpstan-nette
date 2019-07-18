@@ -6,6 +6,7 @@ use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Type\Generic\TemplateTypeMap;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 
@@ -46,7 +47,7 @@ class HtmlMethodReflection implements MethodReflection
 	{
 		return [
 			new FunctionVariant(
-				[],
+				TemplateTypeMap::createEmpty(),
 				true,
 				substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType('Nette\Utils\Html')
 			),
