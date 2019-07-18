@@ -6,8 +6,12 @@ use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\TrinaryLogic;
+use PHPStan\Type\Generic\TemplateTypeMap;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\Type;
+use PHPStan\Type\VoidType;
 
 class HtmlMethodReflection implements MethodReflection
 {
@@ -46,6 +50,7 @@ class HtmlMethodReflection implements MethodReflection
 	{
 		return [
 			new FunctionVariant(
+				TemplateTypeMap::createEmpty(),
 				[],
 				true,
 				substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType('Nette\Utils\Html')
@@ -66,6 +71,31 @@ class HtmlMethodReflection implements MethodReflection
 	public function getName(): string
 	{
 		return $this->name;
+	}
+
+	public function isDeprecated(): TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function getDeprecatedDescription(): ?string
+	{
+		return null;
+	}
+
+	public function isFinal(): TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function isInternal(): TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function getThrowType(): ?Type
+	{
+		return new VoidType();
 	}
 
 }

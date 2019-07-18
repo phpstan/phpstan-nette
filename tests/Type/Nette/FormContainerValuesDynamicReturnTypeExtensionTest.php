@@ -10,6 +10,7 @@ use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\Constant\ConstantBooleanType;
+use PHPStan\Type\Generic\TemplateTypeMap;
 use PHPStan\Type\IterableType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
@@ -33,6 +34,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection
 			->method('getVariants')
 			->willReturn([new FunctionVariant(
+				TemplateTypeMap::createEmpty(),
 				[],
 				true,
 				new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))])
@@ -62,7 +64,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getVariants')
-			->willReturn([new FunctionVariant([], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
+			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
@@ -89,7 +91,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getVariants')
-			->willReturn([new FunctionVariant([], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
+			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));

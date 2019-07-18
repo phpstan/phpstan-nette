@@ -6,6 +6,9 @@ use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\TrinaryLogic;
+use PHPStan\Type\Generic\TemplateTypeMap;
+use PHPStan\Type\Type;
 use PHPStan\Type\VoidType;
 
 class NetteObjectEventListenerMethodReflection implements MethodReflection
@@ -50,6 +53,7 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 	{
 		return [
 			new FunctionVariant(
+				TemplateTypeMap::createEmpty(),
 				[],
 				true,
 				new VoidType()
@@ -65,6 +69,31 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 	public function isPublic(): bool
 	{
 		return true;
+	}
+
+	public function isDeprecated(): TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function getDeprecatedDescription(): ?string
+	{
+		return null;
+	}
+
+	public function isFinal(): TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function isInternal(): TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function getThrowType(): ?Type
+	{
+		return null;
 	}
 
 }
