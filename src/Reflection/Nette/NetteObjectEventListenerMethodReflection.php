@@ -54,6 +54,7 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 		return [
 			new FunctionVariant(
 				TemplateTypeMap::createEmpty(),
+				TemplateTypeMap::createEmpty(),
 				[],
 				true,
 				new VoidType()
@@ -94,6 +95,16 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 	public function getThrowType(): ?Type
 	{
 		return null;
+	}
+
+	public function getDocComment(): ?string
+	{
+		return null;
+	}
+
+	public function hasSideEffects(): \PHPStan\TrinaryLogic
+	{
+		return TrinaryLogic::createYes();
 	}
 
 }

@@ -9,6 +9,9 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TypeCombinator;
 
+/**
+ * @implements \PHPStan\Rules\Rule<TryCatch>
+ */
 class RethrowExceptionRule implements \PHPStan\Rules\Rule
 {
 
@@ -28,11 +31,6 @@ class RethrowExceptionRule implements \PHPStan\Rules\Rule
 		return TryCatch::class;
 	}
 
-	/**
-	 * @param \PhpParser\Node\Stmt\TryCatch $node
-	 * @param \PHPStan\Analyser\Scope $scope
-	 * @return string[] errors
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		$hasGeneralCatch = false;

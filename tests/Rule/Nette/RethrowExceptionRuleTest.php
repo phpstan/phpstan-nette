@@ -7,6 +7,9 @@ use Nette\Application\UI\Presenter;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<RethrowExceptionRule>
+ */
 class RethrowExceptionRuleTest extends RuleTestCase
 {
 

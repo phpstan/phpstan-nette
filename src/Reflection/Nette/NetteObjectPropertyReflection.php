@@ -42,11 +42,6 @@ class NetteObjectPropertyReflection implements PropertyReflection
 		return true;
 	}
 
-	public function getType(): Type
-	{
-		return $this->type;
-	}
-
 	public function isReadable(): bool
 	{
 		return true;
@@ -70,6 +65,26 @@ class NetteObjectPropertyReflection implements PropertyReflection
 	public function isInternal(): TrinaryLogic
 	{
 		return TrinaryLogic::createNo();
+	}
+
+	public function getDocComment(): ?string
+	{
+		return null;
+	}
+
+	public function getReadableType(): \PHPStan\Type\Type
+	{
+		return $this->type;
+	}
+
+	public function getWritableType(): \PHPStan\Type\Type
+	{
+		return $this->type;
+	}
+
+	public function canChangeTypeAfterAssignment(): bool
+	{
+		return true;
 	}
 
 }

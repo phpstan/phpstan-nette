@@ -14,9 +14,13 @@ class HtmlPropertyReflection implements PropertyReflection
 	/** @var \PHPStan\Reflection\ClassReflection */
 	private $declaringClass;
 
+	/** @var Type */
+	private $type;
+
 	public function __construct(ClassReflection $declaringClass)
 	{
 		$this->declaringClass = $declaringClass;
+		$this->type = new MixedType();
 	}
 
 	public function getDeclaringClass(): ClassReflection
@@ -37,11 +41,6 @@ class HtmlPropertyReflection implements PropertyReflection
 	public function isPublic(): bool
 	{
 		return true;
-	}
-
-	public function getType(): Type
-	{
-		return new MixedType();
 	}
 
 	public function isReadable(): bool
@@ -67,6 +66,26 @@ class HtmlPropertyReflection implements PropertyReflection
 	public function isInternal(): TrinaryLogic
 	{
 		return TrinaryLogic::createNo();
+	}
+
+	public function getDocComment(): ?string
+	{
+		return null;
+	}
+
+	public function getReadableType(): \PHPStan\Type\Type
+	{
+		return $this->type;
+	}
+
+	public function getWritableType(): \PHPStan\Type\Type
+	{
+		return $this->type;
+	}
+
+	public function canChangeTypeAfterAssignment(): bool
+	{
+		return true;
 	}
 
 }

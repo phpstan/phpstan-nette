@@ -66,7 +66,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	}
 
 	/**
-	 * @param \ReflectionClass $class
+	 * @param \ReflectionClass<object> $class
 	 * @return string[]
 	 */
 	private function getTraitNames(\ReflectionClass $class): array
@@ -80,6 +80,10 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 		return $traitNames;
 	}
 
+	/**
+	 * @param \ReflectionClass<object> $class
+	 * @return bool
+	 */
 	private function inheritsFromNetteObject(\ReflectionClass $class): bool
 	{
 		$class = $class->getParentClass();

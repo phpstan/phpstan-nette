@@ -99,7 +99,7 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
 		self::assertFalse($propertyReflection->isStatic());
 		self::assertFalse($propertyReflection->isPrivate());
 		self::assertTrue($propertyReflection->isPublic());
-		self::assertSame('mixed', $propertyReflection->getType()->describe(VerbosityLevel::value()));
+		self::assertSame('mixed', $propertyReflection->getReadableType()->describe(VerbosityLevel::value()));
 	}
 
 }

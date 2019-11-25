@@ -4,6 +4,9 @@ namespace PHPStan\Rule\Nette;
 
 use PHPStan\Rules\Rule;
 
+/**
+ * @extends \PHPStan\Testing\RuleTestCase<DoNotExtendNetteObjectRule>
+ */
 class DoNotExtendNetteObjectRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 

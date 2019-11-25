@@ -35,6 +35,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 			->method('getVariants')
 			->willReturn([new FunctionVariant(
 				TemplateTypeMap::createEmpty(),
+				TemplateTypeMap::createEmpty(),
 				[],
 				true,
 				new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))])
@@ -64,7 +65,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getVariants')
-			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
+			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
@@ -91,7 +92,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getVariants')
-			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
+			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));

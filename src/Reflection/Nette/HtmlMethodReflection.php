@@ -51,6 +51,7 @@ class HtmlMethodReflection implements MethodReflection
 		return [
 			new FunctionVariant(
 				TemplateTypeMap::createEmpty(),
+				TemplateTypeMap::createEmpty(),
 				[],
 				true,
 				substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType('Nette\Utils\Html')
@@ -93,9 +94,19 @@ class HtmlMethodReflection implements MethodReflection
 		return TrinaryLogic::createNo();
 	}
 
-	public function getThrowType(): ?Type
+	public function getThrowType(): Type
 	{
 		return new VoidType();
+	}
+
+	public function getDocComment(): ?string
+	{
+		return null;
+	}
+
+	public function hasSideEffects(): \PHPStan\TrinaryLogic
+	{
+		return TrinaryLogic::createYes();
 	}
 
 }
