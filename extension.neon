@@ -1,4 +1,7 @@
 parameters:
+	stubFiles:
+		- stubs/Form.php
+		- stubs/FormContainer.php
 	universalObjectCratesClasses:
 		- Nette\Application\UI\ITemplate
 		- Nette\Bridges\ApplicationLatte\Template
