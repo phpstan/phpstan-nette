@@ -1,0 +1,14 @@
+<?php
+
+namespace Nette\Forms;
+
+/**
+ * @phpstan-implements \ArrayAccess<string, \Nette\ComponentModel\IComponent>
+ */
+class Container implements \ArrayAccess
+{
+
+	/** @var array<callable(static, mixed): void> */
+	public $onValidate;
+
+}

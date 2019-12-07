@@ -1,0 +1,12 @@
+<?php
+
+namespace Nette\Database\Table;
+
+/**
+ * @phpstan-implements \Iterator<string, ActiveRow>
+ * @phpstan-implements \ArrayAccess<string, \Nette\Database\IRow>
+ */
+class Selection implements \Iterator, \ArrayAccess
+{
+
+}
