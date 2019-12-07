@@ -1,0 +1,18 @@
+<?php
+
+namespace Nette\Application\Routers;
+
+/**
+ * @phpstan-implements \IteratorAggregate<int, \Nette\Routing\Router>
+ * @phpstan-implements \ArrayAccess<int, \Nette\Routing\Router>
+ */
+class RouteList implements \ArrayAccess, \IteratorAggregate
+{
+	/**
+	 * @phpstan-return \ArrayIterator<int, \Nette\Routing\Router>
+	 */
+	public function getIterator(): \ArrayIterator
+	{
+		// nothing
+	}
+}

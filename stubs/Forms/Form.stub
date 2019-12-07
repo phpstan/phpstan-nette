@@ -2,7 +2,7 @@
 
 namespace Nette\Forms;
 
-class Form
+class Form extends Container
 {
 
 	/** @var array<callable(static, mixed): void> */

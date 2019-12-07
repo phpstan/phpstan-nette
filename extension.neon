@@ -1,11 +1,18 @@
 parameters:
 	stubFiles:
-		- stubs/ArrayHash.stub
-		- stubs/Form.stub
-		- stubs/FormContainer.stub
-		- stubs/Html.stub
-		- stubs/Rules.stub
-		- stubs/SessionSection.stub
+		- stubs/Application/Routers/RouteList.stub
+		- stubs/Application/UI/Component.stub
+		- stubs/ComponentModel/IComponent.stub
+		- stubs/Database/ResultSet.stub
+		- stubs/Database/Table/ActiveRow.stub
+		- stubs/Database/Table/Selection.stub
+		- stubs/Database/ResultSet.stub
+		- stubs/Forms/Container.stub
+		- stubs/Forms/Form.stub
+		- stubs/Forms/Rules.stub
+		- stubs/Http/SessionSection.stub
+		- stubs/Routing/Router.stub
+		- stubs/Utils/Html.stub
 	universalObjectCratesClasses:
 		- Nette\Application\UI\ITemplate
 		- Nette\Bridges\ApplicationLatte\Template
