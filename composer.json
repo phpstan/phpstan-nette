@@ -37,7 +37,8 @@
 		"nette/di": "^2.3.0 || ^3.0.0",
 		"nette/forms": "^2.3.0 || ^3.0.0",
 		"nette/utils": "^2.3.0 || ^3.0.0",
-		"nette/http": "^2.3.0 || ^3.0.0"
+		"nette/http": "^2.3.0 || ^3.0.0",
+		"ergebnis/composer-normalize": "^2.0.2"
 	},
 	"conflict": {
 		"nette/application": "<2.3.0",
