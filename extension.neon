@@ -1,10 +1,10 @@
 parameters:
 	stubFiles:
-		- stubs/ArrayHash.php
-		- stubs/Form.php
-		- stubs/FormContainer.php
-		- stubs/Html.php
-		- stubs/SessionSection.php
+		- stubs/ArrayHash.stub
+		- stubs/Form.stub
+		- stubs/FormContainer.stub
+		- stubs/Html.stub
+		- stubs/SessionSection.stub
 	universalObjectCratesClasses:
 		- Nette\Application\UI\ITemplate
 		- Nette\Bridges\ApplicationLatte\Template
