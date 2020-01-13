@@ -4,6 +4,7 @@ parameters:
 		- stubs/Form.stub
 		- stubs/FormContainer.stub
 		- stubs/Html.stub
+		- stubs/Rules.stub
 		- stubs/SessionSection.stub
 	universalObjectCratesClasses:
 		- Nette\Application\UI\ITemplate

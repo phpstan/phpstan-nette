@@ -1,0 +1,24 @@
+<?php
+
+namespace Nette\Forms;
+
+class Rule
+{
+
+}
+
+/**
+ * @implements \IteratorAggregate<int, Rule>
+ */
+class Rules implements \IteratorAggregate
+{
+
+	/**
+	 * @return \ArrayIterator<int, Rule>
+	 */
+	public function getIterator(): \ArrayIterator
+	{
+		// nothing
+	}
+
+}
