@@ -10,9 +10,9 @@ class SessionSection implements \IteratorAggregate, \ArrayAccess
 {
 
 	/**
-	 * @return \ArrayIterator<mixed, mixed>
+	 * @return \Iterator<mixed, mixed>
 	 */
-	public function getIterator(): \ArrayIterator
+	public function getIterator(): \Iterator
 	{
 		// nothing
 	}
