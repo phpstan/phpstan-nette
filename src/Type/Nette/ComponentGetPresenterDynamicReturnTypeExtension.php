@@ -26,10 +26,17 @@ final class ComponentGetPresenterDynamicReturnTypeExtension implements DynamicMe
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
-		$defaultReturnType = ParametersAcceptorSelector::selectSingle(
+		$methodDefinition = ParametersAcceptorSelector::selectSingle(
 			$methodReflection->getVariants()
-		)->getReturnType();
+		);
+		$defaultReturnType = $methodDefinition->getReturnType();
+		$firstParameterExists = count($methodDefinition->getParameters()) > 0;
+
 		if (count($methodCall->args) < 1) {
+			if (!$firstParameterExists) {
+				return TypeCombinator::removeNull($defaultReturnType);
+			}
+
 			return $defaultReturnType;
 		}
 
