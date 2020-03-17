@@ -24,7 +24,6 @@
 		"jakub-onderka/php-parallel-lint": "^1.0",
 		"nette/application": "^2.3.0 || ^3.0.0",
 		"nette/component-model": "^2.3.0 || ^3.0.0",
-		"nette/database": "^3.0.0",
 		"nette/di": "^2.3.0 || ^3.0.0",
 		"nette/forms": "^2.3.0 || ^3.0.0",
 		"nette/http": "^2.3.0 || ^3.0.0",
