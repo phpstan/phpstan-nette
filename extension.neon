@@ -11,6 +11,7 @@ parameters:
 		- stubs/Forms/Rules.stub
 		- stubs/Http/SessionSection.stub
 		- stubs/Routing/Router.stub
+		- stubs/Utils/ArrayHash.stub
 		- stubs/Utils/Html.stub
 	universalObjectCratesClasses:
 		- Nette\Application\UI\ITemplate
