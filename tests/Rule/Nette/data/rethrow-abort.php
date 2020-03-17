@@ -1,6 +1,6 @@
 <?php
 
-class FooPresenter extends \Nette\Application\UI\Presenter
+class FooPresenter
 {
 
 	public function doFoo()
@@ -31,7 +31,7 @@ class FooPresenter extends \Nette\Application\UI\Presenter
 	{
 		try {
 			$this->redirect('this'); // OK
-		} catch (\Nette\Application\AbortException $e) {
+		} catch (AbortException $e) {
 			throw $e;
 		}
 	}
@@ -40,7 +40,7 @@ class FooPresenter extends \Nette\Application\UI\Presenter
 	{
 		try {
 			$this->redirect('this'); // OK
-		} catch (\Nette\Application\AbortException | \InvalidArgumentException $e) {
+		} catch (AbortException | \InvalidArgumentException $e) {
 			throw $e;
 		}
 	}
@@ -49,7 +49,7 @@ class FooPresenter extends \Nette\Application\UI\Presenter
 	{
 		try {
 			$this->redirect('this'); // OK
-		} catch (\Nette\Application\AbortException $e) {
+		} catch (AbortException $e) {
 			throw $e;
 		} catch (\Throwable $e) {
 
@@ -57,7 +57,7 @@ class FooPresenter extends \Nette\Application\UI\Presenter
 
 		try {
 			$this->redirect('this'); // OK
-		} catch (\Nette\Application\AbortException $e) {
+		} catch (AbortException $e) {
 			throw $e;
 		} catch (\Exception $e) {
 
@@ -67,7 +67,7 @@ class FooPresenter extends \Nette\Application\UI\Presenter
 			$this->redirect('this'); // OK
 		} catch (\InvalidArgumentException $e) {
 
-		} catch (\Nette\Application\AbortException $e) {
+		} catch (AbortException $e) {
 			throw $e;
 		} catch (\Exception $e) {
 
@@ -94,7 +94,7 @@ class FooPresenter extends \Nette\Application\UI\Presenter
 
 		try {
 			$this->redirect('this');
-		} catch (\Nette\Application\AbortException $e) {
+		} catch (AbortException $e) {
 			// does not rethrow
 		} catch (\Throwable $e) {
 
@@ -112,5 +112,15 @@ class FooPresenter extends \Nette\Application\UI\Presenter
 			throw $e;
 		}
 	}
+
+	public function redirect(string $destination): void
+	{
+
+	}
+
+}
+
+class AbortException extends \Exception
+{
 
 }
