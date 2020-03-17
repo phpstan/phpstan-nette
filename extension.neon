@@ -6,7 +6,6 @@ parameters:
 		- stubs/Database/ResultSet.stub
 		- stubs/Database/Table/ActiveRow.stub
 		- stubs/Database/Table/Selection.stub
-		- stubs/Database/ResultSet.stub
 		- stubs/Forms/Container.stub
 		- stubs/Forms/Form.stub
 		- stubs/Forms/Rules.stub
