@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/phpstan/phpstan-nette/v/stable)](https://packagist.org/packages/phpstan/phpstan-nette)
 [![License](https://poser.pugx.org/phpstan/phpstan-nette/license)](https://packagist.org/packages/phpstan/phpstan-nette)
 
-* [PHPStan](https://github.com/phpstan/phpstan)
+* [PHPStan](https://phpstan.org/)
 * [Nette Framework](https://nette.org/)
 
 This extension provides following features:
