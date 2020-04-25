@@ -1,1 +1,5 @@
+*.php text eol=lf
+*.stub linguist-language=PHP
+*.neon linguist-language=YAML
+
 /tests export-ignore
