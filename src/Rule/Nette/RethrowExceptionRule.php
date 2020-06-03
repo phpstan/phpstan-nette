@@ -66,6 +66,7 @@ class RethrowExceptionRule implements \PHPStan\Rules\Rule
 					count($catch->stmts) === 1
 					&& $catch->stmts[0] instanceof Node\Stmt\Throw_
 					&& $catch->stmts[0]->expr instanceof Variable
+					&& $catch->var !== null
 					&& is_string($catch->var->name)
 					&& is_string($catch->stmts[0]->expr->name)
 					&& $catch->var->name === $catch->stmts[0]->expr->name
