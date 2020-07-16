@@ -1,4 +1,6 @@
 parameters:
+	additionalConstructors:
+		- Nette\Application\UI\Presenter::startup
 	stubFiles:
 		- stubs/Application/Routers/RouteList.stub
 		- stubs/Application/UI/Component.stub
