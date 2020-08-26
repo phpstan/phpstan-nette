@@ -28,6 +28,7 @@ parameters:
 			- sendJson
 			- sendPayload
 			- sendResponse
+			- sendTemplate
 			- error
 			- terminate
 			- forward
