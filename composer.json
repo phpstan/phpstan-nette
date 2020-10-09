@@ -21,6 +21,7 @@
 		"consistence/coding-standard": "^3.0.1",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
 		"ergebnis/composer-normalize": "^2.0.2",
+		"nette/forms": "^3.0",
 		"nette/utils": "^2.3.0 || ^3.0.0",
 		"phing/phing": "^2.13.0",
 		"php-parallel-lint/php-parallel-lint": "^1.2",
