@@ -18,7 +18,7 @@
 		"nette/utils": "<2.3.0"
 	},
 	"require-dev": {
-		"consistence/coding-standard": "^3.0.1",
+		"consistence/coding-standard": "^3.10",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
 		"ergebnis/composer-normalize": "^2.0.2",
 		"nette/forms": "^3.0",
@@ -30,7 +30,7 @@
 		"phpstan/phpstan-strict-rules": "^0.12",
 		"phpunit/phpunit": "^7.0",
 		"satooshi/php-coveralls": "^1.0",
-		"slevomat/coding-standard": "^4.5.2"
+		"slevomat/coding-standard": "^6.4"
 	},
 	"config": {
 		"sort-packages": true
