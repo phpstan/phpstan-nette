@@ -22,6 +22,8 @@ parameters:
 		- Nette\Http\SessionSection
 		- Nette\Security\Identity
 	earlyTerminatingMethodCalls:
+		Nette\Application\UI\Component:
+			- error
 		Nette\Application\UI\Presenter:
 			- redirect
 			- redirectUrl
@@ -29,7 +31,6 @@ parameters:
 			- sendPayload
 			- sendResponse
 			- sendTemplate
-			- error
 			- terminate
 			- forward
 
