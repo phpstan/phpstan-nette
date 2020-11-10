@@ -86,3 +86,8 @@ services:
 		class: PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Rule\Nette\PresenterInjectedPropertiesExtension
+		tags:
+			- phpstan.properties.readWriteExtension
