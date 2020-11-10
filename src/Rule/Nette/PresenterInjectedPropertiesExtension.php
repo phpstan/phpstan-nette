@@ -15,13 +15,12 @@ class PresenterInjectedPropertiesExtension implements ReadWritePropertiesExtensi
 
 	public function isAlwaysWritten(PropertyReflection $property, string $propertyName): bool
 	{
-		return false;
+		return $this->isInitialized($property, $propertyName);
 	}
 
 	public function isInitialized(PropertyReflection $property, string $propertyName): bool
 	{
 		return $property->isPublic() &&
-			$property->getDeclaringClass()->implementsInterface('Nette\Application\IPresenter') &&
 			strpos($property->getDocComment() ?? '', '@inject') !== false;
 	}
 
