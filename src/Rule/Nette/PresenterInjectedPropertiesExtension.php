@@ -21,7 +21,7 @@ class PresenterInjectedPropertiesExtension implements ReadWritePropertiesExtensi
 	public function isInitialized(PropertyReflection $property, string $propertyName): bool
 	{
 		return $property->isPublic() &&
-			$property->getDeclaringClass()->isSubclassOf('Nette\Application\UI\Presenter') &&
+			$property->getDeclaringClass()->implementsInterface('Nette\Application\IPresenter') &&
 			strpos($property->getDocComment() ?? '', '@inject') !== false;
 	}
 
