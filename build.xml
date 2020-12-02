@@ -55,6 +55,8 @@
 		>
 			<arg value="--exclude"/>
 			<arg path="tests/PHPStan/Analyser/data"/>
+			<arg value="--exclude"/>
+			<arg path="tests/Rule/Nette/data"/>
 			<arg path="src" />
 			<arg path="tests" />
 		</exec>
