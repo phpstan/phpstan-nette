@@ -7,6 +7,10 @@ class PresenterInjectedPropertiesExtensionTest extends \PHPStan\Testing\LevelsTe
 
 	public function dataTopics(): array
 	{
+		if (PHP_VERSION_ID < 70400) {
+			self::markTestSkipped('Only for PHP 7.4+');
+		}
+
 		return [
 			['presenterInject'],
 		];
