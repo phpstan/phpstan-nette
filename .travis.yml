@@ -11,4 +11,5 @@ before_script:
 script:
   - vendor/bin/phing
 after_script:
+  - phpenv config-add xdebug.ini
   - php vendor/bin/coveralls -v
