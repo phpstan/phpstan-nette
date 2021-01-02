@@ -21,6 +21,7 @@ parameters:
 		- Nette\Database\IRow
 		- Nette\Http\SessionSection
 		- Nette\Security\Identity
+		- Nette\Security\SimpleIdentity
 	earlyTerminatingMethodCalls:
 		Nette\Application\UI\Component:
 			- error
