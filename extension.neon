@@ -17,6 +17,7 @@ parameters:
 		- stubs/Utils/Html.stub
 	universalObjectCratesClasses:
 		- Nette\Application\UI\ITemplate
+		- Nette\Application\UI\Template
 		- Nette\Bridges\ApplicationLatte\Template
 		- Nette\Database\IRow
 		- Nette\Http\SessionSection
