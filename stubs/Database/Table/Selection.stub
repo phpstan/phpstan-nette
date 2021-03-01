@@ -8,5 +8,21 @@ namespace Nette\Database\Table;
  */
 class Selection implements \Iterator, \ArrayAccess
 {
-
+    /**
+     * @phpstan-param positive-int|0|null $limit
+     * @phpstan-param positive-int|0|null $offset
+     * @return static
+     */
+    public function limit(?int $limit, int $offset = null)
+    {
+    }
+    
+    /**
+     * @phpstan-param positive-int|0 $page
+     * @phpstan-param positive-int|0 $itemsPerPage
+     * @return static
+     */
+	public function page(int $page, int $itemsPerPage, &$numOfPages = null)
+  {
+  }
 }
