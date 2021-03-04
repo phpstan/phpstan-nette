@@ -15,6 +15,7 @@ parameters:
 		- stubs/Routing/Router.stub
 		- stubs/Utils/ArrayHash.stub
 		- stubs/Utils/Html.stub
+		- stubs/Utils/Paginator.stub
 	universalObjectCratesClasses:
 		- Nette\Application\UI\ITemplate
 		- Nette\Application\UI\Template

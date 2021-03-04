@@ -1,0 +1,23 @@
+<?php
+
+namespace Nette\Utils;
+
+class Paginator
+{
+
+	/**
+	 * @phpstan-return positive-int|0
+	 */
+	public function getOffset(): int
+	{
+		// nothing
+	}
+
+	/**
+	 * @phpstan-return positive-int|0
+	 */
+	public function getItemsPerPage(): int
+	{
+		// nothing
+	}
+}
