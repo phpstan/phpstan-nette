@@ -86,6 +86,11 @@ services:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
 	-
+		class: PHPStan\Type\Nette\FormContainerUnsafeValuesDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
 		class: PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
