@@ -1,6 +1,9 @@
 parameters:
 	additionalConstructors:
 		- Nette\Application\UI\Presenter::startup
+	exceptions:
+		uncheckedExceptionClasses:
+			- 'Nette\InvalidArgumentException'
 	stubFiles:
 		- stubs/Application/Routers/RouteList.stub
 		- stubs/Application/UI/Component.stub
