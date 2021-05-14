@@ -8,7 +8,8 @@ tests:
 .PHONY: lint
 lint:
 	php vendor/bin/parallel-lint --colors \
-		src tests
+		src tests \
+		--exclude tests/Rule/Nette/data
 
 .PHONY: cs
 cs:
