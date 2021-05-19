@@ -26,4 +26,13 @@ class Selection implements \Iterator, \ArrayAccess
     public function page(int $page, int $itemsPerPage, &$numOfPages = null)
     {
     }
+
+    /**
+     * @param string|array<string|int,mixed> $condition
+     * @param mixed $params
+     * @return static
+     */
+    public function where($condition, ...$params)
+    {
+    }
 }
