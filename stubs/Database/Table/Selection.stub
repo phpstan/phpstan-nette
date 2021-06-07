@@ -35,4 +35,12 @@ class Selection implements \Iterator, \ArrayAccess
     public function where($condition, ...$params)
     {
     }
+ 
+    /*
+     * @param string $column
+     * @return positive-int|0
+	 */
+	public function count($column = null)
+    {
+    }
 }
