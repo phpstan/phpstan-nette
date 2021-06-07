@@ -36,11 +36,11 @@ class Selection implements \Iterator, \ArrayAccess
     {
     }
  
-    /*
+    /**
      * @param string $column
      * @return positive-int|0
-	 */
-	public function count($column = null)
+     */
+    public function count($column = null)
     {
     }
 }
