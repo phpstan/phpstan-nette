@@ -10,7 +10,7 @@ class ArrayHash implements \ArrayAccess, \IteratorAggregate
 {
 
 	/**
-	 * @return \RecursiveArrayIterator<mixed>
+	 * @return \RecursiveArrayIterator<mixed, mixed>
 	 */
 	public function getIterator(): \RecursiveArrayIterator
 	{
