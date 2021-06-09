@@ -3,14 +3,14 @@
 namespace Nette\Utils;
 
 /**
- * @implements \IteratorAggregate<mixed, mixed>
- * @implements \ArrayAccess<mixed, mixed>
+ * @implements \IteratorAggregate<array-key, mixed>
+ * @implements \ArrayAccess<array-key, mixed>
  */
 class ArrayHash implements \ArrayAccess, \IteratorAggregate
 {
 
 	/**
-	 * @return \RecursiveArrayIterator<mixed, mixed>
+	 * @return \RecursiveArrayIterator<array-key, mixed>
 	 */
 	public function getIterator(): \RecursiveArrayIterator
 	{
