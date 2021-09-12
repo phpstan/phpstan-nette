@@ -4,6 +4,7 @@ namespace PHPStan\Rule\Nette;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\Variable;
+use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\TryCatch;
 use PHPStan\Analyser\Scope;
 use PHPStan\Type\ObjectType;
@@ -56,8 +57,8 @@ class RethrowExceptionRule implements \PHPStan\Rules\Rule
 		foreach ($exceptions as $exceptionName) {
 			$exceptionType = new ObjectType($exceptionName);
 			foreach ($node->catches as $catch) {
-				$caughtType = TypeCombinator::union(...array_map(function (string $class): ObjectType {
-					return new ObjectType($class);
+				$caughtType = TypeCombinator::union(...array_map(function (Name $class): ObjectType {
+					return new ObjectType((string) $class);
 				}, $catch->types));
 				if (!$caughtType->isSuperTypeOf($exceptionType)->yes()) {
 					continue;
