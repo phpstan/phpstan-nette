@@ -8,7 +8,7 @@ includes:
 	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
-	excludes_analyse:
+	excludePaths:
 		- tests/*/data/*
 		- tests/NetteObjectChild.php
 

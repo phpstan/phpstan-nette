@@ -5,7 +5,7 @@ namespace PHPStan\Reflection\Nette;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\VerbosityLevel;
 
-class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
+class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 {
 
 	/** @var \PHPStan\Broker\Broker */

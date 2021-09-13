@@ -2,7 +2,7 @@
 
 namespace PHPStan\Reflection\Nette;
 
-class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
+class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 {
 
 	/** @var \PHPStan\Broker\Broker */
