@@ -7,8 +7,8 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\Constant\ConstantStringType;
+use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\ObjectWithoutClassType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 
@@ -32,19 +32,19 @@ class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicM
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
-		$objectType = new ObjectWithoutClassType();
+		$mixedType = new MixedType();
 		if (in_array($methodReflection->getName(), [
 			'getService',
 			'createService',
 		], true)) {
-			return $objectType;
+			return $mixedType;
 		}
 		if (count($methodCall->args) === 0) {
-			return $objectType;
+			return $mixedType;
 		}
 		$argType = $scope->getType($methodCall->args[0]->value);
 		if (!$argType instanceof ConstantStringType) {
-			return $objectType;
+			return $mixedType;
 		}
 
 		$type = new ObjectType($argType->getValue());
