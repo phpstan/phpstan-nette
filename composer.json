@@ -20,6 +20,7 @@
 	"require-dev": {
 		"nette/forms": "^3.0",
 		"nette/utils": "^2.3.0 || ^3.0.0",
+		"nikic/php-parser": "^4.13.0",
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"phpstan/phpstan-php-parser": "^1.0",
 		"phpstan/phpstan-phpunit": "^1.0",
