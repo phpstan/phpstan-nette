@@ -32,7 +32,7 @@ final class ComponentGetPresenterDynamicReturnTypeExtension implements DynamicMe
 		$defaultReturnType = $methodDefinition->getReturnType();
 		$firstParameterExists = count($methodDefinition->getParameters()) > 0;
 
-		if (count($methodCall->args) < 1) {
+		if (count($methodCall->getArgs()) < 1) {
 			if (!$firstParameterExists) {
 				return TypeCombinator::removeNull($defaultReturnType);
 			}
@@ -40,7 +40,7 @@ final class ComponentGetPresenterDynamicReturnTypeExtension implements DynamicMe
 			return $defaultReturnType;
 		}
 
-		$paramNeedExpr = $methodCall->args[0]->value;
+		$paramNeedExpr = $methodCall->getArgs()[0]->value;
 		$paramNeedType = $scope->getType($paramNeedExpr);
 
 		if ($paramNeedType instanceof ConstantBooleanType) {

@@ -44,16 +44,14 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(true));
 
-		/** @var \PhpParser\Node\Expr\MethodCall $methodCall */
 		$methodCall = $this->createMock(MethodCall::class);
-		/** @var \PhpParser\Node\Arg $arg */
 		$arg = $this->createMock(Arg::class);
-		/** @var \PhpParser\Node\Expr $value */
 		$value = $this->createMock(Expr::class);
 		$arg->value = $value;
 		$methodCall->args = [
 			0 => $arg,
 		];
+		$methodCall->method('getArgs')->willReturn($methodCall->args);
 
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 
@@ -70,16 +68,14 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
 
-		/** @var \PhpParser\Node\Expr\MethodCall $methodCall */
 		$methodCall = $this->createMock(MethodCall::class);
-		/** @var \PhpParser\Node\Arg $arg */
 		$arg = $this->createMock(Arg::class);
-		/** @var \PhpParser\Node\Expr $value */
 		$value = $this->createMock(Expr::class);
 		$arg->value = $value;
 		$methodCall->args = [
 			0 => $arg,
 		];
+		$methodCall->method('getArgs')->willReturn($methodCall->args);
 
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 
@@ -97,9 +93,9 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
 
-		/** @var \PhpParser\Node\Expr\MethodCall $methodCall */
 		$methodCall = $this->createMock(MethodCall::class);
 		$methodCall->args = [];
+		$methodCall->method('getArgs')->willReturn($methodCall->args);
 
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 

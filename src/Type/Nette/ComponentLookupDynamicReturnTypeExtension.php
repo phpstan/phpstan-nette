@@ -29,11 +29,11 @@ final class ComponentLookupDynamicReturnTypeExtension implements DynamicMethodRe
 		$defaultReturnType = ParametersAcceptorSelector::selectSingle(
 			$methodReflection->getVariants()
 		)->getReturnType();
-		if (count($methodCall->args) < 2) {
+		if (count($methodCall->getArgs()) < 2) {
 			return $defaultReturnType;
 		}
 
-		$paramNeedExpr = $methodCall->args[1]->value;
+		$paramNeedExpr = $methodCall->getArgs()[1]->value;
 		$paramNeedType = $scope->getType($paramNeedExpr);
 
 		if ($paramNeedType instanceof ConstantBooleanType) {

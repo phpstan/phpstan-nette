@@ -29,11 +29,11 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
-		if (count($methodCall->args) === 0) {
+		if (count($methodCall->getArgs()) === 0) {
 			return new ObjectType('Nette\Utils\ArrayHash');
 		}
 
-		$arg = $methodCall->args[0]->value;
+		$arg = $methodCall->getArgs()[0]->value;
 		$scopedType = $scope->getType($arg);
 		if (!$scopedType instanceof ConstantBooleanType) {
 			return ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();

@@ -39,10 +39,10 @@ class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicM
 		], true)) {
 			return $mixedType;
 		}
-		if (count($methodCall->args) === 0) {
+		if (count($methodCall->getArgs()) === 0) {
 			return $mixedType;
 		}
-		$argType = $scope->getType($methodCall->args[0]->value);
+		$argType = $scope->getType($methodCall->getArgs()[0]->value);
 		if (!$argType instanceof ConstantStringType) {
 			return $mixedType;
 		}
@@ -50,9 +50,9 @@ class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicM
 		$type = new ObjectType($argType->getValue());
 		if (
 			$methodReflection->getName() === 'getByType'
-			&& count($methodCall->args) >= 2
+			&& count($methodCall->getArgs()) >= 2
 		) {
-			$throwType = $scope->getType($methodCall->args[1]->value);
+			$throwType = $scope->getType($methodCall->getArgs()[1]->value);
 			if (
 				!$throwType instanceof ConstantBooleanType
 				|| !$throwType->getValue()

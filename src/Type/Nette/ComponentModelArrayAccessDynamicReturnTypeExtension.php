@@ -34,7 +34,7 @@ class ComponentModelArrayAccessDynamicReturnTypeExtension implements DynamicMeth
 	{
 		$calledOnType = $scope->getType($methodCall->var);
 		$mixedType = new MixedType();
-		$args = $methodCall->args;
+		$args = $methodCall->getArgs();
 		if (count($args) !== 1) {
 			return $mixedType;
 		}

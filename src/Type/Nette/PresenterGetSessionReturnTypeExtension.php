@@ -25,7 +25,7 @@ final class PresenterGetSessionReturnTypeExtension implements DynamicMethodRetur
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
-		if (count($methodCall->args) === 0 || $scope->getType($methodCall->args[0]->value) instanceof NullType) {
+		if (count($methodCall->getArgs()) === 0 || $scope->getType($methodCall->getArgs()[0]->value) instanceof NullType) {
 			return new ObjectType('Nette\Http\Session');
 		}
 
