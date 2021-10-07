@@ -30,8 +30,9 @@ parameters:
 	earlyTerminatingMethodCalls:
 		Nette\Application\UI\Component:
 			- error
-		Nette\Application\UI\Presenter:
 			- redirect
+			- redirectPermanent
+		Nette\Application\UI\Presenter:
 			- redirectUrl
 			- sendJson
 			- sendPayload
