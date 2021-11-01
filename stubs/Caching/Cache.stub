@@ -1,0 +1,82 @@
+<?php
+
+namespace Nette\Caching;
+
+use Nette\InvalidArgumentException;
+
+
+/**
+ * @phpstan-type cache-dependencies array{ priority?: int, expire?: string|int|\DateTimeInterface, sliding?: mixed, tags?: list<string>, files?: list<string>, items?: list<string>, const?: list<string>|string, callbacks?: list<array{0: (callable(): bool)}&array<mixed>>, namespaces?: list<string> }
+ * @phpstan-type clean-conditions array{ priority?: int, tags?: list<string>, all?: true }
+ */
+class Cache
+{
+
+	/**
+	 * @template T
+	 * @param mixed $key
+	 * @param (callable(cache-dependencies &$dependencies): T)|null $generator
+	 * @return T
+	 */
+	public function load($key, callable $generator = null)
+	{
+		// nothing
+	}
+
+	/**
+	 * @template T of array
+	 * @param array<mixed> $key
+	 * @param (callable(mixed, cache-dependencies &$dependencies): T)|null $generator
+	 * @return T
+	 */
+	public function bulkLoad($key, callable $generator = null)
+	{
+		// nothing
+	}
+
+	/**
+	 * @template T
+	 * @param mixed $key
+	 * @param T $data
+	 * @param cache-dependencies|null $dependencies
+	 * @return T
+	 * @throws InvalidArgumentException
+	 */
+	public function save($key, $data, array $dependencies = null)
+	{
+		// nothing
+	}
+
+
+	/**
+	 * @param clean-conditions|null $conditions
+	 */
+	public function clean(array $conditions = null): void
+	{
+		// nothing
+	}
+
+
+	/**
+	 * @template T
+	 * @param (callable(): T) $function
+	 * @return T
+	 */
+	public function call(callable $function)
+	{
+		// nothing
+	}
+
+
+	/**
+	 * @template T
+	 * @param (callable(): T) $function
+	 * @param cache-dependencies|null $dependencies
+	 * @return (\Closure(): T)
+	 */
+	public function wrap(callable $function, array $dependencies = null): \Closure
+	{
+		// nothing
+	}
+
+}
