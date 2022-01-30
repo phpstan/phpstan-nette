@@ -14,6 +14,9 @@ final class JsonDecodeDynamicReturnTypeExtensionTest extends TypeInferenceTestCa
 	{
 		yield from $this->gatherAssertTypes(__DIR__ . '/data/json_decode.php');
 		yield from $this->gatherAssertTypes(__DIR__ . '/data/json_decode_force_array.php');
+
+		yield from $this->gatherAssertTypes(__DIR__ . '/data/json_decode_unknown_type.php');
+		yield from $this->gatherAssertTypes(__DIR__ . '/data/json_decode_force_array_unknown_type.php');
 	}
 
 	/**

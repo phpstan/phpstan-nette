@@ -20,9 +20,3 @@ assertType('array{}', $value);
 
 $value = Json::decode('[1, 2, 3]', Json::FORCE_ARRAY);
 assertType('array{1, 2, 3}', $value);
-
-
-function unknownType($mixed) {
-	$value = Json::decode($mixed, Json::FORCE_ARRAY);
-	assertType('array|bool|float|int|string', $value);
-}
