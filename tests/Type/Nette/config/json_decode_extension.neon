@@ -1,5 +1,5 @@
 services:
 	-
-		class: PHPStan\Type\Nette\JsonDecodeDynamicReturnTypeExtension
+		class: PHPStan\Type\Nette\NetteUtilsJsonDecodeDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicStaticMethodReturnTypeExtension

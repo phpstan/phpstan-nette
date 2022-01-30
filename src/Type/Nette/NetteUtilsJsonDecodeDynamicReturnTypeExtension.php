@@ -24,7 +24,7 @@ use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
 use stdClass;
 
-final class JsonDecodeDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExtension
+final class NetteUtilsJsonDecodeDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExtension
 {
 
 	public function getClass(): string

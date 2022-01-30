@@ -4,7 +4,7 @@ namespace PHPStan\Type\Nette;
 
 use PHPStan\Testing\TypeInferenceTestCase;
 
-final class JsonDecodeDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
+final class NetteUtilsJsonDecodeDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
 {
 
 	/**
