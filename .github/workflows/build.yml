@@ -113,6 +113,11 @@ jobs:
         if: matrix.php-version == '7.1' || matrix.php-version == '7.2' || matrix.php-version == '7.3'
         run: "composer require --dev phpunit/phpunit:^7.5.20 --update-with-dependencies"
 
+      # in PHP 7.1, the json_decode() 2nd parameter requires bool, while PHP 7.2 it's null|int
+      - name: "Downgrade nette/utils"
+        if: matrix.php-version == '7.1'
+        run: "composer require --dev nette/utils:^2.3 nette/forms:^2.4 --update-with-dependencies"
+
       - name: "Tests"
         run: "make tests"
 

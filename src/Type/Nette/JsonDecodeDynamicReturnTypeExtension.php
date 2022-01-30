@@ -6,6 +6,7 @@ use Nette\Utils\Json;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\StaticCall;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -91,7 +92,7 @@ final class JsonDecodeDynamicReturnTypeExtension implements DynamicStaticMethodR
 			$classConstFetch = $secondArg->value;
 
 			if ($classConstFetch->class instanceof Name) {
-				if (! $classConstFetch->name instanceof \PhpParser\Node\Identifier) {
+				if (! $classConstFetch->name instanceof Identifier) {
 					return false;
 				}
 
