@@ -119,28 +119,6 @@ final class JsonDecodeDynamicReturnTypeExtension implements DynamicStaticMethodR
 		}
 
 		return ConstantTypeHelper::getTypeFromValue($decodedValue);
-//
-//		if (is_bool($decodedValue)) {
-//			return new BooleanType();
-//		}
-//
-//		if (is_array($decodedValue)) {
-//			return new ArrayType(new MixedType(), new MixedType());
-//		}
-//
-//		if (is_object($decodedValue) && get_class($decodedValue) === stdClass::class) {
-//			return new ObjectType(stdClass::class);
-//		}
-//
-//		if (is_int($decodedValue)) {
-//			return new IntegerType();
-//		}
-//
-//		if (is_float($decodedValue)) {
-//			return new FloatType();
-//		}
-//
-//		return new MixedType();
 	}
 
 }
