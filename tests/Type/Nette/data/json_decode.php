@@ -4,16 +4,16 @@ use Nette\Utils\Json;
 use function PHPStan\Testing\assertType;
 
 $value = Json::decode('true');
-assertType('bool', $value);
+assertType('true', $value);
 
 $value = Json::decode('1');
-assertType('int', $value);
+assertType('1', $value);
 
 $value = Json::decode('1.5');
-assertType('float', $value);
+assertType('1.5', $value);
 
 $value = Json::decode('false');
-assertType('bool', $value);
+assertType('false', $value);
 
 function unknownType($mixed) {
 	$value = Json::decode($mixed);

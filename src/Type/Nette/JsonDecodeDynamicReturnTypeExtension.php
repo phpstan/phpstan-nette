@@ -13,6 +13,7 @@ use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\BooleanType;
 use PHPStan\Type\Constant\ConstantStringType;
+use PHPStan\Type\ConstantTypeHelper;
 use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
 use PHPStan\Type\FloatType;
 use PHPStan\Type\IntegerType;
@@ -117,27 +118,29 @@ final class JsonDecodeDynamicReturnTypeExtension implements DynamicStaticMethodR
 			$decodedValue = Json::decode($constantStringType->getValue());
 		}
 
-		if (is_bool($decodedValue)) {
-			return new BooleanType();
-		}
-
-		if (is_array($decodedValue)) {
-			return new ArrayType(new MixedType(), new MixedType());
-		}
-
-		if (is_object($decodedValue) && get_class($decodedValue) === stdClass::class) {
-			return new ObjectType(stdClass::class);
-		}
-
-		if (is_int($decodedValue)) {
-			return new IntegerType();
-		}
-
-		if (is_float($decodedValue)) {
-			return new FloatType();
-		}
-
-		return new MixedType();
+		return ConstantTypeHelper::getTypeFromValue($decodedValue);
+//
+//		if (is_bool($decodedValue)) {
+//			return new BooleanType();
+//		}
+//
+//		if (is_array($decodedValue)) {
+//			return new ArrayType(new MixedType(), new MixedType());
+//		}
+//
+//		if (is_object($decodedValue) && get_class($decodedValue) === stdClass::class) {
+//			return new ObjectType(stdClass::class);
+//		}
+//
+//		if (is_int($decodedValue)) {
+//			return new IntegerType();
+//		}
+//
+//		if (is_float($decodedValue)) {
+//			return new FloatType();
+//		}
+//
+//		return new MixedType();
 	}
 
 }
