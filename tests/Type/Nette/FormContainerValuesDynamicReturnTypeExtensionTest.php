@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace PHPStan\Tests\Type\Nette;
+namespace PHPStan\Type\Nette;
 
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr;
@@ -13,7 +13,6 @@ use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\Generic\TemplateTypeMap;
 use PHPStan\Type\IterableType;
 use PHPStan\Type\MixedType;
-use PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\UnionType;
 use PHPStan\Type\VerbosityLevel;

@@ -52,7 +52,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"PHPStan\\Tests\\": "tests/"
+			"PHPStan\\": "tests/"
 		},
 		"classmap": [
 			"tests/"
