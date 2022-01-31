@@ -1,10 +1,12 @@
-<?php declare(strict_types = 1);
+<?php
 
-namespace PHPStan\Type\Nette;
+declare(strict_types=1);
+
+namespace PHPStan\Type\Php;
 
 use PHPStan\Testing\TypeInferenceTestCase;
 
-final class NetteUtilsJsonDecodeDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
+final class JsonDecodeDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
 {
 
 	/**
@@ -14,9 +16,6 @@ final class NetteUtilsJsonDecodeDynamicReturnTypeExtensionTest extends TypeInfer
 	{
 		yield from $this->gatherAssertTypes(__DIR__ . '/data/json_decode.php');
 		yield from $this->gatherAssertTypes(__DIR__ . '/data/json_decode_force_array.php');
-
-		yield from $this->gatherAssertTypes(__DIR__ . '/data/json_decode_unknown_type.php');
-		yield from $this->gatherAssertTypes(__DIR__ . '/data/json_decode_force_array_unknown_type.php');
 	}
 
 	/**
@@ -35,7 +34,9 @@ final class NetteUtilsJsonDecodeDynamicReturnTypeExtensionTest extends TypeInfer
 	 */
 	public static function getAdditionalConfigFiles(): array
 	{
-		return [__DIR__ . '/config/nette_json_decode_extension.neon'];
+		return [__DIR__ . '/config/json_decode_extension.neon'];
 	}
+
+
 
 }
