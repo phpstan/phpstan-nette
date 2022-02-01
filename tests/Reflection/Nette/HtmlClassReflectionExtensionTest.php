@@ -2,16 +2,20 @@
 
 namespace PHPStan\Reflection\Nette;
 
+use Nette\Utils\Html;
+use PHPStan\Broker\Broker;
 use PHPStan\Reflection\ParametersAcceptorSelector;
+use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Type\VerbosityLevel;
+use stdClass;
 
-class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
+class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 {
 
-	/** @var \PHPStan\Broker\Broker */
+	/** @var Broker */
 	private $broker;
 
-	/** @var \PHPStan\Reflection\Nette\HtmlClassReflectionExtension */
+	/** @var HtmlClassReflectionExtension */
 	private $extension;
 
 	protected function setUp(): void
@@ -27,11 +31,11 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 	{
 		return [
 			[
-				\Nette\Utils\Html::class,
+				Html::class,
 				true,
 			],
 			[
-				\stdClass::class,
+				stdClass::class,
 				false,
 			],
 		];
@@ -39,8 +43,6 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 
 	/**
 	 * @dataProvider dataHasMethod
-	 * @param string $className
-	 * @param bool $result
 	 */
 	public function testHasMethod(string $className, bool $result): void
 	{
@@ -50,7 +52,7 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 
 	public function testGetMethod(): void
 	{
-		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
+		$classReflection = $this->broker->getClass(Html::class);
 		$methodReflection = $this->extension->getMethod($classReflection, 'href');
 		$parametersAcceptor = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants());
 		self::assertSame('href', $methodReflection->getName());
@@ -60,7 +62,7 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 		self::assertTrue($parametersAcceptor->isVariadic());
 		self::assertFalse($methodReflection->isPrivate());
 		self::assertTrue($methodReflection->isPublic());
-		self::assertSame(\Nette\Utils\Html::class, $parametersAcceptor->getReturnType()->describe(VerbosityLevel::value()));
+		self::assertSame(Html::class, $parametersAcceptor->getReturnType()->describe(VerbosityLevel::value()));
 	}
 
 	/**
@@ -70,11 +72,11 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 	{
 		return [
 			[
-				\Nette\Utils\Html::class,
+				Html::class,
 				true,
 			],
 			[
-				\stdClass::class,
+				stdClass::class,
 				false,
 			],
 		];
@@ -82,8 +84,6 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 
 	/**
 	 * @dataProvider dataHasProperty
-	 * @param string $className
-	 * @param bool $result
 	 */
 	public function testHasProperty(string $className, bool $result): void
 	{
@@ -93,7 +93,7 @@ class HtmlClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 
 	public function testGetProperty(): void
 	{
-		$classReflection = $this->broker->getClass(\Nette\Utils\Html::class);
+		$classReflection = $this->broker->getClass(Html::class);
 		$propertyReflection = $this->extension->getProperty($classReflection, 'href');
 		self::assertSame($classReflection, $propertyReflection->getDeclaringClass());
 		self::assertFalse($propertyReflection->isStatic());

@@ -6,9 +6,11 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
+use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Type;
+use function count;
 
-class FormsBaseControlDynamicReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTypeExtension
+class FormsBaseControlDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
 	public function getClass(): string

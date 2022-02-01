@@ -7,13 +7,23 @@ use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\TryCatch;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TypeCombinator;
+use Throwable;
+use function array_map;
+use function array_merge;
+use function array_unique;
+use function count;
+use function is_array;
+use function is_string;
+use function sprintf;
+use function strtolower;
 
 /**
- * @implements \PHPStan\Rules\Rule<TryCatch>
+ * @implements Rule<TryCatch>
  */
-class RethrowExceptionRule implements \PHPStan\Rules\Rule
+class RethrowExceptionRule implements Rule
 {
 
 	/** @var array<string, string[]> */
@@ -38,7 +48,7 @@ class RethrowExceptionRule implements \PHPStan\Rules\Rule
 		foreach ($node->catches as $catch) {
 			foreach ($catch->types as $type) {
 				$typeClass = (string) $type;
-				if ($typeClass === 'Exception' || $typeClass === \Throwable::class) {
+				if ($typeClass === 'Exception' || $typeClass === Throwable::class) {
 					$hasGeneralCatch = true;
 					break 2;
 				}
@@ -57,7 +67,7 @@ class RethrowExceptionRule implements \PHPStan\Rules\Rule
 		foreach ($exceptions as $exceptionName) {
 			$exceptionType = new ObjectType($exceptionName);
 			foreach ($node->catches as $catch) {
-				$caughtType = TypeCombinator::union(...array_map(function (Name $class): ObjectType {
+				$caughtType = TypeCombinator::union(...array_map(static function (Name $class): ObjectType {
 					return new ObjectType((string) $class);
 				}, $catch->types));
 				if (!$caughtType->isSuperTypeOf($exceptionType)->yes()) {
@@ -83,8 +93,7 @@ class RethrowExceptionRule implements \PHPStan\Rules\Rule
 	}
 
 	/**
-	 * @param \PHPStan\Analyser\Scope $scope
-	 * @param \PhpParser\Node|\PhpParser\Node[]|scalar $node
+	 * @param Node|Node[]|scalar $node
 	 * @return string[]
 	 */
 	private function getExceptionTypes(Scope $scope, $node): array

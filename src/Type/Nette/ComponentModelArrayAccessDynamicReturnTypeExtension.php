@@ -10,6 +10,9 @@ use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\Type;
+use function count;
+use function sprintf;
+use function ucfirst;
 
 class ComponentModelArrayAccessDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {

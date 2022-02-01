@@ -6,12 +6,14 @@ use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\ParametersAcceptor;
 use PHPStan\TrinaryLogic;
 use PHPStan\Type\Generic\TemplateTypeMap;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\VoidType;
+use function substr;
 
 class HtmlMethodReflection implements MethodReflection
 {
@@ -19,7 +21,7 @@ class HtmlMethodReflection implements MethodReflection
 	/** @var string */
 	private $name;
 
-	/** @var \PHPStan\Reflection\ClassReflection */
+	/** @var ClassReflection */
 	private $declaringClass;
 
 	public function __construct(string $name, ClassReflection $declaringClass)
@@ -44,7 +46,7 @@ class HtmlMethodReflection implements MethodReflection
 	}
 
 	/**
-	 * @return \PHPStan\Reflection\ParametersAcceptor[]
+	 * @return ParametersAcceptor[]
 	 */
 	public function getVariants(): array
 	{
@@ -104,7 +106,7 @@ class HtmlMethodReflection implements MethodReflection
 		return null;
 	}
 
-	public function hasSideEffects(): \PHPStan\TrinaryLogic
+	public function hasSideEffects(): TrinaryLogic
 	{
 		return TrinaryLogic::createYes();
 	}

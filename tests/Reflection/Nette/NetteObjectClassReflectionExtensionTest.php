@@ -2,13 +2,19 @@
 
 namespace PHPStan\Reflection\Nette;
 
-class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
+use PHPStan\Broker\Broker;
+use PHPStan\SmartObjectChild;
+use PHPStan\Testing\PHPStanTestCase;
+use function class_exists;
+use function sprintf;
+
+class NetteObjectClassReflectionExtensionTest extends PHPStanTestCase
 {
 
-	/** @var \PHPStan\Broker\Broker */
+	/** @var Broker */
 	private $broker;
 
-	/** @var \PHPStan\Reflection\Nette\NetteObjectClassReflectionExtension */
+	/** @var NetteObjectClassReflectionExtension */
 	private $extension;
 
 	protected function setUp(): void
@@ -24,12 +30,12 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTe
 	{
 		$data = [];
 		$data[] = [
-			\PHPStan\SmartObjectChild::class,
+			SmartObjectChild::class,
 			'onPublicEvent',
 			true,
 		];
 		$data[] = [
-			\PHPStan\SmartObjectChild::class,
+			SmartObjectChild::class,
 			'onProtectedEvent',
 			false,
 		];
@@ -48,9 +54,6 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTe
 
 	/**
 	 * @dataProvider dataHasMethod
-	 * @param string $className
-	 * @param string $method
-	 * @param bool $result
 	 */
 	public function testHasMethod(string $className, string $method, bool $result): void
 	{
@@ -68,7 +71,7 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTe
 	{
 		$data = [];
 		$data[] = [
-			\PHPStan\SmartObjectChild::class,
+			SmartObjectChild::class,
 			'foo',
 			false,
 		];
@@ -93,9 +96,6 @@ class NetteObjectClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTe
 
 	/**
 	 * @dataProvider dataHasProperty
-	 * @param string $className
-	 * @param string $property
-	 * @param bool $result
 	 */
 	public function testHasProperty(string $className, string $property, bool $result): void
 	{

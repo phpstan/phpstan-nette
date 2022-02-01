@@ -8,6 +8,15 @@ use PHPStan\Reflection\MethodsClassReflectionExtension;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
+use ReflectionClass;
+use function array_merge;
+use function array_unique;
+use function array_values;
+use function in_array;
+use function sprintf;
+use function strlen;
+use function substr;
+use function ucfirst;
 
 class NetteObjectClassReflectionExtension implements MethodsClassReflectionExtension, PropertiesClassReflectionExtension
 {
@@ -29,7 +38,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 		return $getterMethod->isPublic();
 	}
 
-	private function getMethodByProperty(ClassReflection $classReflection, string $propertyName): ?\PHPStan\Reflection\MethodReflection
+	private function getMethodByProperty(ClassReflection $classReflection, string $propertyName): ?MethodReflection
 	{
 		$getterMethodName = sprintf('get%s', ucfirst($propertyName));
 		if (!$classReflection->hasNativeMethod($getterMethodName)) {
@@ -41,7 +50,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 
 	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection
 	{
-		/** @var \PHPStan\Reflection\MethodReflection $getterMethod */
+		/** @var MethodReflection $getterMethod */
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
 		return new NetteObjectPropertyReflection($classReflection, ParametersAcceptorSelector::selectSingle($getterMethod->getVariants())->getReturnType());
 	}
@@ -66,10 +75,10 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	}
 
 	/**
-	 * @param \ReflectionClass<object> $class
+	 * @param ReflectionClass<object> $class
 	 * @return string[]
 	 */
-	private function getTraitNames(\ReflectionClass $class): array
+	private function getTraitNames(ReflectionClass $class): array
 	{
 		$traitNames = $class->getTraitNames();
 		while ($class->getParentClass() !== false) {
@@ -81,10 +90,9 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	}
 
 	/**
-	 * @param \ReflectionClass<object> $class
-	 * @return bool
+	 * @param ReflectionClass<object> $class
 	 */
-	private function inheritsFromNetteObject(\ReflectionClass $class): bool
+	private function inheritsFromNetteObject(ReflectionClass $class): bool
 	{
 		$class = $class->getParentClass();
 		while ($class !== false) {

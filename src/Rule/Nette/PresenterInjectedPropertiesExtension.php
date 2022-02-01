@@ -4,6 +4,7 @@ namespace PHPStan\Rule\Nette;
 
 use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Rules\Properties\ReadWritePropertiesExtension;
+use function strpos;
 
 class PresenterInjectedPropertiesExtension implements ReadWritePropertiesExtension
 {

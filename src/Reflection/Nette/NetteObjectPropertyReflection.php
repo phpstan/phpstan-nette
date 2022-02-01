@@ -10,10 +10,10 @@ use PHPStan\Type\Type;
 class NetteObjectPropertyReflection implements PropertyReflection
 {
 
-	/** @var \PHPStan\Reflection\ClassReflection */
+	/** @var ClassReflection */
 	private $declaringClass;
 
-	/** @var \PHPStan\Type\Type */
+	/** @var Type */
 	private $type;
 
 	public function __construct(ClassReflection $declaringClass, Type $type)
@@ -72,12 +72,12 @@ class NetteObjectPropertyReflection implements PropertyReflection
 		return null;
 	}
 
-	public function getReadableType(): \PHPStan\Type\Type
+	public function getReadableType(): Type
 	{
 		return $this->type;
 	}
 
-	public function getWritableType(): \PHPStan\Type\Type
+	public function getWritableType(): Type
 	{
 		return $this->type;
 	}

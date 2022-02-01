@@ -2,7 +2,10 @@
 
 namespace PHPStan\Rule\Nette;
 
-class PresenterInjectedPropertiesExtensionTest extends \PHPStan\Testing\LevelsTestCase
+use PHPStan\Testing\LevelsTestCase;
+use const PHP_VERSION_ID;
+
+class PresenterInjectedPropertiesExtensionTest extends LevelsTestCase
 {
 
 	public function dataTopics(): array

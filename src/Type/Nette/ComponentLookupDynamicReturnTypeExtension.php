@@ -10,6 +10,7 @@ use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
+use function count;
 
 final class ComponentLookupDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {

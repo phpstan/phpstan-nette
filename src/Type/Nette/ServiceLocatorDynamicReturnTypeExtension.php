@@ -7,12 +7,15 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\Constant\ConstantStringType;
+use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
+use function count;
+use function in_array;
 
-class ServiceLocatorDynamicReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTypeExtension
+class ServiceLocatorDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
 	public function getClass(): string
