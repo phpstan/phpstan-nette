@@ -11,7 +11,7 @@ use PHPStan\Type\Type;
 class HtmlPropertyReflection implements PropertyReflection
 {
 
-	/** @var \PHPStan\Reflection\ClassReflection */
+	/** @var ClassReflection */
 	private $declaringClass;
 
 	/** @var Type */
@@ -73,12 +73,12 @@ class HtmlPropertyReflection implements PropertyReflection
 		return null;
 	}
 
-	public function getReadableType(): \PHPStan\Type\Type
+	public function getReadableType(): Type
 	{
 		return $this->type;
 	}
 
-	public function getWritableType(): \PHPStan\Type\Type
+	public function getWritableType(): Type
 	{
 		return $this->type;
 	}

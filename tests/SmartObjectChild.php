@@ -2,10 +2,12 @@
 
 namespace PHPStan;
 
+use Nette\SmartObject;
+
 class SmartObjectChild
 {
 
-	use \Nette\SmartObject;
+	use SmartObject;
 
 	/** @var callable[] */
 	public $onPublicEvent = [];

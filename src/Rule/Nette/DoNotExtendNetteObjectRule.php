@@ -6,14 +6,17 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Broker\Broker;
+use PHPStan\Rules\Rule;
+use function in_array;
+use function sprintf;
 
 /**
- * @implements \PHPStan\Rules\Rule<Class_>
+ * @implements Rule<Class_>
  */
-class DoNotExtendNetteObjectRule implements \PHPStan\Rules\Rule
+class DoNotExtendNetteObjectRule implements Rule
 {
 
-	/** @var \PHPStan\Broker\Broker */
+	/** @var Broker */
 	private $broker;
 
 	public function __construct(Broker $broker)

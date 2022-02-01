@@ -2,6 +2,7 @@
 
 namespace PHPStan\Type\Nette;
 
+use Nette\Utils\ArrayHash;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\MethodCall;
@@ -16,11 +17,12 @@ use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\UnionType;
 use PHPStan\Type\VerbosityLevel;
+use PHPUnit\Framework\TestCase;
 
-final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\Framework\TestCase
+final class FormContainerValuesDynamicReturnTypeExtensionTest extends TestCase
 {
 
-	/** @var \PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension */
+	/** @var FormContainerValuesDynamicReturnTypeExtension */
 	private $extension;
 
 	protected function setUp(): void
@@ -38,7 +40,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 				TemplateTypeMap::createEmpty(),
 				[],
 				true,
-				new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))])
+				new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(ArrayHash::class))])
 			)]);
 
 		$scope = $this->createMock(Scope::class);
@@ -63,7 +65,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getVariants')
-			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
+			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(ArrayHash::class))]))]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
@@ -80,7 +82,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 
 		self::assertInstanceOf(ObjectType::class, $resultType);
-		self::assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe(VerbosityLevel::value()));
+		self::assertSame(ArrayHash::class, $resultType->describe(VerbosityLevel::value()));
 	}
 
 	public function testDefaultParameterIsArrayHash(): void
@@ -88,7 +90,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$methodReflection = $this->createMock(MethodReflection::class);
 		$methodReflection
 			->method('getVariants')
-			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(\Nette\Utils\ArrayHash::class))]))]);
+			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(ArrayHash::class))]))]);
 
 		$scope = $this->createMock(Scope::class);
 		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
@@ -100,7 +102,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends \PHPUnit\F
 		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
 
 		self::assertInstanceOf(ObjectType::class, $resultType);
-		self::assertSame(\Nette\Utils\ArrayHash::class, $resultType->describe(VerbosityLevel::value()));
+		self::assertSame(ArrayHash::class, $resultType->describe(VerbosityLevel::value()));
 	}
 
 }

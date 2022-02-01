@@ -14,6 +14,7 @@ use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
+use function count;
 
 class FormContainerUnsafeValuesDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {

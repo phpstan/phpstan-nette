@@ -3,11 +3,13 @@
 namespace PHPStan\Rule\Nette;
 
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
+use function class_exists;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<DoNotExtendNetteObjectRule>
+ * @extends RuleTestCase<DoNotExtendNetteObjectRule>
  */
-class DoNotExtendNetteObjectRuleTest extends \PHPStan\Testing\RuleTestCase
+class DoNotExtendNetteObjectRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule
