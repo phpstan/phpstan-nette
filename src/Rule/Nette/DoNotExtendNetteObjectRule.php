@@ -45,7 +45,7 @@ class DoNotExtendNetteObjectRule implements Rule
 
 		$classReflection = $this->broker->getClass($className);
 		$parentClass = $classReflection->getNativeReflection()->getParentClass();
-		if ($parentClass !== false && in_array($parentClass->getName(), [
+		if ($parentClass !== false && in_array($parentClass->getName(), [ // @phpstan-ignore-line
 			'Nette\Object',
 			'Nette\LegacyObject',
 		], true)) {
