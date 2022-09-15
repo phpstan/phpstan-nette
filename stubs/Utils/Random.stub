@@ -1,0 +1,16 @@
+<?php
+
+namespace Nette\Utils;
+
+class Random
+{
+	/**
+	 * @param positive-int $length
+	 * @param non-empty-string $charlist
+	 * @return non-empty-string
+	 */
+	public static function generate(int $length = 10, string $charlist = '0-9a-z'): string
+	{
+		// nothing
+	}
+}
