@@ -16,6 +16,7 @@ parametersSchema:
 
 rules:
 	- PHPStan\Rule\Nette\DoNotExtendNetteObjectRule
+	- PHPStan\Rule\Nette\RegularExpressionPatternRule
 
 services:
 	-
