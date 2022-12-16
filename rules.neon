@@ -17,6 +17,10 @@ parametersSchema:
 rules:
 	- PHPStan\Rule\Nette\DoNotExtendNetteObjectRule
 
+conditionalTags:
+	PHPStan\Rule\Nette\RegularExpressionPatternRule:
+		phpstan.rules.rule: %featureToggles.bleedingEdge%
+
 services:
 	-
 		class: PHPStan\Rule\Nette\RethrowExceptionRule
@@ -24,3 +28,5 @@ services:
 			methods: %methodsThrowingExceptions%
 		tags:
 			- phpstan.rules.rule
+	-
+		class: PHPStan\Rule\Nette\RegularExpressionPatternRule
