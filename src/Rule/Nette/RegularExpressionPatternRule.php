@@ -10,7 +10,6 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\Constant\ConstantStringType;
-use PHPStan\Type\TypeUtils;
 use function in_array;
 use function sprintf;
 use function strtolower;
@@ -51,7 +50,7 @@ class RegularExpressionPatternRule implements Rule
 		if (!$staticCall->class instanceof Node\Name || !$staticCall->name instanceof Node\Identifier) {
 			return [];
 		}
-		$className = (string) $staticCall->class;
+		$className = $scope->resolveName($staticCall->class);
 		if ($className !== Strings::class) {
 			return [];
 		}
@@ -75,7 +74,7 @@ class RegularExpressionPatternRule implements Rule
 
 		$patternStrings = [];
 
-		foreach (TypeUtils::getConstantStrings($patternType) as $constantStringType) {
+		foreach ($patternType->getConstantStrings() as $constantStringType) {
 			$patternStrings[] = $constantStringType->getValue();
 		}
 
