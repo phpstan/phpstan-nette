@@ -22,4 +22,7 @@ class Container implements \ArrayAccess
 	 * @phpstan-return \Iterator<int|string, T>
 	 */
 	final public function getComponents(bool $deep = false, string $filterType = null): \Iterator
+	{
+		// nothing
+	}
 }
