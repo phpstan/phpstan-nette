@@ -16,4 +16,10 @@ class Container implements \ArrayAccess
 	/** @var array<callable(static, mixed): void> */
 	public $onValidate;
 
+	/**
+	 * @template T of \Nette\ComponentModel\IComponent
+	 * @phpstan-param null|class-string<T> $filterType
+	 * @phpstan-return \Iterator<int|string, T>
+	 */
+	final public function getComponents(bool $deep = false, string $filterType = null): \Iterator
 }
