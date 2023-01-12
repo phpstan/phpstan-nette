@@ -7,6 +7,7 @@ parameters:
 	stubFiles:
 		- stubs/Application/Routers/RouteList.stub
 		- stubs/Application/UI/Component.stub
+		- stubs/Caching/Cache.stub
 		- stubs/ComponentModel/IComponent.stub
 		- stubs/Database/ResultSet.stub
 		- stubs/Database/Table/ActiveRow.stub
