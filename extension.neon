@@ -33,6 +33,7 @@ parameters:
 			- error
 		Nette\Application\UI\Presenter:
 			- redirect
+			- redirectPermanent
 			- redirectUrl
 			- sendJson
 			- sendPayload
