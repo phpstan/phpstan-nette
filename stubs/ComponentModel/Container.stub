@@ -1,0 +1,17 @@
+<?php
+
+namespace Nette\ComponentModel;
+
+class Container extends Component implements IContainer
+{
+
+	/**
+	 * @template T of \Nette\ComponentModel\IComponent
+	 * @phpstan-param null|class-string<T> $filterType
+	 * @phpstan-return ($filterType is null ? \Iterator<int|string, \Nette\ComponentModel\IComponent> : \Iterator<int|string, T>)
+	 */
+	public function getComponents(bool $deep = false, string $filterType = null): \Iterator
+	{
+		// nothing
+	}
+}
