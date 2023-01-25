@@ -16,12 +16,4 @@ class Container implements \ArrayAccess
 	/** @var array<callable(static, mixed): void> */
 	public $onValidate;
 
-	/**
-	 * @phpstan-return \Iterator<int|string, \Nette\Forms\Control>
-	 */
-	public function getControls(): \Iterator
-	{
-		// nothing
-	}
-
 }
