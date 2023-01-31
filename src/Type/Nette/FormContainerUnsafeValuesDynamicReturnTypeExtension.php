@@ -7,10 +7,8 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\ArrayType;
-use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
-use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
@@ -37,11 +35,11 @@ class FormContainerUnsafeValuesDynamicReturnTypeExtension implements DynamicMeth
 
 		$arg = $methodCall->getArgs()[0]->value;
 		$scopedType = $scope->getType($arg);
-		if ($scopedType instanceof NullType) {
+		if ($scopedType->isNull()->yes()) {
 			return new ObjectType('Nette\Utils\ArrayHash');
 		}
 
-		if ($scopedType instanceof ConstantStringType && $scopedType->getValue() === 'array') {
+		if (count($scopedType->getConstantStrings()) === 1 && $scopedType->getConstantStrings()[0]->getValue() === 'array') {
 			return new ArrayType(new StringType(), new MixedType());
 		}
 

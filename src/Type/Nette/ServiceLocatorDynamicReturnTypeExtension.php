@@ -6,7 +6,6 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\Constant\ConstantBooleanType;
-use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
@@ -46,25 +45,30 @@ class ServiceLocatorDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 			return $mixedType;
 		}
 		$argType = $scope->getType($methodCall->getArgs()[0]->value);
-		if (!$argType instanceof ConstantStringType) {
+		if (count($argType->getConstantStrings()) === 0) {
 			return $mixedType;
 		}
 
-		$type = new ObjectType($argType->getValue());
-		if (
-			$methodReflection->getName() === 'getByType'
-			&& count($methodCall->getArgs()) >= 2
-		) {
-			$throwType = $scope->getType($methodCall->getArgs()[1]->value);
+		$types = [];
+		foreach ($argType->getConstantStrings() as $constantString) {
+			$type = new ObjectType($constantString->getValue());
 			if (
-				!$throwType instanceof ConstantBooleanType
-				|| !$throwType->getValue()
+				$methodReflection->getName() === 'getByType'
+				&& count($methodCall->getArgs()) >= 2
 			) {
-				$type = TypeCombinator::addNull($type);
+				$throwType = $scope->getType($methodCall->getArgs()[1]->value);
+				if (
+					!$throwType instanceof ConstantBooleanType
+					|| !$throwType->getValue()
+				) {
+					$type = TypeCombinator::addNull($type);
+				}
 			}
+
+			$types[] = $type;
 		}
 
-		return $type;
+		return TypeCombinator::union(...$types);
 	}
 
 }

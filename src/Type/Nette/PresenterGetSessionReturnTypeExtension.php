@@ -6,7 +6,6 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
-use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use function count;
@@ -26,7 +25,7 @@ final class PresenterGetSessionReturnTypeExtension implements DynamicMethodRetur
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
-		if (count($methodCall->getArgs()) === 0 || $scope->getType($methodCall->getArgs()[0]->value) instanceof NullType) {
+		if (count($methodCall->getArgs()) === 0 || $scope->getType($methodCall->getArgs()[0]->value)->isNull()->yes()) {
 			return new ObjectType('Nette\Http\Session');
 		}
 

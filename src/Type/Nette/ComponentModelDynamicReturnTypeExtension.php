@@ -6,10 +6,10 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
-use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\Type;
+use PHPStan\Type\TypeCombinator;
 use function count;
 use function sprintf;
 use function ucfirst;
@@ -43,20 +43,25 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 		}
 
 		$argType = $scope->getType($args[0]->value);
-		if (!$argType instanceof ConstantStringType) {
+		if (count($argType->getConstantStrings()) === 0) {
 			return $mixedType;
 		}
 
-		$componentName = $argType->getValue();
+		$types = [];
+		foreach ($argType->getConstantStrings() as $constantString) {
+			$componentName = $constantString->getValue();
 
-		$methodName = sprintf('createComponent%s', ucfirst($componentName));
-		if (!$calledOnType->hasMethod($methodName)->yes()) {
-			return $mixedType;
+			$methodName = sprintf('createComponent%s', ucfirst($componentName));
+			if (!$calledOnType->hasMethod($methodName)->yes()) {
+				return $mixedType;
+			}
+
+			$method = $calledOnType->getMethod($methodName, $scope);
+
+			$types[] = ParametersAcceptorSelector::selectSingle($method->getVariants())->getReturnType();
 		}
 
-		$method = $calledOnType->getMethod($methodName, $scope);
-
-		return ParametersAcceptorSelector::selectSingle($method->getVariants())->getReturnType();
+		return TypeCombinator::union(...$types);
 	}
 
 }
