@@ -7,6 +7,7 @@ parameters:
 	stubFiles:
 		- stubs/Application/Routers/RouteList.stub
 		- stubs/Application/UI/Component.stub
+		- stubs/Application/UI/Multiplier.stub
 		- stubs/ComponentModel/Component.stub
 		- stubs/ComponentModel/Container.stub
 		- stubs/ComponentModel/IComponent.stub
@@ -31,6 +32,9 @@ parameters:
 		- Nette\Http\SessionSection
 		- Nette\Security\Identity
 		- Nette\Security\SimpleIdentity
+	featureToggles:
+		skipCheckGenericClasses:
+			- Nette\Application\UI\Multiplier
 	earlyTerminatingMethodCalls:
 		Nette\Application\UI\Component:
 			- error
