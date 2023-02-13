@@ -1,0 +1,19 @@
+<?php
+
+namespace Nette\Application\UI;
+
+/**
+ * @template T of \Nette\ComponentModel\IComponent
+ */
+final class Multiplier extends Component
+{
+    /**
+     * @param callable(string, self<T>) : T $factory
+     */
+    public function __construct(callable $factory);
+
+    /**
+     * @return T
+     */
+    protected function createComponent(string $name): \Nette\ComponentModel\IComponent;
+}
