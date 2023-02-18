@@ -6,7 +6,6 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
-use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
@@ -44,11 +43,10 @@ final class ComponentGetPresenterDynamicReturnTypeExtension implements DynamicMe
 		$paramNeedExpr = $methodCall->getArgs()[0]->value;
 		$paramNeedType = $scope->getType($paramNeedExpr);
 
-		if ($paramNeedType instanceof ConstantBooleanType) {
-			if ($paramNeedType->getValue()) {
-				return TypeCombinator::removeNull($defaultReturnType);
-			}
-
+		if ($paramNeedType->isTrue()->yes()) {
+			return TypeCombinator::removeNull($defaultReturnType);
+		}
+		if ($paramNeedType->isFalse()->yes()) {
 			return TypeCombinator::addNull($defaultReturnType);
 		}
 

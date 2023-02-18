@@ -5,9 +5,7 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\ArrayType;
-use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
@@ -28,7 +26,7 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 		return $methodReflection->getName() === 'getValues';
 	}
 
-	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
+	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): ?Type
 	{
 		if (count($methodCall->getArgs()) === 0) {
 			return new ObjectType('Nette\Utils\ArrayHash');
@@ -36,15 +34,14 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 
 		$arg = $methodCall->getArgs()[0]->value;
 		$scopedType = $scope->getType($arg);
-		if (!$scopedType instanceof ConstantBooleanType) {
-			return ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
+		if ($scopedType->isTrue()->yes()) {
+			return new ArrayType(new StringType(), new MixedType());
 		}
-
-		if (!$scopedType->getValue()) {
+		if ($scopedType->isFalse()->yes()) {
 			return new ObjectType('Nette\Utils\ArrayHash');
 		}
 
-		return new ArrayType(new StringType(), new MixedType());
+		return null;
 	}
 
 }

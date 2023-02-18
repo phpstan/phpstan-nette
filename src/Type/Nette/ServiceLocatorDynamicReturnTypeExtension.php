@@ -5,7 +5,6 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
@@ -57,10 +56,7 @@ class ServiceLocatorDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 				&& count($methodCall->getArgs()) >= 2
 			) {
 				$throwType = $scope->getType($methodCall->getArgs()[1]->value);
-				if (
-					!$throwType instanceof ConstantBooleanType
-					|| !$throwType->getValue()
-				) {
+				if (!$throwType->isTrue()->yes()) {
 					$type = TypeCombinator::addNull($type);
 				}
 			}
