@@ -35,12 +35,12 @@ class OverrideCreateControl extends Control {
 
 $someControl = new SomeControl();
 assertType('PHPStan\Type\Nette\Data\ComponentModelArrayAccess\SomeControl', $someControl['some']);
-assertType('Nette\ComponentModel\IComponent|null', $someControl['unknown']);
+assertType('Nette\ComponentModel\IComponent', $someControl['unknown']);
 
 $anotherControl = new AnotherControl();
 assertType('PHPStan\Type\Nette\Data\ComponentModelArrayAccess\AnotherControl', $anotherControl['another']);
 assertType('PHPStan\Type\Nette\Data\ComponentModelArrayAccess\SomeControl', $anotherControl['some']);
-assertType('Nette\ComponentModel\IComponent|null', $anotherControl['unknown']);
+assertType('Nette\ComponentModel\IComponent', $anotherControl['unknown']);
 
 $overrideCreateControl = new OverrideCreateControl();
 assertType('PHPStan\Type\Nette\Data\ComponentModelArrayAccess\AnotherControl', $overrideCreateControl['some']);

@@ -7,6 +7,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
+use PHPStan\Type\NullType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 use function count;
@@ -37,8 +38,20 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 		$calledOnType = $scope->getType($methodCall->var);
 		$defaultType = ParametersAcceptorSelector::selectSingle($calledOnType->getMethod('createComponent', $scope)->getVariants())->getReturnType();
 		$args = $methodCall->getArgs();
-		if (count($args) !== 1) {
+		if (count($args) < 1) {
 			return $defaultType;
+		}
+
+		$throw = true;
+		if (isset($args[1])) {
+			$throwType = $scope->getType($args[1]->value);
+			if ($throwType->isTrue()->no()) {
+				$throw = false;
+			}
+		}
+
+		if ($throw) {
+			$defaultType = TypeCombinator::remove($defaultType, new NullType());
 		}
 
 		$argType = $scope->getType($args[0]->value);
