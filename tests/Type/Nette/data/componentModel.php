@@ -35,16 +35,16 @@ class OverrideCreateControl extends Control {
 
 $someControl = new SomeControl();
 assertType('PHPStan\Type\Nette\Data\ComponentModel\SomeControl', $someControl->getComponent('some'));
-assertType('Nette\ComponentModel\IComponent', $someControl->getComponent('unknown'));
-assertType('Nette\ComponentModel\IComponent|null', $someControl->getComponent('unknown', false));
-assertType('Nette\ComponentModel\IComponent', $someControl->getComponent('unknown', true));
+assertType('mixed~null', $someControl->getComponent('unknown'));
+assertType('mixed', $someControl->getComponent('unknown', false));
+assertType('mixed~null', $someControl->getComponent('unknown', true));
 
 $anotherControl = new AnotherControl();
 assertType('PHPStan\Type\Nette\Data\ComponentModel\AnotherControl', $anotherControl->getComponent('another'));
 assertType('PHPStan\Type\Nette\Data\ComponentModel\SomeControl', $anotherControl->getComponent('some'));
-assertType('Nette\ComponentModel\IComponent', $anotherControl->getComponent('unknown'));
-assertType('Nette\ComponentModel\IComponent|null', $anotherControl->getComponent('unknown', false));
-assertType('Nette\ComponentModel\IComponent', $anotherControl->getComponent('unknown', true));
+assertType('mixed~null', $anotherControl->getComponent('unknown'));
+assertType('mixed', $anotherControl->getComponent('unknown', false));
+assertType('mixed~null', $anotherControl->getComponent('unknown', true));
 
 $overrideCreateControl = new OverrideCreateControl();
 assertType('PHPStan\Type\Nette\Data\ComponentModel\AnotherControl', $overrideCreateControl->getComponent('some'));

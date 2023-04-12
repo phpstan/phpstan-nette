@@ -7,7 +7,9 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
+use PHPStan\Type\MixedType;
 use PHPStan\Type\NullType;
+use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 use function count;
@@ -38,6 +40,9 @@ class ComponentModelArrayAccessDynamicReturnTypeExtension implements DynamicMeth
 		$calledOnType = $scope->getType($methodCall->var);
 		$defaultType = ParametersAcceptorSelector::selectSingle($calledOnType->getMethod('createComponent', $scope)->getVariants())->getReturnType();
 		$defaultType = TypeCombinator::remove($defaultType, new NullType());
+		if ($defaultType->isSuperTypeOf(new ObjectType('Nette\ComponentModel\IComponent'))->yes()) {
+			$defaultType = new MixedType();
+		}
 		$args = $methodCall->getArgs();
 		if (count($args) !== 1) {
 			return $defaultType;
