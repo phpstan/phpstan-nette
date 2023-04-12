@@ -41,7 +41,7 @@ class ComponentModelArrayAccessDynamicReturnTypeExtension implements DynamicMeth
 		$defaultType = ParametersAcceptorSelector::selectSingle($calledOnType->getMethod('createComponent', $scope)->getVariants())->getReturnType();
 		$defaultType = TypeCombinator::remove($defaultType, new NullType());
 		if ($defaultType->isSuperTypeOf(new ObjectType('Nette\ComponentModel\IComponent'))->yes()) {
-			$defaultType = new MixedType();
+			$defaultType = new MixedType(false, new NullType());
 		}
 		$args = $methodCall->getArgs();
 		if (count($args) !== 1) {
