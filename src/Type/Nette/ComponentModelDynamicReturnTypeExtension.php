@@ -50,7 +50,7 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 		$throw = true;
 		if (isset($args[1])) {
 			$throwType = $scope->getType($args[1]->value);
-			if ($throwType->isTrue()->no()) {
+			if (!$throwType->isTrue()->yes()) {
 				$throw = false;
 			}
 		}
