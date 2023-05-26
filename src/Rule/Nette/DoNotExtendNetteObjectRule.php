@@ -35,7 +35,7 @@ class DoNotExtendNetteObjectRule implements Rule
 					$classReflection->getDisplayName(),
 					'Nette\Object',
 					'Nette\SmartObject'
-				))->build(),
+				))->identifier('class.extendsNetteObject')->build(),
 			];
 		}
 

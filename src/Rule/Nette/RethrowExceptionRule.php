@@ -8,6 +8,7 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\TryCatch;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TypeCombinator;
 use Throwable;
@@ -86,7 +87,7 @@ class RethrowExceptionRule implements Rule
 				}
 			}
 
-			$messages[] = sprintf('Exception %s needs to be rethrown.', $exceptionName);
+			$messages[] = RuleErrorBuilder::message(sprintf('Exception %s needs to be rethrown.', $exceptionName))->identifier('nette.rethrowException')->build();
 		}
 
 		return $messages;

@@ -35,7 +35,9 @@ class RegularExpressionPatternRule implements Rule
 				continue;
 			}
 
-			$errors[] = RuleErrorBuilder::message(sprintf('Regex pattern is invalid: %s', $errorMessage))->build();
+			$errors[] = RuleErrorBuilder::message(sprintf('Regex pattern is invalid: %s', $errorMessage))
+				->identifier('regexp.pattern')
+				->build();
 		}
 
 		return $errors;
