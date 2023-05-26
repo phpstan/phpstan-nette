@@ -3,59 +3,39 @@
 namespace PHPStan\Rule\Nette;
 
 use PhpParser\Node;
-use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
-use PHPStan\Broker\Broker;
+use PHPStan\Node\InClassNode;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use function in_array;
 use function sprintf;
 
 /**
- * @implements Rule<Class_>
+ * @implements Rule<InClassNode>
  */
 class DoNotExtendNetteObjectRule implements Rule
 {
 
-	/** @var Broker */
-	private $broker;
-
-	public function __construct(Broker $broker)
-	{
-		$this->broker = $broker;
-	}
-
 	public function getNodeType(): string
 	{
-		return Class_::class;
+		return InClassNode::class;
 	}
 
 	public function processNode(Node $node, Scope $scope): array
 	{
-		if (!isset($node->namespacedName)) {
-			// anonymous class - will be possible to inspect
-			// with node visitor and special ClassBody node
-			// because $scope will contain the anonymous class reflection
-			return [];
-		}
-
-		$className = (string) $node->namespacedName;
-		if (!$this->broker->hasClass($className)) {
-			return [];
-		}
-
-		$classReflection = $this->broker->getClass($className);
+		$classReflection = $node->getClassReflection();
 		$parentClass = $classReflection->getNativeReflection()->getParentClass();
 		if ($parentClass !== false && in_array($parentClass->getName(), [ // @phpstan-ignore-line
 			'Nette\Object',
 			'Nette\LegacyObject',
 		], true)) {
 			return [
-				sprintf(
+				RuleErrorBuilder::message(sprintf(
 					"Class %s extends %s - it's better to use %s trait.",
-					$className,
+					$classReflection->getDisplayName(),
 					'Nette\Object',
 					'Nette\SmartObject'
-				),
+				))->build(),
 			];
 		}
 

@@ -14,7 +14,7 @@ class DoNotExtendNetteObjectRuleTest extends RuleTestCase
 
 	protected function getRule(): Rule
 	{
-		return new DoNotExtendNetteObjectRule($this->createBroker());
+		return new DoNotExtendNetteObjectRule();
 	}
 
 	public function testSmartObjectChild(): void
