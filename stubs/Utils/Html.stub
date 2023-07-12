@@ -20,14 +20,6 @@ class Html implements \ArrayAccess, \IteratorAggregate
 	}
 
 	/**
-	 * @param string|HtmlStringable $html
-	 */
-	public function setHtml(mixed $html): static
-	{
-		// nothing
-	}
-
-	/**
 	 * @param string|HtmlStringable $child
 	 */
 	final public function addHtml(mixed $child): static

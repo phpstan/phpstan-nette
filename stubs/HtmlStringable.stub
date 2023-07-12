@@ -2,7 +2,9 @@
 
 namespace Nette;
 
-interface HtmlStringable extends \Stringable
+interface HtmlStringable
 {
+
+	public function __toString(): string;
 
 }
