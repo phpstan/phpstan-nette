@@ -2,6 +2,8 @@
 
 namespace Nette\Utils;
 
+use Nette\HtmlStringable;
+
 /**
  * @implements \IteratorAggregate<int, self|string>
  * @implements \ArrayAccess<int, self|string>
@@ -13,6 +15,22 @@ class Html implements \ArrayAccess, \IteratorAggregate
 	 * @return \ArrayIterator<int, self|string>
 	 */
 	public function getIterator(): \ArrayIterator
+	{
+		// nothing
+	}
+
+	/**
+	 * @param string|HtmlStringable $html
+	 */
+	public function setHtml(mixed $html): static
+	{
+		// nothing
+	}
+
+	/**
+	 * @param string|HtmlStringable $child
+	 */
+	final public function addHtml(mixed $child): static
 	{
 		// nothing
 	}
