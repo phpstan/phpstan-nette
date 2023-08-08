@@ -19,6 +19,7 @@
 	},
 	"require-dev": {
 		"nette/application": "^3.0",
+		"nette/di": "^2.3.0 || ^3.0.0",
 		"nette/forms": "^3.0",
 		"nette/utils": "^2.3.0 || ^3.0.0",
 		"nikic/php-parser": "^4.13.2",
