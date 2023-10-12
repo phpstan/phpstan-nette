@@ -16,6 +16,7 @@ parameters:
 		- stubs/Database/Table/ActiveRow.stub
 		- stubs/Database/Table/Selection.stub
 		- stubs/Forms/Container.stub
+		- stubs/Forms/Controls/TextBase.stub
 		- stubs/Forms/Form.stub
 		- stubs/Forms/Rules.stub
 		- stubs/Http/SessionSection.stub
