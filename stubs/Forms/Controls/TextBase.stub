@@ -12,7 +12,7 @@ abstract class TextBase extends BaseControl
 {
 
     /**
-     * @return ?string
+     * @return \Stringable|string|null
      */
     public function getValue();
 
