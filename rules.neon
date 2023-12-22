@@ -20,6 +20,12 @@ rules:
 conditionalTags:
 	PHPStan\Rule\Nette\RegularExpressionPatternRule:
 		phpstan.rules.rule: %featureToggles.bleedingEdge%
+	PHPStan\Rule\Nette\ComponentLinksRule:
+		phpstan.rules.rule: %nette.checkLinks%
+	PHPStan\Rule\Nette\PresenterLinksRule:
+		phpstan.rules.rule: %nette.checkLinks%
+	PHPStan\Rule\Nette\LinkGeneratorLinksRule:
+		phpstan.rules.rule: %nette.checkLinks%
 
 services:
 	-
@@ -30,3 +36,9 @@ services:
 			- phpstan.rules.rule
 	-
 		class: PHPStan\Rule\Nette\RegularExpressionPatternRule
+	-
+		class: PHPStan\Rule\Nette\ComponentLinksRule
+	-
+		class: PHPStan\Rule\Nette\PresenterLinksRule
+	-
+		class: PHPStan\Rule\Nette\LinkGeneratorLinksRule
