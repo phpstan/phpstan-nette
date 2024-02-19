@@ -14,9 +14,15 @@ class PresenterInjectedPropertiesExtensionTest extends LevelsTestCase
 			self::markTestSkipped('Only for PHP 7.4+');
 		}
 
-		return [
+		$topics = [
 			['presenterInject'],
 		];
+
+		if (PHP_VERSION_ID >= 80000) {
+			$topics[] = ['presenterInjectAttribute'];
+		}
+
+		return $topics;
 	}
 
 	public function getDataPath(): string
