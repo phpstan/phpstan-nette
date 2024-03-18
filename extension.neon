@@ -18,6 +18,7 @@ parameters:
 		- stubs/Forms/Container.stub
 		- stubs/Forms/Form.stub
 		- stubs/Forms/Rules.stub
+		- stubs/HtmlStringable.stub
 		- stubs/Http/SessionSection.stub
 		- stubs/Routing/Router.stub
 		- stubs/Utils/ArrayHash.stub
