@@ -1,0 +1,5 @@
+services:
+	-
+		class: PHPStan\Type\Nette\NetteUtilsJsonDecodeDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicStaticMethodReturnTypeExtension
