@@ -6,7 +6,7 @@ namespace Nette\Utils;
  * @implements \IteratorAggregate<array-key, mixed>
  * @implements \ArrayAccess<array-key, mixed>
  */
-class ArrayHash implements \ArrayAccess, \IteratorAggregate
+class ArrayHash extends \stdClass implements \ArrayAccess, \IteratorAggregate
 {
 
 	/**
