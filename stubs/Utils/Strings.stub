@@ -1,0 +1,19 @@
+<?php
+
+namespace Nette\Utils;
+
+use Nette;
+
+
+/**
+ * String tools library.
+ */
+class Strings
+{
+	use Nette\StaticClass;
+
+	/** @phpstan-assert-if-true non-empty-string $s */
+	public static function length(string $s): int
+	{}
+
+}

@@ -8,7 +8,7 @@ use PHPStan\Testing\TypeInferenceTestCase;
 use function class_exists;
 use function version_compare;
 
-class MultiplierTest extends TypeInferenceTestCase
+class TypeInferenceTest extends TypeInferenceTestCase
 {
 
 	public function dataFileAsserts(): iterable
@@ -26,6 +26,9 @@ class MultiplierTest extends TypeInferenceTestCase
 		} else {
 			yield from self::gatherAssertTypes(__DIR__ . '/data/multiplier.php');
 		}
+
+		yield from $this->gatherAssertTypes(__DIR__ . '/data/multiplier.php');
+		yield from $this->gatherAssertTypes(__DIR__ . '/data/strings.php');
 	}
 
 	/**

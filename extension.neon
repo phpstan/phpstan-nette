@@ -29,6 +29,7 @@ parameters:
 		- stubs/Utils/Html.stub
 		- stubs/Utils/Paginator.stub
 		- stubs/Utils/Random.stub
+		- stubs/Utils/Strings.stub
 	universalObjectCratesClasses:
 		- Nette\Application\UI\ITemplate
 		- Nette\Application\UI\Template
