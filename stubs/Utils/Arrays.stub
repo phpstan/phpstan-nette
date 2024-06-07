@@ -1,0 +1,43 @@
+<?php
+
+namespace Nette\Utils;
+
+class Arrays
+{
+
+	/**
+	 * @template K of array-key
+	 * @template V
+	 * @param array<K, V> $array
+	 * @param callable(V, K, array<K, V>): bool $callback
+	 * @param-immediately-invoked-callable $callback
+	 */
+	public static function some(iterable $array, callable $callback): bool
+	{
+	}
+
+	/**
+	 * @template K of array-key
+	 * @template V
+	 * @param array<K, V> $array
+	 * @param callable(V, K, array<K, V>): bool $callback
+	 * @param-immediately-invoked-callable $callback
+	 */
+	public static function every(iterable $array, callable $callback): bool
+	{
+	}
+
+	/**
+	 * @template K of array-key
+	 * @template V
+	 * @template R
+	 * @param array<K, V> $array
+	 * @param callable(V, K, array<K, V>): R $callback
+	 * @return array<K, R>
+	 * @param-immediately-invoked-callable $callback
+	 */
+	public static function map(iterable $array, callable $callback): array
+	{
+	}
+
+}

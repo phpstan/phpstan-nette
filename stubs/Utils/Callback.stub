@@ -1,0 +1,24 @@
+<?php
+
+namespace Nette\Utils;
+
+class Callback
+{
+
+	/**
+	 * @param-immediately-invoked-callable $callable
+	 * @param mixed[] ...$args
+	 */
+	public static function invoke(callable $callable, ...$args): mixed
+	{
+	}
+
+	/**
+	 * @param-immediately-invoked-callable $callable
+	 * @param mixed[] $args
+	 */
+	public static function invokeArgs(callable $callable, array $args = []): mixed
+	{
+	}
+
+}

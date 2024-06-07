@@ -1,0 +1,40 @@
+<?php
+
+namespace Nette\Caching;
+
+class Cache
+{
+
+	/**
+	 * @param array<mixed>|null $dependencies
+	 * @param-immediately-invoked-callable $generator
+	 */
+	public function load(mixed $key, ?callable $generator = null, ?array $dependencies = null): mixed
+	{
+	}
+
+	/**
+	 * @param array<scalar> $keys
+	 * @return array<mixed>
+	 * @param-immediately-invoked-callable $generator
+	 */
+	public function bulkLoad(array $keys, ?callable $generator = null): array
+	{
+	}
+
+	/**
+	 * @param-immediately-invoked-callable $function
+	 */
+	public function call(callable $function): mixed
+	{
+	}
+
+	/**
+	 * @param array<mixed>|null $dependencies
+	 * @param-immediately-invoked-callable $function
+	 */
+	public function wrap(callable $function, ?array $dependencies = null): \Closure
+	{
+	}
+
+}
