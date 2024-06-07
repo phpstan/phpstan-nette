@@ -1,0 +1,15 @@
+<?php
+
+namespace Nette\Utils;
+
+class Helpers
+{
+
+	/**
+	 * @param-immediately-invoked-callable $func
+	 */
+	public static function capture(callable $func): string
+	{
+	}
+
+}
