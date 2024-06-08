@@ -10,7 +10,6 @@ parameters:
 		- stubs/Application/UI/Multiplier.stub
 		- stubs/Caching/Cache.stub
 		- stubs/ComponentModel/Component.stub
-		- stubs/ComponentModel/Container.stub
 		- stubs/ComponentModel/IComponent.stub
 		- stubs/ComponentModel/IContainer.stub
 		- stubs/Database/ResultSet.stub
@@ -114,3 +113,8 @@ services:
 		class: PHPStan\Rule\Nette\PresenterInjectedPropertiesExtension
 		tags:
 			- phpstan.properties.readWriteExtension
+
+	-
+		class: PHPStan\Stubs\Nette\StubFilesExtensionLoader
+		tags:
+			- phpstan.stubFilesExtension
