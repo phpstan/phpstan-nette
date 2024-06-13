@@ -1,4 +1,8 @@
 parameters:
+	nette:
+		containerLoader: null
+		applicationMapping: []
+		checkLinks: %featureToggles.bleedingEdge%
 	additionalConstructors:
 		- Nette\Application\UI\Presenter::startup
 	exceptions:
@@ -52,7 +56,30 @@ parameters:
 			- terminate
 			- forward
 
+parametersSchema:
+	nette: structure([
+		containerLoader: schema(string(), nullable())
+		applicationMapping: arrayOf(anyOf(string(), listOf(string())))
+		checkLinks: bool()
+	])
+
 services:
+	netteContainerResolver:
+		class: PHPStan\Nette\ContainerResolver
+		arguments:
+			- %nette.containerLoader%
+
+	nettePresenterResolver:
+		class: PHPStan\Nette\PresenterResolver
+		arguments:
+			- %nette.applicationMapping%
+
+	-
+		class: PHPStan\Nette\LinkChecker
+
+	-
+		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
+
 	-
 		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
 		tags:
