@@ -52,6 +52,10 @@ parameters:
 			- terminate
 			- forward
 
+conditionalTags:
+	PHPStan\Type\Nette\StringsMatchDynamicReturnTypeExtension:
+		phpstan.broker.dynamicStaticMethodReturnTypeExtension: %featureToggles.narrowPregMatches%
+
 services:
 	-
 		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
@@ -114,3 +118,6 @@ services:
 		class: PHPStan\Rule\Nette\PresenterInjectedPropertiesExtension
 		tags:
 			- phpstan.properties.readWriteExtension
+
+	-
+		class: PHPStan\Type\Nette\StringsMatchDynamicReturnTypeExtension
