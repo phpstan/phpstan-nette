@@ -12,7 +12,7 @@ class ComponentModelDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
 	 */
 	public function dataFileAsserts(): iterable
 	{
-		yield from $this->gatherAssertTypes(__DIR__ . '/data/componentModel.php');
+		yield from self::gatherAssertTypes(__DIR__ . '/data/componentModel.php');
 	}
 
 	/**
