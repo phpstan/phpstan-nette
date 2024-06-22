@@ -3,6 +3,7 @@
 namespace PHPStan\Type\Nette;
 
 use PHPStan\Testing\TypeInferenceTestCase;
+use const PHP_VERSION_ID;
 
 class StringsMatchDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
 {
@@ -12,9 +13,11 @@ class StringsMatchDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
 	 */
 	public function dataFileAsserts(): iterable
 	{
-		if (PHP_VERSION_ID >= 70400) {
-			yield from $this->gatherAssertTypes(__DIR__ . '/data/strings-match.php');
+		if (PHP_VERSION_ID < 70400) {
+			return;
 		}
+
+		yield from $this->gatherAssertTypes(__DIR__ . '/data/strings-match.php');
 	}
 
 	/**
