@@ -12,7 +12,7 @@ class ComponentModelArrayAccessDynamicReturnTypeExtensionTest extends TypeInfere
 	 */
 	public function dataFileAsserts(): iterable
 	{
-		yield from $this->gatherAssertTypes(__DIR__ . '/data/componentModelArrayAccess.php');
+		yield from self::gatherAssertTypes(__DIR__ . '/data/componentModelArrayAccess.php');
 	}
 
 	/**
