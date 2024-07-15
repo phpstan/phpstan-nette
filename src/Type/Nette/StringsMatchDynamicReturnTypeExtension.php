@@ -42,14 +42,13 @@ class StringsMatchDynamicReturnTypeExtension implements DynamicStaticMethodRetur
 			return null;
 		}
 
-		$patternType = $scope->getType($patternArg->value);
 		$flagsArg = $args[2] ?? null;
 		$flagsType = null;
 		if ($flagsArg !== null) {
 			$flagsType = $scope->getType($flagsArg->value);
 		}
 
-		$arrayShape = $this->regexArrayShapeMatcher->matchType($patternType, $flagsType, TrinaryLogic::createYes());
+		$arrayShape = $this->regexArrayShapeMatcher->matchExpr($patternArg->value, $flagsType, TrinaryLogic::createYes(), $scope);
 		if ($arrayShape === null) {
 			return null;
 		}

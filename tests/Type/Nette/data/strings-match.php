@@ -18,4 +18,7 @@ function (string $s): void {
 
 	$result = Strings::match($s, '/(foo)(bar)(baz)/');
 	assertType('array{string, string, string, string}|null', $result);
+
+	$result = Strings::match($s, '/(foo)(bar)'. preg_quote($s) .'(baz)/');
+	assertType('array{string, string, string, string}|null', $result);
 };
