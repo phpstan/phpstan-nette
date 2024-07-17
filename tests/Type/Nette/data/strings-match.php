@@ -14,11 +14,11 @@ function (string $s): void {
 	assertType('array{string, string}|null', $result);
 
 	$result = Strings::match($s, '/(foo)(bar)(baz)/', PREG_OFFSET_CAPTURE);
-	assertType('array{array{string, int<0, max>}, array{string, int<0, max>}, array{string, int<0, max>}, array{string, int<0, max>}}|null', $result);
+	assertType('array{array{string, int<0, max>}, array{non-empty-string, int<0, max>}, array{non-empty-string, int<0, max>}, array{non-empty-string, int<0, max>}}|null', $result);
 
 	$result = Strings::match($s, '/(foo)(bar)(baz)/');
-	assertType('array{string, string, string, string}|null', $result);
+	assertType('array{string, non-empty-string, non-empty-string, non-empty-string}|null', $result);
 
 	$result = Strings::match($s, '/(foo)(bar)'. preg_quote($s) .'(baz)/');
-	assertType('array{string, string, string, string}|null', $result);
+	assertType('array{string, non-empty-string, non-empty-string, non-empty-string}|null', $result);
 };
