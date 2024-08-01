@@ -8,10 +8,8 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\TrinaryLogic;
 use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
-use PHPStan\Type\NullType;
 use PHPStan\Type\Php\RegexArrayShapeMatcher;
 use PHPStan\Type\Type;
-use PHPStan\Type\TypeCombinator;
 
 class StringsMatchAllDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExtension
 {
@@ -48,12 +46,7 @@ class StringsMatchAllDynamicReturnTypeExtension implements DynamicStaticMethodRe
 			$flagsType = $scope->getType($flagsArg->value);
 		}
 
-		$arrayShape = $this->regexArrayShapeMatcher->matchAllExpr($patternArg->value, $flagsType, TrinaryLogic::createYes(), $scope);
-		if ($arrayShape === null) {
-			return null;
-		}
-
-		return TypeCombinator::union($arrayShape, new NullType());
+		return $this->regexArrayShapeMatcher->matchAllExpr($patternArg->value, $flagsType, TrinaryLogic::createYes(), $scope);
 	}
 
 }

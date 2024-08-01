@@ -26,10 +26,10 @@ function (string $s): void {
 
 function (string $s): void {
 	$result = Strings::matchAll($s, '/ab(?P<num>\d+)(?P<suffix>ab)?/', PREG_SET_ORDER);
-	assertType("list<array{0: string, num: numeric-string, 1: numeric-string, suffix?: non-empty-string, 2?: non-empty-string}>|null", $result);
+	assertType("list<array{0: string, num: numeric-string, 1: numeric-string, suffix?: non-empty-string, 2?: non-empty-string}>", $result);
 };
 
 function (string $s): void {
 	$result = Strings::matchAll($s, '/ab(?P<num>\d+)(?P<suffix>ab)?/', PREG_PATTERN_ORDER);
-	assertType("array{0: list<string>, num: list<numeric-string>, 1: list<numeric-string>, suffix: list<string>, 2: list<string>}|null", $result);
+	assertType("array{0: list<string>, num: list<numeric-string>, 1: list<numeric-string>, suffix: list<string>, 2: list<string>}", $result);
 };
