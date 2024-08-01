@@ -7,7 +7,7 @@
 	],
 	"require": {
 		"php": "^7.2 || ^8.0",
-		"phpstan/phpstan": "^1.11.8"
+		"phpstan/phpstan": "^1.11.9"
 	},
 	"conflict": {
 		"nette/application": "<2.3.0",
