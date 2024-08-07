@@ -33,3 +33,13 @@ function (string $s): void {
 	$result = Strings::matchAll($s, '/ab(?P<num>\d+)(?P<suffix>ab)?/', PREG_PATTERN_ORDER);
 	assertType("array{0: list<string>, num: list<numeric-string>, 1: list<numeric-string>, suffix: list<''|'ab'>, 2: list<''|'ab'>}", $result);
 };
+
+function (string $s): void {
+	$result = Strings::matchAll($s, '/ab(?P<num>\d+)(?P<suffix>ab)?/', false, 0, false, true);
+	assertType("array{0: list<string>, num: list<numeric-string>, 1: list<numeric-string>, suffix: list<''|'ab'>, 2: list<''|'ab'>}", $result);
+};
+
+function (string $s): void {
+	$result = Strings::matchAll($lineContent, '~\[gallery ids=(„|")(?<allIds>([0-9]+,? ?)+)(“|")~');
+	assertType('list<array{0: string, 1: non-empty-string, allIds: non-empty-string, 2: non-empty-string, 3: non-empty-string, 4: non-empty-string}>', $result);
+};
