@@ -15,7 +15,7 @@ function (string $s): void {
 	assertType('array{string, string}|null', $result);
 
 	$result = Strings::match($s, '/(foo)(bar)(baz)/', PREG_OFFSET_CAPTURE);
-	assertType("array{array{string, int<0, max>}, array{'foo', int<0, max>}, array{'bar', int<0, max>}, array{'baz', int<0, max>}}|null", $result);
+	assertType("array{array{string, int<-1, max>}, array{'foo', int<-1, max>}, array{'bar', int<-1, max>}, array{'baz', int<-1, max>}}|null", $result);
 
 	$result = Strings::match($s, '/(foo)(bar)(baz)/');
 	assertType("array{string, 'foo', 'bar', 'baz'}|null", $result);
