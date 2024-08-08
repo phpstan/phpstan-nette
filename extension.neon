@@ -72,6 +72,16 @@ services:
 			- phpstan.broker.methodsClassReflectionExtension
 
 	-
+		class: PHPStan\Type\Nette\CachingFallbacksDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\CachingSaveDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
 		class: PHPStan\Type\Nette\ComponentModelArrayAccessDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
