@@ -18,7 +18,7 @@ This extension provides following features:
 * Magic [Nette\Object and Nette\SmartObject](https://doc.nette.org/en/2.4/php-language-enhancements) properties
 * Event listeners through the `on*` properties
 * Defines early terminating method calls for Presenter methods to prevent `Undefined variable` errors
-* Understand the exact array shape coming from `Nette\Utils\Strings::matchAll()` based on pattern
+* Understand the exact array shape coming from `Nette\Utils\Strings::match*()` based on pattern
 
 It also contains these framework-specific rules (can be enabled separately):
 
