@@ -1,4 +1,4 @@
-# Nette Framework class reflection extension for PHPStan
+# Nette Framework extension for PHPStan
 
 [![Build](https://github.com/phpstan/phpstan-nette/workflows/Build/badge.svg)](https://github.com/phpstan/phpstan-nette/actions)
 [![Latest Stable Version](https://poser.pugx.org/phpstan/phpstan-nette/v/stable)](https://packagist.org/packages/phpstan/phpstan-nette)
