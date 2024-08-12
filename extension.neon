@@ -57,6 +57,8 @@ conditionalTags:
 		phpstan.broker.dynamicStaticMethodReturnTypeExtension: %featureToggles.narrowPregMatches%
 	PHPStan\Type\Nette\StringsMatchAllDynamicReturnTypeExtension:
 		phpstan.broker.dynamicStaticMethodReturnTypeExtension: %featureToggles.narrowPregMatches%
+	PHPStan\Type\Nette\StringsReplaceCallbackClosureTypeExtension:
+		phpstan.staticMethodParameterClosureTypeExtension: %featureToggles.narrowPregMatches%
 
 services:
 	-
@@ -126,3 +128,6 @@ services:
 
 	-
 		class: PHPStan\Type\Nette\StringsMatchDynamicReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\StringsReplaceCallbackClosureTypeExtension
