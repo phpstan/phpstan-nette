@@ -40,6 +40,6 @@ function (string $s): void {
 };
 
 function (string $s): void {
-	$result = Strings::matchAll($lineContent, '~\[gallery ids=(„|")(?<allIds>([0-9]+,? ?)+)(“|")~');
-	assertType('list<array{0: string, 1: non-empty-string, allIds: non-empty-string, 2: non-empty-string, 3: non-empty-string, 4: non-empty-string}>', $result);
+	$result = Strings::matchAll($s, '~\[gallery ids=(„|")(?<allIds>([0-9]+,? ?)+)(“|")~');
+	assertType("list<array{0: string, 1: '"'|'„', allIds: non-empty-string, 2: non-empty-string, 3: non-empty-string, 4: '"'|'“'}>", $result);
 };
