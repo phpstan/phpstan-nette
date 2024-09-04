@@ -15,11 +15,9 @@ use PHPStan\Type\VoidType;
 class NetteObjectEventListenerMethodReflection implements MethodReflection
 {
 
-	/** @var string */
-	private $name;
+	private string $name;
 
-	/** @var ClassReflection */
-	private $declaringClass;
+	private ClassReflection $declaringClass;
 
 	public function __construct(string $name, ClassReflection $declaringClass)
 	{
@@ -58,7 +56,7 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 				TemplateTypeMap::createEmpty(),
 				[],
 				true,
-				new VoidType()
+				new VoidType(),
 			),
 		];
 	}

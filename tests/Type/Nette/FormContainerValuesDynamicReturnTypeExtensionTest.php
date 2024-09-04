@@ -22,8 +22,7 @@ use PHPUnit\Framework\TestCase;
 final class FormContainerValuesDynamicReturnTypeExtensionTest extends TestCase
 {
 
-	/** @var FormContainerValuesDynamicReturnTypeExtension */
-	private $extension;
+	private FormContainerValuesDynamicReturnTypeExtension $extension;
 
 	protected function setUp(): void
 	{
@@ -40,7 +39,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends TestCase
 				TemplateTypeMap::createEmpty(),
 				[],
 				true,
-				new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(ArrayHash::class))])
+				new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(ArrayHash::class))]),
 			)]);
 
 		$scope = $this->createMock(Scope::class);

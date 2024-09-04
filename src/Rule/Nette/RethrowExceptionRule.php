@@ -28,7 +28,7 @@ class RethrowExceptionRule implements Rule
 {
 
 	/** @var array<string, string[]> */
-	private $methods;
+	private array $methods;
 
 	/**
 	 * @param string[][] $methods
@@ -68,9 +68,7 @@ class RethrowExceptionRule implements Rule
 		foreach ($exceptions as $exceptionName) {
 			$exceptionType = new ObjectType($exceptionName);
 			foreach ($node->catches as $catch) {
-				$caughtType = TypeCombinator::union(...array_map(static function (Name $class): ObjectType {
-					return new ObjectType((string) $class);
-				}, $catch->types));
+				$caughtType = TypeCombinator::union(...array_map(static fn (Name $class): ObjectType => new ObjectType((string) $class), $catch->types));
 				if (!$caughtType->isSuperTypeOf($exceptionType)->yes()) {
 					continue;
 				}

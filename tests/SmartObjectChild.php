@@ -10,9 +10,9 @@ class SmartObjectChild
 	use SmartObject;
 
 	/** @var callable[] */
-	public $onPublicEvent = [];
+	public array $onPublicEvent = [];
 
 	/** @var callable[] */
-	protected $onProtectedEvent = [];
+	protected array $onProtectedEvent = [];
 
 }

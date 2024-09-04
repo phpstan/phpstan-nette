@@ -8,10 +8,10 @@ class NetteObjectChild extends LegacyObject
 {
 
 	/** @var callable[] */
-	public $onPublicEvent = [];
+	public array $onPublicEvent = [];
 
 	/** @var callable[] */
-	protected $onProtectedEvent = [];
+	protected array $onProtectedEvent = [];
 
 	public static function getStaticProperty(): string
 	{

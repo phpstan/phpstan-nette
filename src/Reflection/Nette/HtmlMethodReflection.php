@@ -18,11 +18,9 @@ use function substr;
 class HtmlMethodReflection implements MethodReflection
 {
 
-	/** @var string */
-	private $name;
+	private string $name;
 
-	/** @var ClassReflection */
-	private $declaringClass;
+	private ClassReflection $declaringClass;
 
 	public function __construct(string $name, ClassReflection $declaringClass)
 	{
@@ -56,7 +54,7 @@ class HtmlMethodReflection implements MethodReflection
 				TemplateTypeMap::createEmpty(),
 				[],
 				true,
-				substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType('Nette\Utils\Html')
+				substr($this->name, 0, 3) === 'get' ? new MixedType() : new ObjectType('Nette\Utils\Html'),
 			),
 		];
 	}

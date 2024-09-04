@@ -22,8 +22,7 @@ use const PREG_UNMATCHED_AS_NULL;
 class StringsMatchAllDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExtension
 {
 
-	/** @var RegexArrayShapeMatcher */
-	private $regexArrayShapeMatcher;
+	private RegexArrayShapeMatcher $regexArrayShapeMatcher;
 
 	public function __construct(RegexArrayShapeMatcher $regexArrayShapeMatcher)
 	{
@@ -53,7 +52,7 @@ class StringsMatchAllDynamicReturnTypeExtension implements DynamicStaticMethodRe
 			$patternArg->value,
 			$this->resolveFlagsType($args, $scope),
 			TrinaryLogic::createYes(),
-			$scope
+			$scope,
 		);
 	}
 
@@ -83,7 +82,7 @@ class StringsMatchAllDynamicReturnTypeExtension implements DynamicStaticMethodRe
 		$patternOrder = $patternOrderType->isTrue()->yes();
 
 		return new ConstantIntegerType(
-			($captureOffset ? PREG_OFFSET_CAPTURE : 0) | ($unmatchedAsNull ? PREG_UNMATCHED_AS_NULL : 0) | ($patternOrder ? PREG_PATTERN_ORDER : 0)
+			($captureOffset ? PREG_OFFSET_CAPTURE : 0) | ($unmatchedAsNull ? PREG_UNMATCHED_AS_NULL : 0) | ($patternOrder ? PREG_PATTERN_ORDER : 0),
 		);
 	}
 

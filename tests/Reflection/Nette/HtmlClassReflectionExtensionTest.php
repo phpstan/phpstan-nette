@@ -12,11 +12,9 @@ use stdClass;
 class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 {
 
-	/** @var Broker */
-	private $broker;
+	private Broker $broker;
 
-	/** @var HtmlClassReflectionExtension */
-	private $extension;
+	private HtmlClassReflectionExtension $extension;
 
 	protected function setUp(): void
 	{

@@ -11,11 +11,9 @@ use function sprintf;
 class NetteObjectClassReflectionExtensionTest extends PHPStanTestCase
 {
 
-	/** @var Broker */
-	private $broker;
+	private Broker $broker;
 
-	/** @var NetteObjectClassReflectionExtension */
-	private $extension;
+	private NetteObjectClassReflectionExtension $extension;
 
 	protected function setUp(): void
 	{

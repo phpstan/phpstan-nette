@@ -11,11 +11,9 @@ use PHPStan\Type\Type;
 class HtmlPropertyReflection implements PropertyReflection
 {
 
-	/** @var ClassReflection */
-	private $declaringClass;
+	private ClassReflection $declaringClass;
 
-	/** @var Type */
-	private $type;
+	private Type $type;
 
 	public function __construct(ClassReflection $declaringClass)
 	{

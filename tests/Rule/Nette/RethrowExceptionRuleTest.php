@@ -16,7 +16,7 @@ class RethrowExceptionRuleTest extends RuleTestCase
 	protected function getRule(): Rule
 	{
 		return new RethrowExceptionRule(
-			[FooPresenter::class => ['redirect' => AbortException::class]]
+			[FooPresenter::class => ['redirect' => AbortException::class]],
 		);
 	}
 

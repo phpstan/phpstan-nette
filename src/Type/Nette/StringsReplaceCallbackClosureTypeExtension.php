@@ -24,8 +24,7 @@ use const PREG_UNMATCHED_AS_NULL;
 final class StringsReplaceCallbackClosureTypeExtension implements StaticMethodParameterClosureTypeExtension
 {
 
-	/** @var RegexArrayShapeMatcher */
-	private $regexArrayShapeMatcher;
+	private RegexArrayShapeMatcher $regexArrayShapeMatcher;
 
 	public function __construct(RegexArrayShapeMatcher $regexArrayShapeMatcher)
 	{
@@ -59,7 +58,7 @@ final class StringsReplaceCallbackClosureTypeExtension implements StaticMethodPa
 			$patternArg->value,
 			$this->resolveFlagsType($args, $scope),
 			TrinaryLogic::createYes(),
-			$scope
+			$scope,
 		);
 
 		if ($matchesType === null) {
@@ -70,7 +69,7 @@ final class StringsReplaceCallbackClosureTypeExtension implements StaticMethodPa
 			[
 				$this->createParameterReflectionClass($parameter, $matchesType),
 			],
-			new StringType()
+			new StringType(),
 		);
 	}
 
@@ -92,11 +91,9 @@ final class StringsReplaceCallbackClosureTypeExtension implements StaticMethodPa
 	{
 		return new class($parameter, $matchesType) implements ParameterReflection {
 
-			/** @var ParameterReflection */
-			private $parameter;
+			private ParameterReflection $parameter;
 
-			/** @var Type */
-			private $matchesType;
+			private Type $matchesType;
 
 			public function __construct(
 				ParameterReflection $parameter,

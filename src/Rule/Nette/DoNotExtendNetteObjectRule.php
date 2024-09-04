@@ -34,7 +34,7 @@ class DoNotExtendNetteObjectRule implements Rule
 					"Class %s extends %s - it's better to use %s trait.",
 					$classReflection->getDisplayName(),
 					'Nette\Object',
-					'Nette\SmartObject'
+					'Nette\SmartObject',
 				))->identifier('class.extendsNetteObject')->build(),
 			];
 		}

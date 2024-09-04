@@ -27,7 +27,7 @@ final class ComponentLookupDynamicReturnTypeExtension implements DynamicMethodRe
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
 		$defaultReturnType = ParametersAcceptorSelector::selectSingle(
-			$methodReflection->getVariants()
+			$methodReflection->getVariants(),
 		)->getReturnType();
 		if (count($methodCall->getArgs()) < 2) {
 			return $defaultReturnType;
