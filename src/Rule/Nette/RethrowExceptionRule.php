@@ -74,12 +74,13 @@ class RethrowExceptionRule implements Rule
 				}
 				if (
 					count($catch->stmts) === 1
-					&& $catch->stmts[0] instanceof Node\Stmt\Throw_
-					&& $catch->stmts[0]->expr instanceof Variable
+					&& $catch->stmts[0] instanceof Node\Stmt\Expression
+					&& $catch->stmts[0]->expr instanceof Node\Expr\Throw_
+					&& $catch->stmts[0]->expr->expr instanceof Variable
 					&& $catch->var !== null
 					&& is_string($catch->var->name)
-					&& is_string($catch->stmts[0]->expr->name)
-					&& $catch->var->name === $catch->stmts[0]->expr->name
+					&& is_string($catch->stmts[0]->expr->expr->name)
+					&& $catch->var->name === $catch->stmts[0]->expr->expr->name
 				) {
 					continue 2;
 				}
