@@ -21,7 +21,6 @@
 		"nette/application": "^3.0",
 		"nette/forms": "^3.0",
 		"nette/utils": "^2.3.0 || ^3.0.0",
-		"nikic/php-parser": "^4.13.2",
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"phpstan/phpstan-phpunit": "^2.0",
 		"phpstan/phpstan-strict-rules": "^2.0",
