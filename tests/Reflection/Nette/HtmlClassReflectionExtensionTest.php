@@ -4,7 +4,6 @@ namespace PHPStan\Reflection\Nette;
 
 use Nette\Utils\Html;
 use PHPStan\Broker\Broker;
-use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Type\VerbosityLevel;
 use stdClass;
@@ -52,7 +51,7 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 	{
 		$classReflection = $this->broker->getClass(Html::class);
 		$methodReflection = $this->extension->getMethod($classReflection, 'href');
-		$parametersAcceptor = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants());
+		$parametersAcceptor = $methodReflection->getVariants()[0];
 		self::assertSame('href', $methodReflection->getName());
 		self::assertSame($classReflection, $methodReflection->getDeclaringClass());
 		self::assertFalse($methodReflection->isStatic());

@@ -2,7 +2,9 @@
 
 namespace PHPStan\Type\Nette;
 
+use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Scalar\String_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
@@ -38,13 +40,13 @@ class ComponentModelArrayAccessDynamicReturnTypeExtension implements DynamicMeth
 	): Type
 	{
 		$calledOnType = $scope->getType($methodCall->var);
-		$defaultType = ParametersAcceptorSelector::selectSingle($calledOnType->getMethod('createComponent', $scope)->getVariants())->getReturnType();
+		$defaultType = $calledOnType->getMethod('createComponent', $scope)->getVariants()[0]->getReturnType();
 		$defaultType = TypeCombinator::remove($defaultType, new NullType());
 		if ($defaultType->isSuperTypeOf(new ObjectType('Nette\ComponentModel\IComponent'))->yes()) {
 			$defaultType = new MixedType(false, new NullType());
 		}
 		$args = $methodCall->getArgs();
-		if (count($args) !== 1) {
+		if (count($args) < 1) {
 			return $defaultType;
 		}
 
@@ -64,7 +66,11 @@ class ComponentModelArrayAccessDynamicReturnTypeExtension implements DynamicMeth
 
 			$method = $calledOnType->getMethod($methodName, $scope);
 
-			$types[] = ParametersAcceptorSelector::selectSingle($method->getVariants())->getReturnType();
+			$types[] = ParametersAcceptorSelector::selectFromArgs(
+				$scope,
+				[new Arg(new String_($componentName))],
+				$method->getVariants(),
+			)->getReturnType();
 		}
 
 		return TypeCombinator::union(...$types);

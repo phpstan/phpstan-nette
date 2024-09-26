@@ -31,7 +31,11 @@ class FormsBaseControlDynamicReturnTypeExtension implements DynamicMethodReturnT
 		Scope $scope
 	): Type
 	{
-		$returnType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
+		$returnType = ParametersAcceptorSelector::selectFromArgs(
+			$scope,
+			$methodCall->getArgs(),
+			$methodReflection->getVariants(),
+		)->getReturnType();
 		$referencedClasses = $returnType->getReferencedClasses();
 		if (
 			count($referencedClasses) === 1

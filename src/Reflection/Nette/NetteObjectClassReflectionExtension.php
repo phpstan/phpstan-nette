@@ -7,7 +7,6 @@ use PHPStan\BetterReflection\Reflection\Adapter\ReflectionEnum;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
-use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
 use function array_merge;
@@ -53,7 +52,7 @@ class NetteObjectClassReflectionExtension implements MethodsClassReflectionExten
 	{
 		/** @var MethodReflection $getterMethod */
 		$getterMethod = $this->getMethodByProperty($classReflection, $propertyName);
-		return new NetteObjectPropertyReflection($classReflection, ParametersAcceptorSelector::selectSingle($getterMethod->getVariants())->getReturnType());
+		return new NetteObjectPropertyReflection($classReflection, $getterMethod->getVariants()[0]->getReturnType());
 	}
 
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool

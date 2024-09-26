@@ -2,7 +2,9 @@
 
 namespace PHPStan\Type\Nette;
 
+use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Scalar\String_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
@@ -38,7 +40,7 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 	): Type
 	{
 		$calledOnType = $scope->getType($methodCall->var);
-		$defaultType = ParametersAcceptorSelector::selectSingle($calledOnType->getMethod('createComponent', $scope)->getVariants())->getReturnType();
+		$defaultType = $calledOnType->getMethod('createComponent', $scope)->getVariants()[0]->getReturnType();
 		if ($defaultType->isSuperTypeOf(new ObjectType('Nette\ComponentModel\IComponent'))->yes()) {
 			$defaultType = new MixedType();
 		}
@@ -75,7 +77,11 @@ class ComponentModelDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 
 			$method = $calledOnType->getMethod($methodName, $scope);
 
-			$types[] = ParametersAcceptorSelector::selectSingle($method->getVariants())->getReturnType();
+			$types[] = ParametersAcceptorSelector::selectFromArgs(
+				$scope,
+				[new Arg(new String_($componentName))],
+				$method->getVariants(),
+			)->getReturnType();
 		}
 
 		return TypeCombinator::union(...$types);

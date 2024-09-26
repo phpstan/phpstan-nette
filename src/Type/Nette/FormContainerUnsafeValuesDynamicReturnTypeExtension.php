@@ -5,7 +5,6 @@ namespace PHPStan\Type\Nette;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
@@ -27,10 +26,10 @@ class FormContainerUnsafeValuesDynamicReturnTypeExtension implements DynamicMeth
 		return $methodReflection->getName() === 'getUnsafeValues';
 	}
 
-	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
+	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): ?Type
 	{
 		if (count($methodCall->getArgs()) === 0) {
-			return ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
+			return null;
 		}
 
 		$arg = $methodCall->getArgs()[0]->value;
@@ -43,7 +42,7 @@ class FormContainerUnsafeValuesDynamicReturnTypeExtension implements DynamicMeth
 			return new ArrayType(new StringType(), new MixedType());
 		}
 
-		return ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
+		return null;
 	}
 
 }
