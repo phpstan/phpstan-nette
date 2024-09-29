@@ -1,0 +1,10 @@
+<?php
+
+namespace Nette;
+
+interface HtmlStringable
+{
+
+	public function __toString(): string;
+
+}
