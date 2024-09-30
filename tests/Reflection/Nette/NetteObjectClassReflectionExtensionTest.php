@@ -3,6 +3,7 @@
 namespace PHPStan\Reflection\Nette;
 
 use PHPStan\Broker\Broker;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\SmartObjectChild;
 use PHPStan\Testing\PHPStanTestCase;
 use function class_exists;
@@ -11,13 +12,13 @@ use function sprintf;
 class NetteObjectClassReflectionExtensionTest extends PHPStanTestCase
 {
 
-	private Broker $broker;
+	private ReflectionProvider $reflectionProvider;
 
 	private NetteObjectClassReflectionExtension $extension;
 
 	protected function setUp(): void
 	{
-		$this->broker = $this->createBroker();
+		$this->reflectionProvider = $this->createReflectionProvider();
 		$this->extension = new NetteObjectClassReflectionExtension();
 	}
 
@@ -58,7 +59,7 @@ class NetteObjectClassReflectionExtensionTest extends PHPStanTestCase
 		if (!class_exists('Nette\LegacyObject')) {
 			self::markTestSkipped(sprintf('%s does not exist.', $className));
 		}
-		$classReflection = $this->broker->getClass($className);
+		$classReflection = $this->reflectionProvider->getClass($className);
 		self::assertSame($result, $this->extension->hasMethod($classReflection, $method));
 	}
 
@@ -100,7 +101,7 @@ class NetteObjectClassReflectionExtensionTest extends PHPStanTestCase
 		if (!class_exists('Nette\LegacyObject')) {
 			self::markTestSkipped(sprintf('%s does not exist.', $className));
 		}
-		$classReflection = $this->broker->getClass($className);
+		$classReflection = $this->reflectionProvider->getClass($className);
 		self::assertSame($result, $this->extension->hasProperty($classReflection, $property));
 	}
 

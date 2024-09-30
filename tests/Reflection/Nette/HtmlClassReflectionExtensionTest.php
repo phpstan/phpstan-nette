@@ -3,7 +3,7 @@
 namespace PHPStan\Reflection\Nette;
 
 use Nette\Utils\Html;
-use PHPStan\Broker\Broker;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Type\VerbosityLevel;
 use stdClass;
@@ -11,13 +11,13 @@ use stdClass;
 class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 {
 
-	private Broker $broker;
+	private ReflectionProvider $reflectionProvider;
 
 	private HtmlClassReflectionExtension $extension;
 
 	protected function setUp(): void
 	{
-		$this->broker = $this->createBroker();
+		$this->reflectionProvider = $this->createReflectionProvider();
 		$this->extension = new HtmlClassReflectionExtension();
 	}
 
@@ -43,13 +43,13 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 	 */
 	public function testHasMethod(string $className, bool $result): void
 	{
-		$classReflection = $this->broker->getClass($className);
+		$classReflection = $this->reflectionProvider->getClass($className);
 		self::assertSame($result, $this->extension->hasMethod($classReflection, 'href'));
 	}
 
 	public function testGetMethod(): void
 	{
-		$classReflection = $this->broker->getClass(Html::class);
+		$classReflection = $this->reflectionProvider->getClass(Html::class);
 		$methodReflection = $this->extension->getMethod($classReflection, 'href');
 		$parametersAcceptor = $methodReflection->getVariants()[0];
 		self::assertSame('href', $methodReflection->getName());
@@ -84,13 +84,13 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 	 */
 	public function testHasProperty(string $className, bool $result): void
 	{
-		$classReflection = $this->broker->getClass($className);
+		$classReflection = $this->reflectionProvider->getClass($className);
 		self::assertSame($result, $this->extension->hasProperty($classReflection, 'href'));
 	}
 
 	public function testGetProperty(): void
 	{
-		$classReflection = $this->broker->getClass(Html::class);
+		$classReflection = $this->reflectionProvider->getClass(Html::class);
 		$propertyReflection = $this->extension->getProperty($classReflection, 'href');
 		self::assertSame($classReflection, $propertyReflection->getDeclaringClass());
 		self::assertFalse($propertyReflection->isStatic());
