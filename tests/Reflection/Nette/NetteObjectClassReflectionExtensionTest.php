@@ -2,7 +2,6 @@
 
 namespace PHPStan\Reflection\Nette;
 
-use PHPStan\Broker\Broker;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\SmartObjectChild;
 use PHPStan\Testing\PHPStanTestCase;
