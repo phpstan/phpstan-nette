@@ -45,9 +45,6 @@ class NetteObjectEventListenerMethodReflection implements MethodReflection
 		return false;
 	}
 
-	/**
-	 * @return ParametersAcceptor[]
-	 */
 	public function getVariants(): array
 	{
 		return [

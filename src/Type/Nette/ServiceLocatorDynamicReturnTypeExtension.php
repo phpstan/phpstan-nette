@@ -2,6 +2,7 @@
 
 namespace PHPStan\Type\Nette;
 
+use Nette\DI\Container;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -18,7 +19,7 @@ class ServiceLocatorDynamicReturnTypeExtension implements DynamicMethodReturnTyp
 
 	public function getClass(): string
 	{
-		return 'Nette\DI\Container';
+		return Container::class;
 	}
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool
