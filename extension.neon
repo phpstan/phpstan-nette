@@ -37,9 +37,6 @@ parameters:
 		- Nette\Http\SessionSection
 		- Nette\Security\Identity
 		- Nette\Security\SimpleIdentity
-	featureToggles:
-		skipCheckGenericClasses:
-			- Nette\Application\UI\Multiplier
 	earlyTerminatingMethodCalls:
 		Nette\Application\UI\Component:
 			- error
