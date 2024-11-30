@@ -1,0 +1,16 @@
+<?php
+
+namespace Nette\Http;
+
+class FileUpload
+{
+
+	/**
+	 * @return array{0:positive-int, 1:positive-int}|null
+	 */
+	public function getImageSize(): ?array
+	{
+		// nothing
+	}
+
+}

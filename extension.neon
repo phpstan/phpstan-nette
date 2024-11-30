@@ -21,6 +21,7 @@ parameters:
 		- stubs/Forms/Form.stub
 		- stubs/Forms/Rules.stub
 		- stubs/Http/SessionSection.stub
+		- stubs/Http/FileUpload.stub
 		- stubs/Routing/Router.stub
 		- stubs/Utils/ArrayHash.stub
 		- stubs/Utils/Arrays.stub
