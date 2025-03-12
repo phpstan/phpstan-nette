@@ -13,7 +13,7 @@ class HtmlClassReflectionExtension implements MethodsClassReflectionExtension, P
 
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
 	{
-		return $classReflection->getName() === 'Nette\Utils\Html' || $classReflection->isSubclassOf('Nette\Utils\Html');
+		return $classReflection->is('Nette\Utils\Html');
 	}
 
 	public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
@@ -23,7 +23,7 @@ class HtmlClassReflectionExtension implements MethodsClassReflectionExtension, P
 
 	public function hasProperty(ClassReflection $classReflection, string $propertyName): bool
 	{
-		return $classReflection->getName() === 'Nette\Utils\Html' || $classReflection->isSubclassOf('Nette\Utils\Html');
+		return $classReflection->is('Nette\Utils\Html');
 	}
 
 	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection
