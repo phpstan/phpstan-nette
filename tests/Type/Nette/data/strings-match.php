@@ -9,19 +9,19 @@ use const PREG_SET_ORDER;
 
 function (string $s): void {
 	$result = Strings::match($s, '/%env\((.*)\:.*\)%/U');
-	assertType('array{string, string}|null', $result);
+	assertType('array{non-falsy-string, string}|null', $result);
 
 	$result = Strings::match($s, '/%env\((.*)\:.*\)%/U');
-	assertType('array{string, string}|null', $result);
+	assertType('array{non-falsy-string, string}|null', $result);
 
 	$result = Strings::match($s, '/(foo)(bar)(baz)/', PREG_OFFSET_CAPTURE);
-	assertType("array{array{string, int<-1, max>}, array{'foo', int<-1, max>}, array{'bar', int<-1, max>}, array{'baz', int<-1, max>}}|null", $result);
+	assertType("array{array{non-falsy-string, int<-1, max>}, array{'foo', int<-1, max>}, array{'bar', int<-1, max>}, array{'baz', int<-1, max>}}|null", $result);
 
 	$result = Strings::match($s, '/(foo)(bar)(baz)/');
-	assertType("array{string, 'foo', 'bar', 'baz'}|null", $result);
+	assertType("array{non-falsy-string, 'foo', 'bar', 'baz'}|null", $result);
 
 	$result = Strings::match($s, '/(foo)(bar)'. preg_quote($s) .'(baz)/');
-	assertType("array{string, 'foo', 'bar', 'baz'}|null", $result);
+	assertType("array{non-falsy-string, 'foo', 'bar', 'baz'}|null", $result);
 };
 
 function (string $s): void {
