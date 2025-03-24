@@ -24,7 +24,7 @@ function (string $s): void {
 		$s,
 		'/(foo)?(bar)?(baz)?/',
 		function ($matches) {
-			assertType('array{0: array{string, int<-1, max>}, 1?: array{\'\'|\'foo\', int<-1, max>}, 2?: array{\'\'|\'bar\', int<-1, max>}, 3?: array{\'baz\', int<-1, max>}}', $matches);
+			assertType('list{0: array{string, int<-1, max>}, 1?: array{\'\'|\'foo\', int<-1, max>}, 2?: array{\'\'|\'bar\', int<-1, max>}, 3?: array{\'baz\', int<-1, max>}}', $matches);
 			return '';
 		},
 		-1,
