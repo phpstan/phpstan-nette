@@ -14,7 +14,7 @@ class Selection implements \Iterator, \ArrayAccess
      * @phpstan-param positive-int|0|null $offset
      * @return static<T>
      */
-    public function limit(?int $limit, int $offset = null)
+    public function limit(?int $limit, ?int $offset = null)
     {
     }
 
