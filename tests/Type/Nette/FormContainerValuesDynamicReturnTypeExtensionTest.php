@@ -2,106 +2,37 @@
 
 namespace PHPStan\Type\Nette;
 
-use Nette\Utils\ArrayHash;
-use PhpParser\Node\Arg;
-use PhpParser\Node\Expr;
-use PhpParser\Node\Expr\MethodCall;
-use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\FunctionVariant;
-use PHPStan\Reflection\MethodReflection;
-use PHPStan\Type\ArrayType;
-use PHPStan\Type\Constant\ConstantBooleanType;
-use PHPStan\Type\Generic\TemplateTypeMap;
-use PHPStan\Type\IterableType;
-use PHPStan\Type\MixedType;
-use PHPStan\Type\ObjectType;
-use PHPStan\Type\UnionType;
-use PHPStan\Type\VerbosityLevel;
-use PHPUnit\Framework\TestCase;
+use PHPStan\Testing\TypeInferenceTestCase;
 
-final class FormContainerValuesDynamicReturnTypeExtensionTest extends TestCase
+final class FormContainerValuesDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
 {
 
-	private FormContainerValuesDynamicReturnTypeExtension $extension;
-
-	protected function setUp(): void
+	/**
+	 * @return iterable<string, mixed[]>
+	 */
+	public static function dataFileAsserts(): iterable
 	{
-		$this->extension = new FormContainerValuesDynamicReturnTypeExtension();
+		yield from self::gatherAssertTypes(__DIR__ . '/data/FormContainerModel.php');
 	}
 
-	public function testParameterAsArray(): void
+	/**
+	 * @dataProvider dataFileAsserts
+	 * @param mixed ...$args
+	 */
+	public function testFileAsserts(
+		string $assertType,
+		string $file,
+		...$args
+	): void
 	{
-		$methodReflection = $this->createMock(MethodReflection::class);
-		$methodReflection
-			->method('getVariants')
-			->willReturn([new FunctionVariant(
-				TemplateTypeMap::createEmpty(),
-				TemplateTypeMap::createEmpty(),
-				[],
-				true,
-				new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(ArrayHash::class))]),
-			)]);
+		$this->assertFileAsserts($assertType, $file, ...$args);
+	}
 
-		$scope = $this->createMock(Scope::class);
-		$scope->method('getType')->willReturn(new ConstantBooleanType(true));
-
-		$methodCall = $this->createMock(MethodCall::class);
-		$arg = $this->createMock(Arg::class);
-		$value = $this->createMock(Expr::class);
-		$arg->value = $value;
-		$methodCall->args = [
-			0 => $arg,
+	public static function getAdditionalConfigFiles(): array
+	{
+		return [
+			__DIR__ . '/phpstan.neon',
 		];
-		$methodCall->method('getArgs')->willReturn($methodCall->args);
-
-		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
-
-		self::assertInstanceOf(ArrayType::class, $resultType);
-	}
-
-	public function testParameterAsArrayHash(): void
-	{
-		$methodReflection = $this->createMock(MethodReflection::class);
-		$methodReflection
-			->method('getVariants')
-			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(ArrayHash::class))]))]);
-
-		$scope = $this->createMock(Scope::class);
-		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
-
-		$methodCall = $this->createMock(MethodCall::class);
-		$arg = $this->createMock(Arg::class);
-		$value = $this->createMock(Expr::class);
-		$arg->value = $value;
-		$methodCall->args = [
-			0 => $arg,
-		];
-		$methodCall->method('getArgs')->willReturn($methodCall->args);
-
-		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
-
-		self::assertInstanceOf(ObjectType::class, $resultType);
-		self::assertSame(ArrayHash::class, $resultType->describe(VerbosityLevel::value()));
-	}
-
-	public function testDefaultParameterIsArrayHash(): void
-	{
-		$methodReflection = $this->createMock(MethodReflection::class);
-		$methodReflection
-			->method('getVariants')
-			->willReturn([new FunctionVariant(TemplateTypeMap::createEmpty(), TemplateTypeMap::createEmpty(), [], true, new UnionType([new ArrayType(new MixedType(), new MixedType()), new IterableType(new MixedType(), new ObjectType(ArrayHash::class))]))]);
-
-		$scope = $this->createMock(Scope::class);
-		$scope->method('getType')->willReturn(new ConstantBooleanType(false));
-
-		$methodCall = $this->createMock(MethodCall::class);
-		$methodCall->args = [];
-		$methodCall->method('getArgs')->willReturn($methodCall->args);
-
-		$resultType = $this->extension->getTypeFromMethodCall($methodReflection, $methodCall, $scope);
-
-		self::assertInstanceOf(ObjectType::class, $resultType);
-		self::assertSame(ArrayHash::class, $resultType->describe(VerbosityLevel::value()));
 	}
 
 }

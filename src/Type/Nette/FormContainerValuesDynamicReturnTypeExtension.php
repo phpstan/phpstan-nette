@@ -26,22 +26,36 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 		return $methodReflection->getName() === 'getValues';
 	}
 
-	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): ?Type
+	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
-		if (count($methodCall->getArgs()) === 0) {
+		$args = $methodCall->getArgs();
+
+		if (count($args) === 0) {
 			return new ObjectType('Nette\Utils\ArrayHash');
 		}
 
-		$arg = $methodCall->getArgs()[0]->value;
+		$arg = $args[0]->value;
 		$scopedType = $scope->getType($arg);
-		if ($scopedType->isTrue()->yes()) {
+
+		$constantStrings = $scopedType->getConstantStrings();
+
+		if (count($constantStrings) === 0) {
+			return new ObjectType('Nette\Utils\ArrayHash');
+		}
+
+		$constantString = $constantStrings[0];
+
+		$value = $constantString->getValue();
+
+		if ($scopedType->isClassString()->yes()) {
+			return $scopedType->getClassStringObjectType();
+		}
+
+		if ($value === 'array') {
 			return new ArrayType(new StringType(), new MixedType());
 		}
-		if ($scopedType->isFalse()->yes()) {
-			return new ObjectType('Nette\Utils\ArrayHash');
-		}
 
-		return null;
+		return new ObjectType('Nette\Utils\ArrayHash');
 	}
 
 }
