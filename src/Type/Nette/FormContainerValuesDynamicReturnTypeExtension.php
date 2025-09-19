@@ -37,6 +37,10 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 		$arg = $args[0]->value;
 		$scopedType = $scope->getType($arg);
 
+		if ($scopedType->isTrue()->yes()) {
+			return new ArrayType(new StringType(), new MixedType());
+		}
+
 		$constantStrings = $scopedType->getConstantStrings();
 
 		if (count($constantStrings) === 0) {

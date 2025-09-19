@@ -3,6 +3,7 @@
 namespace PHPStan\Type\Nette\Data\FormContainerModel;
 
 use Nette\Forms\Form;
+use Nette\Utils\ArrayHash;
 use function PHPStan\Testing\assertType;
 
 class Dto
@@ -33,5 +34,9 @@ class FormContainerModel
 
 		assertType(Dto::class, $dto);
 		assertType('array<string, mixed>', $array);
+
+		assertType('array<string, mixed>', $form->getValues(true));
+		assertType(ArrayHash::class, $form->getValues());
+		assertType(ArrayHash::class, $form->getValues(null));
 	}
 }
