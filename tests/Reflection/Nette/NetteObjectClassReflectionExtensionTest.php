@@ -21,9 +21,6 @@ class NetteObjectClassReflectionExtensionTest extends PHPStanTestCase
 		$this->extension = new NetteObjectClassReflectionExtension();
 	}
 
-	/**
-	 * @return mixed[]
-	 */
 	public function dataHasMethod(): array
 	{
 		$data = [];
@@ -62,9 +59,6 @@ class NetteObjectClassReflectionExtensionTest extends PHPStanTestCase
 		self::assertSame($result, $this->extension->hasMethod($classReflection, $method));
 	}
 
-	/**
-	 * @return mixed[]
-	 */
 	public function dataHasProperty(): array
 	{
 		$data = [];

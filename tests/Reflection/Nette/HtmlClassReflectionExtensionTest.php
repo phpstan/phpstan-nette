@@ -21,9 +21,6 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 		$this->extension = new HtmlClassReflectionExtension();
 	}
 
-	/**
-	 * @return mixed[]
-	 */
 	public function dataHasMethod(): array
 	{
 		return [
@@ -62,9 +59,6 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 		self::assertSame(Html::class, $parametersAcceptor->getReturnType()->describe(VerbosityLevel::value()));
 	}
 
-	/**
-	 * @return mixed[]
-	 */
 	public function dataHasProperty(): array
 	{
 		return [
