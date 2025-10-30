@@ -7,9 +7,6 @@ use PHPStan\Testing\TypeInferenceTestCase;
 final class FormContainerValuesDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
 {
 
-	/**
-	 * @return iterable<string, mixed[]>
-	 */
 	public static function dataFileAsserts(): iterable
 	{
 		yield from self::gatherAssertTypes(__DIR__ . '/data/FormContainerModel.php');

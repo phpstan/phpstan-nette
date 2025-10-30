@@ -7,9 +7,6 @@ use PHPStan\Testing\TypeInferenceTestCase;
 class ComponentModelArrayAccessDynamicReturnTypeExtensionTest extends TypeInferenceTestCase
 {
 
-	/**
-	 * @return iterable<string, mixed[]>
-	 */
 	public function dataFileAsserts(): iterable
 	{
 		yield from self::gatherAssertTypes(__DIR__ . '/data/componentModelArrayAccess.php');
