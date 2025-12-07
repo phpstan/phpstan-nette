@@ -2,14 +2,30 @@
 
 namespace PHPStan\Type\Nette;
 
+use Composer\InstalledVersions;
+use OutOfBoundsException;
 use PHPStan\Testing\TypeInferenceTestCase;
+use function class_exists;
+use function version_compare;
 
 class MultiplierTest extends TypeInferenceTestCase
 {
 
 	public function dataFileAsserts(): iterable
 	{
-		yield from self::gatherAssertTypes(__DIR__ . '/data/multiplier.php');
+		try {
+			$applicationVersion = class_exists(InstalledVersions::class)
+				? InstalledVersions::getVersion('nette/application')
+				: null;
+		} catch (OutOfBoundsException $e) {
+			$applicationVersion = null;
+		}
+
+		if ($applicationVersion !== null && version_compare($applicationVersion, '3.2.5', '>=')) {
+			yield from self::gatherAssertTypes(__DIR__ . '/data/multiplierApplication325.php');
+		} else {
+			yield from self::gatherAssertTypes(__DIR__ . '/data/multiplier.php');
+		}
 	}
 
 	/**
