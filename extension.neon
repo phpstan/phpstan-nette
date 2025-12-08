@@ -7,7 +7,6 @@ parameters:
 	stubFiles:
 		- stubs/Application/Routers/RouteList.stub
 		- stubs/Application/UI/Component.stub
-		- stubs/Application/UI/Multiplier.stub
 		- stubs/Application/UI/Presenter.stub
 		- stubs/Caching/Cache.stub
 		- stubs/ComponentModel/Component.stub
@@ -52,6 +51,11 @@ parameters:
 			- forward
 
 services:
+	-
+		class: PHPStan\Stubs\Nette\Application\StubFilesExtensionLoader
+		tags:
+			- phpstan.stubFilesExtension
+
 	-
 		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
 		tags:
