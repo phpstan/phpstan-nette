@@ -104,7 +104,7 @@ services:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
 	-
-		class: PHPStan\Type\Nette\FormContainerUnsafeValuesDynamicReturnTypeExtension
+		class: PHPStan\Type\Nette\FormContainerUntrustedValuesDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
