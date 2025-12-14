@@ -13,7 +13,7 @@ use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 use function count;
 
-class FormContainerUnsafeValuesDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
+class FormContainerUntrustedValuesDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
 	public function getClass(): string
@@ -23,19 +23,23 @@ class FormContainerUnsafeValuesDynamicReturnTypeExtension implements DynamicMeth
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool
 	{
-		return $methodReflection->getName() === 'getUnsafeValues';
+		return $methodReflection->getName() === 'getUntrustedValues' || $methodReflection->getName() === 'getUnsafeValues';
 	}
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): ?Type
 	{
 		if (count($methodCall->getArgs()) === 0) {
-			return null;
+			return new ObjectType('Nette\Utils\ArrayHash');
 		}
 
 		$arg = $methodCall->getArgs()[0]->value;
 		$scopedType = $scope->getType($arg);
 		if ($scopedType->isNull()->yes()) {
 			return new ObjectType('Nette\Utils\ArrayHash');
+		}
+
+		if ($scopedType->isClassString()->yes()) {
+			return $scopedType->getClassStringObjectType();
 		}
 
 		if (count($scopedType->getConstantStrings()) === 1 && $scopedType->getConstantStrings()[0]->getValue() === 'array') {
