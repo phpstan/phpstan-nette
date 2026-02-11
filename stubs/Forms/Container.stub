@@ -6,7 +6,7 @@ use Nette\Utils\ArrayHash;
 
 /**
  * @property   ArrayHash $values
- * @property-read \Iterator $controls
+ * @property-read \Iterator<array-key, mixed> $controls
  * @property-read Form|null $form
  * @phpstan-implements \ArrayAccess<string, \Nette\ComponentModel\IComponent>
  */
