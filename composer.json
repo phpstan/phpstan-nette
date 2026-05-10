@@ -26,7 +26,8 @@
 		"phpstan/phpstan-deprecation-rules": "^2.0",
 		"phpstan/phpstan-phpunit": "^2.0.8",
 		"phpstan/phpstan-strict-rules": "^2.0",
-		"phpunit/phpunit": "^9.6"
+		"phpunit/phpunit": "^9.6",
+		"shipmonk/name-collision-detector": "^2.1"
 	},
 	"config": {
 		"sort-packages": true
