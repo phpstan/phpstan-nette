@@ -48,15 +48,11 @@ class StringsMatchTypeSpecifiyingExtension implements StaticMethodTypeSpecifying
 		$patternArg = $args[1] ?? null;
 
 		$subjectTypes = new SpecifiedTypes();
-		if ($patternArg === null) {
+		if ($patternArg === null || $subjectArg === null) {
 			return $subjectTypes;
 		}
 
-		if (
-			$subjectArg !== null
-			&& $context->true()
-			&& $scope->getType($subjectArg->value)->isString()->yes()
-		) {
+		if ($scope->getType($subjectArg->value)->isString()->yes()) {
 			$subjectType = $this->regexArrayShapeMatcher->matchSubjectExpr($patternArg->value, $scope);
 			if ($subjectType !== null) {
 				$subjectTypes = $this->typeSpecifier->create(
