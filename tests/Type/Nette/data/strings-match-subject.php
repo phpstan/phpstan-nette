@@ -21,3 +21,12 @@ function (string $s): void {
 	}
 	assertType("string", $s);
 };
+
+function ($mixed): void {
+	if (Strings::match($mixed, '/foo/')) {
+		assertType("mixed", $mixed);
+	} else {
+		assertType("mixed", $mixed);
+	}
+	assertType("mixed", $mixed);
+};
