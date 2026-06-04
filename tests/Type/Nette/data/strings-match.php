@@ -26,17 +26,17 @@ function (string $s): void {
 
 function (string $s): void {
 	$result = Strings::matchAll($s, '/ab(?P<num>\d+)(?P<suffix>ab)?/', PREG_SET_ORDER);
-	assertType("list<array{0: string, num: numeric-string, 1: numeric-string, suffix?: 'ab', 2?: 'ab'}>", $result);
+	assertType("list<array{0: string, num: decimal-int-string, 1: decimal-int-string, suffix?: 'ab', 2?: 'ab'}>", $result);
 };
 
 function (string $s): void {
 	$result = Strings::matchAll($s, '/ab(?P<num>\d+)(?P<suffix>ab)?/', PREG_PATTERN_ORDER);
-	assertType("array{0: list<string>, num: list<numeric-string>, 1: list<numeric-string>, suffix: list<''|'ab'>, 2: list<''|'ab'>}", $result);
+	assertType("array{0: list<string>, num: list<decimal-int-string>, 1: list<decimal-int-string>, suffix: list<''|'ab'>, 2: list<''|'ab'>}", $result);
 };
 
 function (string $s): void {
 	$result = Strings::matchAll($s, '/ab(?P<num>\d+)(?P<suffix>ab)?/', false, 0, false, true);
-	assertType("array{0: list<string>, num: list<numeric-string>, 1: list<numeric-string>, suffix: list<''|'ab'>, 2: list<''|'ab'>}", $result);
+	assertType("array{0: list<string>, num: list<decimal-int-string>, 1: list<decimal-int-string>, suffix: list<''|'ab'>, 2: list<''|'ab'>}", $result);
 };
 
 function (string $s): void {
