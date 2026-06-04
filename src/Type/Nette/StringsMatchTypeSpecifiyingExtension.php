@@ -3,28 +3,20 @@
 namespace PHPStan\Type\Nette;
 
 use Nette\Utils\Strings;
-use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Analyser\SpecifiedTypes;
 use PHPStan\Analyser\TypeSpecifier;
+use PHPStan\Analyser\TypeSpecifierAwareExtension;
 use PHPStan\Analyser\TypeSpecifierContext;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\TrinaryLogic;
-use PHPStan\Type\Constant\ConstantBooleanType;
-use PHPStan\Type\Constant\ConstantIntegerType;
-use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
-use PHPStan\Type\NullType;
 use PHPStan\Type\Php\RegexArrayShapeMatcher;
 use PHPStan\Type\StaticMethodTypeSpecifyingExtension;
-use PHPStan\Type\Type;
-use PHPStan\Type\TypeCombinator;
-use function array_key_exists;
-use const PREG_OFFSET_CAPTURE;
-use const PREG_UNMATCHED_AS_NULL;
+use function in_array;
 
-class StringsMatchTypeSpecifiyingExtension implements StaticMethodTypeSpecifyingExtension
+class StringsMatchTypeSpecifiyingExtension implements StaticMethodTypeSpecifyingExtension, TypeSpecifierAwareExtension
 {
+
 	private RegexArrayShapeMatcher $regexArrayShapeMatcher;
 
 	private TypeSpecifier $typeSpecifier;
@@ -46,7 +38,7 @@ class StringsMatchTypeSpecifiyingExtension implements StaticMethodTypeSpecifying
 
 	public function isStaticMethodSupported(MethodReflection $staticMethodReflection, StaticCall $node, TypeSpecifierContext $context): bool
 	{
-		return $context->true() && $staticMethodReflection->getName() === 'match';
+		return $context->true() && in_array($staticMethodReflection->getName(), ['match', 'matchAll'], true);
 	}
 
 	public function specifyTypes(MethodReflection $staticMethodReflection, StaticCall $node, Scope $scope, TypeSpecifierContext $context): SpecifiedTypes
@@ -78,4 +70,5 @@ class StringsMatchTypeSpecifiyingExtension implements StaticMethodTypeSpecifying
 
 		return $subjectTypes;
 	}
+
 }

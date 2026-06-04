@@ -129,6 +129,11 @@ services:
 			- phpstan.broker.dynamicStaticMethodReturnTypeExtension
 
 	-
+		class: PHPStan\Type\Nette\StringsMatchTypeSpecifiyingExtension
+		tags:
+			- phpstan.typeSpecifier.staticMethodTypeSpecifyingExtension
+
+	-
 		class: PHPStan\Type\Nette\StringsReplaceCallbackClosureTypeExtension
 		tags:
 			- phpstan.staticMethodParameterClosureTypeExtension
