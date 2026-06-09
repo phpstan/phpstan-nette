@@ -51,7 +51,7 @@ class StringsMatchAllDynamicReturnTypeExtension implements DynamicStaticMethodRe
 		return $this->regexArrayShapeMatcher->matchAllExpr(
 			$patternArg->value,
 			$this->resolveFlagsType($args, $scope),
-			TrinaryLogic::createYes(),
+			TrinaryLogic::createMaybe(),
 			$scope,
 		);
 	}
