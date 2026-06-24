@@ -137,3 +137,13 @@ services:
 		class: PHPStan\Type\Nette\StringsReplaceCallbackClosureTypeExtension
 		tags:
 			- phpstan.staticMethodParameterClosureTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\StringsLengthTypeSpecifiyingExtension
+		tags:
+			- phpstan.typeSpecifier.staticMethodTypeSpecifyingExtension
+
+	-
+		class: PHPStan\Type\Nette\StringsLengthDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicStaticMethodReturnTypeExtension
