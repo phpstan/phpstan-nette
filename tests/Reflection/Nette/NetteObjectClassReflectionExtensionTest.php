@@ -19,6 +19,8 @@ class NetteObjectClassReflectionExtensionTest extends PHPStanTestCase
 	{
 		$this->reflectionProvider = $this->createReflectionProvider();
 		$this->extension = new NetteObjectClassReflectionExtension();
+
+		parent::setUp();
 	}
 
 	public function dataHasMethod(): array

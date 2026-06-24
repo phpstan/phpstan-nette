@@ -19,6 +19,8 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 	{
 		$this->reflectionProvider = $this->createReflectionProvider();
 		$this->extension = new HtmlClassReflectionExtension();
+
+		parent::setUp();
 	}
 
 	public function dataHasMethod(): array
