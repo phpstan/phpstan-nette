@@ -27,7 +27,6 @@ class TypeInferenceTest extends TypeInferenceTestCase
 			yield from self::gatherAssertTypes(__DIR__ . '/data/multiplier.php');
 		}
 
-		yield from $this->gatherAssertTypes(__DIR__ . '/data/multiplier.php');
 		yield from $this->gatherAssertTypes(__DIR__ . '/data/strings.php');
 	}
 
