@@ -3,23 +3,13 @@
 namespace PHPStan\Type\Nette;
 
 use Nette\Utils\Strings;
-use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Analyser\SpecifiedTypes;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\TrinaryLogic;
-use PHPStan\Type\Constant\ConstantBooleanType;
-use PHPStan\Type\Constant\ConstantIntegerType;
 use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
 use PHPStan\Type\IntegerRangeType;
-use PHPStan\Type\NullType;
-use PHPStan\Type\Php\RegexArrayShapeMatcher;
 use PHPStan\Type\Type;
-use PHPStan\Type\TypeCombinator;
-use function array_key_exists;
-use const PREG_OFFSET_CAPTURE;
-use const PREG_UNMATCHED_AS_NULL;
 
 class StringsLengthDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExtension
 {
