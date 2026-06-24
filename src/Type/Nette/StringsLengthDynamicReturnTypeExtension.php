@@ -5,7 +5,6 @@ namespace PHPStan\Type\Nette;
 use Nette\Utils\Strings;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
-use PHPStan\Analyser\SpecifiedTypes;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
 use PHPStan\Type\IntegerRangeType;
@@ -30,7 +29,7 @@ class StringsLengthDynamicReturnTypeExtension implements DynamicStaticMethodRetu
 		$stringArg = $args[0] ?? null;
 
 		if ($stringArg === null) {
-			return new SpecifiedTypes();
+			return null;
 		}
 
 		$type = $scope->getType($stringArg->value);

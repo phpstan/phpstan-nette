@@ -22,3 +22,10 @@ function doFoo(string $string) {
 	}
 	assertType('string', $string);
 }
+
+/**
+ * @param non-empty-string $nonES
+ */
+function doBar(string $nonES) {
+	assertType('int<1, max>', Strings::length($nonES));
+}
