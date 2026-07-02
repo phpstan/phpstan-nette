@@ -54,7 +54,7 @@ class StringsLengthTypeSpecifiyingExtension implements StaticMethodTypeSpecifyin
 			new IntersectionType([new StringType(), new AccessoryNonEmptyStringType()]),
 			$context,
 			$scope,
-		);
+		)->setRootExpr($node);
 	}
 
 }
