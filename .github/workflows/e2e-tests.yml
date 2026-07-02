@@ -27,7 +27,7 @@ jobs:
         include:
           - script: |
               cd e2e/bug-208
-              ../../bin/phpstan
+              vendor/bin/phpstan
 
     steps:
       - name: Harden the runner (Audit all outbound calls)
