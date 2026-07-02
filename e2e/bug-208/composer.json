@@ -1,5 +1,6 @@
 {
     "require-dev": {
+		"nette/utils": "^3.2.5",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan-nette": "@dev",
 		"phpstan/phpstan": "@dev"
