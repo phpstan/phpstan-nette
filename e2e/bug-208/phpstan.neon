@@ -1,3 +1,7 @@
+includes:
+    - ../../extension.neon
+    - ../../rules.neon
+
 parameters:
 	level: 8
 	paths:
