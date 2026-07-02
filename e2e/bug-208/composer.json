@@ -1,0 +1,11 @@
+{
+    "require-dev": {
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-nette": "@dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}
