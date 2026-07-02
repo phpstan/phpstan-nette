@@ -27,6 +27,7 @@ jobs:
         include:
           - script: |
               cd e2e/bug-208
+              composer install
               vendor/bin/phpstan
 
     steps:
