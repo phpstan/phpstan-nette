@@ -27,7 +27,7 @@ class StubFilesExtensionLoader implements StubFilesExtension
 
 		if (version_compare($componentModelVersion, '3.1.0', '<')) {
 			$files[] = $path . '/ComponentModel/Container.stub';
-		} else {
+		} elseif (version_compare($componentModelVersion, '4.0.0', '<')) {
 			$files[] = $path . '/ComponentModel/Container_3_1.stub';
 		}
 

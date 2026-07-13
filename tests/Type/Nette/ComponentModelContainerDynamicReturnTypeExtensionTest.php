@@ -27,6 +27,10 @@ class ComponentModelContainerDynamicReturnTypeExtensionTest extends TypeInferenc
 			return '';
 		}
 
+		if (version_compare($componentModelVersion, '4.0.0', '>=')) {
+			return '40';
+		}
+
 		if (version_compare($componentModelVersion, '3.1.0', '>=')) {
 			return '31';
 		}
