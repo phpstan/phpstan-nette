@@ -10,7 +10,6 @@ parameters:
 		- stubs/Application/UI/Presenter.stub
 		- stubs/Caching/Cache.stub
 		- stubs/ComponentModel/Component.stub
-		- stubs/ComponentModel/Container.stub
 		- stubs/ComponentModel/IComponent.stub
 		- stubs/ComponentModel/IContainer.stub
 		- stubs/Database/ResultSet.stub
@@ -147,3 +146,8 @@ services:
 		class: PHPStan\Type\Nette\StringsLengthDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicStaticMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Stubs\Nette\StubFilesExtensionLoader
+		tags:
+			- phpstan.stubFilesExtension
