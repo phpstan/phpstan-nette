@@ -45,17 +45,7 @@ class RethrowExceptionRule implements Rule
 
 	public function processNode(Node $node, Scope $scope): array
 	{
-		$hasGeneralCatch = false;
-		foreach ($node->catches as $catch) {
-			foreach ($catch->types as $type) {
-				$typeClass = (string) $type;
-				if ($typeClass === 'Exception' || $typeClass === Throwable::class) {
-					$hasGeneralCatch = true;
-					break 2;
-				}
-			}
-		}
-		if (!$hasGeneralCatch) {
+		if (!$this->hasGeneralCatch($node)) {
 			return [];
 		}
 
@@ -90,6 +80,20 @@ class RethrowExceptionRule implements Rule
 		}
 
 		return $messages;
+	}
+
+	private function hasGeneralCatch(TryCatch $node): bool
+	{
+		foreach ($node->catches as $catch) {
+			foreach ($catch->types as $type) {
+				$typeClass = (string) $type;
+				if ($typeClass === 'Exception' || $typeClass === Throwable::class) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
