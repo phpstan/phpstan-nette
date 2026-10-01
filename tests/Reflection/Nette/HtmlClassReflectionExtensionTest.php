@@ -54,7 +54,7 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 		self::assertSame('href', $methodReflection->getName());
 		self::assertSame($classReflection, $methodReflection->getDeclaringClass());
 		self::assertFalse($methodReflection->isStatic());
-		self::assertEmpty($parametersAcceptor->getParameters());
+		self::assertCount(0, $parametersAcceptor->getParameters());
 		self::assertTrue($parametersAcceptor->isVariadic());
 		self::assertFalse($methodReflection->isPrivate());
 		self::assertTrue($methodReflection->isPublic());
