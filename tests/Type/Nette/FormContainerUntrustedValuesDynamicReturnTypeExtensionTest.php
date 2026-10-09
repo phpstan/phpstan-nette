@@ -25,6 +25,14 @@ final class FormContainerUntrustedValuesDynamicReturnTypeExtensionTest extends T
 			return;
 		}
 
+		yield from self::gatherAssertTypes(__DIR__ . '/data/FormContainerOverriddenUntrustedValues.php');
+
+		// nette/forms 3.2.9+ describes the return type in PHPDoc
+		if (version_compare($formsVersion, '3.2.9', '>=')) {
+			yield from self::gatherAssertTypes(__DIR__ . '/data/FormContainerPhpDocUntrustedValues.php');
+			return;
+		}
+
 		yield from self::gatherAssertTypes(__DIR__ . '/data/FormContainerUntrustedValues.php');
 	}
 
