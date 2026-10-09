@@ -4,6 +4,7 @@ namespace PHPStan\Type\Nette;
 
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
@@ -23,7 +24,18 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool
 	{
-		return $methodReflection->getName() === 'getValues';
+		if ($methodReflection->getName() !== 'getValues') {
+			return false;
+		}
+
+		// nette/forms 3.2.9+ and methods overriding it describe the return type in PHPDoc
+		if (!$methodReflection instanceof ExtendedMethodReflection) {
+			return true;
+		}
+
+		$resolvedPhpDoc = $methodReflection->getResolvedPhpDoc();
+
+		return $resolvedPhpDoc === null || $resolvedPhpDoc->getReturnTag() === null;
 	}
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
