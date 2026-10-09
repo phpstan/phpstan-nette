@@ -10,8 +10,10 @@ use PHPStan\Type\ArrayType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\ObjectWithoutClassType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
+use PHPStan\Type\TypeCombinator;
 use function count;
 
 class FormContainerUntrustedValuesDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
@@ -28,14 +30,25 @@ class FormContainerUntrustedValuesDynamicReturnTypeExtension implements DynamicM
 			return false;
 		}
 
-		// nette/forms 3.2.9+ and methods overriding it describe the return type in PHPDoc
 		if (!$methodReflection instanceof ExtendedMethodReflection) {
 			return true;
 		}
 
 		$resolvedPhpDoc = $methodReflection->getResolvedPhpDoc();
+		if ($resolvedPhpDoc === null) {
+			return true;
+		}
 
-		return $resolvedPhpDoc === null || $resolvedPhpDoc->getReturnTag() === null;
+		$returnTag = $resolvedPhpDoc->getReturnTag();
+		if ($returnTag === null) {
+			return true;
+		}
+
+		// nette/forms 3.2.9+ and methods overriding it can describe a more precise return type in PHPDoc,
+		// older versions state just object|array
+		return $returnTag->getType()->isSuperTypeOf(
+			TypeCombinator::union(new ArrayType(new MixedType(), new MixedType()), new ObjectWithoutClassType()),
+		)->yes();
 	}
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): ?Type
