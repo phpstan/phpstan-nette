@@ -3,16 +3,17 @@
 namespace Nette\Utils;
 
 /**
- * @implements \IteratorAggregate<array-key, mixed>
- * @implements \ArrayAccess<array-key, mixed>
+ * @template T
+ * @implements \IteratorAggregate<array-key, T>
+ * @implements \ArrayAccess<array-key, T>
  */
-class ArrayHash implements \ArrayAccess, \IteratorAggregate
+class ArrayHash extends \stdClass implements \ArrayAccess, \IteratorAggregate
 {
 
 	/**
-	 * @return \RecursiveArrayIterator<array-key, mixed>
+	 * @return \Iterator<array-key, T>
 	 */
-	public function getIterator(): \RecursiveArrayIterator
+	public function &getIterator(): \Iterator
 	{
 		// nothing
 	}
