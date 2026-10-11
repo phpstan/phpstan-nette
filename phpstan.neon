@@ -14,3 +14,6 @@ parameters:
 
 	ignoreErrors:
 		- '~^Variable property access on PhpParser\\Node\.$~'
+		-
+			identifier: phpstanApi.classConstant
+			path: tests/Rule/Nette/ArrayHashGenericsRuleTest.php
