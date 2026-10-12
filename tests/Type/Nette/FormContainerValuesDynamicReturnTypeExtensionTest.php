@@ -14,6 +14,7 @@ final class FormContainerValuesDynamicReturnTypeExtensionTest extends TypeInfere
 	public static function dataFileAsserts(): iterable
 	{
 		yield from self::gatherAssertTypes(__DIR__ . '/data/FormContainerOverriddenValues.php');
+		yield from self::gatherAssertTypes(__DIR__ . '/data/FormContainerArrayHashOrArrayValues.php');
 
 		try {
 			$formsVersion = class_exists(InstalledVersions::class)
