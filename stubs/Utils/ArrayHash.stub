@@ -7,13 +7,46 @@ namespace Nette\Utils;
  * @implements \IteratorAggregate<array-key, T>
  * @implements \ArrayAccess<array-key, T>
  */
-class ArrayHash extends \stdClass implements \ArrayAccess, \IteratorAggregate
+class ArrayHash extends \stdClass implements \ArrayAccess, \Countable, \IteratorAggregate
 {
 
 	/**
 	 * @return \Iterator<array-key, T>
 	 */
 	public function &getIterator(): \Iterator
+	{
+		// nothing
+	}
+
+	/**
+	 * @param T $value
+	 */
+	public function offsetSet($key, $value): void
+	{
+		// nothing
+	}
+
+	/**
+	 * @param array-key $key
+	 * @return T
+	 */
+	public function offsetGet($key): mixed
+	{
+		// nothing
+	}
+
+	/**
+	 * @param array-key $key
+	 */
+	public function offsetExists($key): bool
+	{
+		// nothing
+	}
+
+	/**
+	 * @param array-key $key
+	 */
+	public function offsetUnset($key): void
 	{
 		// nothing
 	}

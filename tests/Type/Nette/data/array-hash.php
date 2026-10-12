@@ -11,6 +11,7 @@ use function PHPStan\Testing\assertType;
 function test(ArrayHash $hash): void
 {
 	assertType('Nette\\Utils\\ArrayHash<int>', $hash);
-	assertType('int|null', $hash['foo']);
+	assertType('int', $hash['foo']);
+	assertType('int', $hash->offsetGet('foo'));
 	assertType('mixed', $hash->foo);
 }
