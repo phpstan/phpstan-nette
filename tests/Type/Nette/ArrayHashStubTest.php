@@ -2,11 +2,11 @@
 
 namespace PHPStan\Type\Nette;
 
-use Composer\InstalledVersions;
-use OutOfBoundsException;
+use Iterator;
+use Nette\Utils\ArrayHash;
 use PHPStan\Testing\TypeInferenceTestCase;
-use function class_exists;
-use function version_compare;
+use ReflectionMethod;
+use ReflectionNamedType;
 
 final class ArrayHashStubTest extends TypeInferenceTestCase
 {
@@ -15,16 +15,9 @@ final class ArrayHashStubTest extends TypeInferenceTestCase
 	{
 		yield from self::gatherAssertTypes(__DIR__ . '/data/array-hash.php');
 
-		try {
-			$utilsVersion = class_exists(InstalledVersions::class)
-				? InstalledVersions::getVersion('nette/utils')
-				: null;
-		} catch (OutOfBoundsException $e) {
-			$utilsVersion = null;
-		}
-
 		// nette/utils 4.0+ declares getIterator(): \Iterator, older versions \RecursiveArrayIterator
-		if ($utilsVersion === null || version_compare($utilsVersion, '4.0.0', '<')) {
+		$iteratorReturnType = (new ReflectionMethod(ArrayHash::class, 'getIterator'))->getReturnType();
+		if (!$iteratorReturnType instanceof ReflectionNamedType || $iteratorReturnType->getName() !== Iterator::class) {
 			return;
 		}
 
