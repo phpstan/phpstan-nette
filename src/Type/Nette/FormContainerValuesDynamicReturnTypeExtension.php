@@ -45,10 +45,18 @@ final class FormContainerValuesDynamicReturnTypeExtension implements DynamicMeth
 		}
 
 		// nette/forms 3.2.9+ and methods overriding it can describe a more precise return type in PHPDoc,
-		// older versions state just object|array
-		return $returnTag->getType()->isSuperTypeOf(
+		// older versions state just object|array (3.0 - 3.2.8) or ArrayHash|array (2.x)
+		$returnType = $returnTag->getType();
+		if ($returnType->isSuperTypeOf(
 			TypeCombinator::union(new ArrayType(new MixedType(), new MixedType()), new ObjectWithoutClassType()),
-		)->yes();
+		)->yes()) {
+			return true;
+		}
+
+		$arrayHashOrArray = TypeCombinator::union(new ArrayType(new MixedType(), new MixedType()), new ObjectType('Nette\Utils\ArrayHash'));
+
+		return $returnType->isSuperTypeOf($arrayHashOrArray)->yes()
+			&& $arrayHashOrArray->isSuperTypeOf($returnType)->yes();
 	}
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
