@@ -28,10 +28,22 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 		return [
 			[
 				Html::class,
+				'href',
 				true,
 			],
 			[
+				Html::class,
+				'text',
+				false,
+			],
+			[
+				Html::class,
+				'html',
+				false,
+			],
+			[
 				stdClass::class,
+				'href',
 				false,
 			],
 		];
@@ -40,10 +52,10 @@ class HtmlClassReflectionExtensionTest extends PHPStanTestCase
 	/**
 	 * @dataProvider dataHasMethod
 	 */
-	public function testHasMethod(string $className, bool $result): void
+	public function testHasMethod(string $className, string $methodName, bool $result): void
 	{
 		$classReflection = $this->reflectionProvider->getClass($className);
-		self::assertSame($result, $this->extension->hasMethod($classReflection, 'href'));
+		self::assertSame($result, $this->extension->hasMethod($classReflection, $methodName));
 	}
 
 	public function testGetMethod(): void

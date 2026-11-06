@@ -5,6 +5,8 @@ namespace Nette\Utils;
 /**
  * @implements \IteratorAggregate<int, self|string>
  * @implements \ArrayAccess<int, self|string>
+ * @method static static text(mixed $text)
+ * @method static static html(mixed $html)
  */
 class Html implements \ArrayAccess, \IteratorAggregate
 {
