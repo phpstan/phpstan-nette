@@ -7,13 +7,15 @@ use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
+use function in_array;
 
 class HtmlClassReflectionExtension implements MethodsClassReflectionExtension, PropertiesClassReflectionExtension
 {
 
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
 	{
-		return $classReflection->is('Nette\Utils\Html');
+		// The static factories declared in the stub, which would otherwise be taken for attribute setters
+		return $classReflection->is('Nette\Utils\Html') && !in_array($methodName, ['text', 'html'], true);
 	}
 
 	public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
