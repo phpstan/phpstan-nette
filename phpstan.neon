@@ -8,6 +8,13 @@ includes:
 	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
+	level: 8
+	resultCachePath: tmp/resultCache.php
+
+	paths:
+		- src
+		- tests
+
 	excludePaths:
 		- tests/*/data/*
 		- tests/NetteObjectChild.php
