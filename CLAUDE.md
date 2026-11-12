@@ -115,6 +115,7 @@ GitHub Actions workflow (`.github/workflows/build.yml`) on the `2.0.x` branch ru
 2. **Coding Standard** — phpcs via phpstan/build-cs (2.x branch)
 3. **Tests** — PHPUnit on PHP 7.4–8.4 with lowest and highest dependencies
 4. **Static Analysis** — PHPStan level 8 on PHP 7.4–8.4 with lowest and highest dependencies
+5. **Mutation Testing** — Infection (via `phpstan/build-infection`) on PHP 8.3–8.5, pull requests only, requires 100% MSI on changed lines
 
 ## Development Guidelines
 
